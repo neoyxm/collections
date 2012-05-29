@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bitsort", "bitsort.vcproj", "{6F1FB55C-557D-4F95-9288-29A7A06DEAB2}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bitsort_nodup", "bitsort_nodup.vcproj", "{B886C9C2-9D9F-4049-8B7F-FCDCEC72742B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bitsort_2pass", "bitsort_2pass.vcproj", "{246E95EA-364C-4F36-9B87-2987C07C1E32}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6F1FB55C-557D-4F95-9288-29A7A06DEAB2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6F1FB55C-557D-4F95-9288-29A7A06DEAB2}.Debug|Win32.Build.0 = Debug|Win32
+		{6F1FB55C-557D-4F95-9288-29A7A06DEAB2}.Release|Win32.ActiveCfg = Release|Win32
+		{6F1FB55C-557D-4F95-9288-29A7A06DEAB2}.Release|Win32.Build.0 = Release|Win32
+		{B886C9C2-9D9F-4049-8B7F-FCDCEC72742B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B886C9C2-9D9F-4049-8B7F-FCDCEC72742B}.Debug|Win32.Build.0 = Debug|Win32
+		{B886C9C2-9D9F-4049-8B7F-FCDCEC72742B}.Release|Win32.ActiveCfg = Release|Win32
+		{B886C9C2-9D9F-4049-8B7F-FCDCEC72742B}.Release|Win32.Build.0 = Release|Win32
+		{246E95EA-364C-4F36-9B87-2987C07C1E32}.Debug|Win32.ActiveCfg = Debug|Win32
+		{246E95EA-364C-4F36-9B87-2987C07C1E32}.Debug|Win32.Build.0 = Debug|Win32
+		{246E95EA-364C-4F36-9B87-2987C07C1E32}.Release|Win32.ActiveCfg = Release|Win32
+		{246E95EA-364C-4F36-9B87-2987C07C1E32}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
