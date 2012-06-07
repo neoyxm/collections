@@ -48,7 +48,7 @@ int binary_search_non_recursive(int start_pos, int end_pos, int target)
 
     while ( s <= e)
 	{
-	    int half_pos  =  (s + e) / 2;
+	    int half_pos  =  (s + e) >> 1;
 
 		if (data[half_pos] == target) 
 		{
@@ -76,6 +76,13 @@ int main(int argc, char **argv)
 {
 	
 	int target = 0;
+
+	for (int i = 0; i < sizeof(data)/sizeof(int); i++)
+	{
+		cout << data[i] << " ";		
+	}
+	cout << endl;
+
 
 	cout << "Please input you want:";
     cin >> target;
