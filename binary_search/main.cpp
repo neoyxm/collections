@@ -26,7 +26,7 @@ int binary_search (int start_pos, int end_pos, int target)
         else 
             return -1;
     } else {
-        int half_pos =  (start_pos + end_pos) / 2;
+        int half_pos =  (start_pos + end_pos) >> 1;
 
         if (data[half_pos] == target)
             return half_pos;
