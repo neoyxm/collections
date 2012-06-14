@@ -287,25 +287,28 @@ int parser_is_divx_drm(FILE *fp)
 			{
 				if (tag.flag == FOURCC_hdrl)
 				{
+					avitag_t tag_avih;
 					printf("Found the flag: hdrl\n");
 					
-					avitag_t tag_avih;
+
 					if (parser_read_tag(fp, &tag_avih) == 0)
 					{
 						if (tag_avih.fcc == FOURCC_avih)
 						{
+							avitag_t tag_list;
 							printf("Found the flag: avih, size:%d\n", tag_avih.size);
 							parser_skip(fp, &tag_avih);
 
-							avitag_t tag_list;
+
 							if (parser_read_tag(fp, &tag_list)==0)
 							{
 								printf("Found LIST, size: %d\n", tag_list.size);
 								if(parser_read_flag(fp, &tag_list) == 0)
 								if (tag_list.flag == FOURCC_strl)
 								{
-									printf("Found the flag: strl\n");
 									avitag_t tag_strh;
+									printf("Found the flag: strl\n");
+									
 									if (parser_read_tag(fp, &tag_strh)==0)
 									{
 										if (tag_strh.fcc = FOURCC_strh)
