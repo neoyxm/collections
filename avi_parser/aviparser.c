@@ -1,7 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <memory.h>
+
+#define mmioFOURCC(ch0, ch1, ch2, ch3)\
+    ((unsigned int)(unsigned char)(ch0) | ((unsigned int)(unsigned char)(ch1) << 8) |\
+    ((unsigned int)(unsigned char)(ch2) << 16) | ((unsigned int)(unsigned char)(ch3) << 24 ))
+
+#define FOURCC_RIFF mmioFOURCC('R','I','F','F')
+#define FOURCC_LIST mmioFOURCC('L','I','S','T')
+#define FOURCC_AVI  mmioFOURCC('A','V','I',' ')
+#define FOURCC_hdrl  mmioFOURCC('h','d','r','l')
+#define FOURCC_avih  mmioFOURCC('a','v','i','h')
+#define FOURCC_strl  mmioFOURCC('s','t','r','l')
+#define FOURCC_strh  mmioFOURCC('s','t','r','h')
+#define FOURCC_strd  mmioFOURCC('s','t','r','d')
+
+
+typedef struct avitag avitag_t;
+struct avitag
+{
+    unsigned int fcc;
+    int size;
+    unsigned int flag;
+    int nested;
+    int has_sub;
+}; 
  
+
+#if 0 
 typedef struct avitag avitag_t;
 struct avitag
 {
@@ -190,14 +216,117 @@ int parse_strh(FILE *fp, const avitag_t *tag)
     return ftell(fp);
 }
 
-
-
 int parse_strl(FILE *fp, const avitag_t *tag)
 {
 	printf("found the strl\n");
 	return 0;
 }
+#endif 
+
+int parser_read_tag(FILE *fp, avitag_t *tag)
+{
+    unsigned char buf[8];
  
+    if (fread(buf, 1, 8, fp) != 8)
+        return -1;  /* end of file */
+    memset(tag, 0, sizeof(avitag_t)); 
+	
+	tag->fcc = mmioFOURCC(buf[0], buf[1], buf[2], buf[3]);
+    tag->size = buf[4] | (buf[5]<<8) | (buf[6]<<16) | (buf[7]<<24);
+
+	return 0;
+
+}
+
+int parser_read_flag(FILE *fp, avitag_t *tag)
+{
+    unsigned char buf[8];
+ 
+    if (fread(buf, 1, 4, fp) != 4)
+        return -1;  /* end of file */
+	tag->flag = mmioFOURCC(buf[0], buf[1], buf[2], buf[3]);
+	return 0;
+}
+
+
+int parser_skip(FILE *fp, const avitag_t* tag)
+{
+    int size = tag->size + (tag->size&1);
+ 
+    fseek(fp, size, SEEK_CUR);
+    return ftell(fp);
+}
+
+int parser_is_divx_drm(FILE *fp)
+{
+	// Seeking the RIFF
+	avitag_t tag;
+
+	while (parser_read_tag(fp, &tag) == 0)
+	{
+		if (tag.fcc == FOURCC_RIFF)
+		{
+			printf("Found RIFF, size: %d\n", tag.size);
+	
+			if(parser_read_flag(fp, &tag) == 0)
+			{
+				if (tag.flag == FOURCC_AVI)
+					printf("Found RIFF AVI flag\n");
+				else
+				{
+					printf("not avi format, exit\n");
+					break;
+				}
+			
+			}		
+		} 
+		else if ( tag.fcc == FOURCC_LIST)
+		{
+			printf("Found LIST, size: %d\n", tag.size);
+			if(parser_read_flag(fp, &tag) == 0)
+			{
+				if (tag.flag == FOURCC_hdrl)
+				{
+					printf("Found the flag: hdrl\n");
+					
+					avitag_t tag_avih;
+					if (parser_read_tag(fp, &tag_avih) == 0)
+					{
+						if (tag_avih.fcc == FOURCC_avih)
+						{
+							printf("Found the flag: avih, size:%d\n", tag_avih.size);
+							parser_skip(fp, &tag_avih);
+
+							avitag_t tag_list;
+							if (parser_read_tag(fp, &tag_list)==0)
+							{
+								printf("Found LIST, size: %d\n", tag_list.size);
+								if(parser_read_flag(fp, &tag_list) == 0)
+								if (tag_list.flag == FOURCC_strl)
+								{
+									printf("Found the flag: strl\n");
+									avitag_t tag_strh;
+									if (parser_read_tag(fp, &tag_strh)==0)
+									{
+										if (tag_strh.fcc = FOURCC_strh)
+										{
+											printf("Found the flag:strh, size:%d\n", tag_strh.size);
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			break;
+		}
+	}
+
+	return 0;
+}
+
+
 int main(int argc, char**argv)
 {
     FILE *fp; 
@@ -215,7 +344,7 @@ int main(int argc, char**argv)
         return -1;
     }
  
-    parse_riff(fp);
+    parser_is_divx_drm(fp);
     fclose(fp);
  
     return 0;
