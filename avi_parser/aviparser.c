@@ -350,5 +350,13 @@ int main(int argc, char**argv)
     parser_is_divx_drm(fp);
     fclose(fp);
  
+ 
+#ifdef __WIN32__
+{
+    char c = 0;
+	getchar();
+}
+#endif
+ 
     return 0;
 }
