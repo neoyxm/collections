@@ -266,8 +266,9 @@ int parser_skip(FILE *fp, const avitag_t* tag)
 int parser_probe_riff(FILE *fp, avitag_t* tag)
 {
 	// seeking riff in the first 64k byte data
+	int offset = 0;
 	int ret = -1;
-	unsigned char buf[MAX_RIFF_BUFF + 8] = {0}; 
+	unsigned char buf[MAX_RIFF_BUFF + 12] = {0}; 
 	unsigned char *p = buf;
 
 	 if (fread(buf, 1, sizeof(buf), fp) != sizeof(buf))
@@ -281,14 +282,15 @@ int parser_probe_riff(FILE *fp, avitag_t* tag)
 		{
 			tag->fcc = mmioFOURCC(p[0], p[1], p[2], p[3]);
 			tag->size = mmioSIZE(p[4], p[5], p[6], p[7]);
-			p += 8;
+			tag->flag = mmioSIZE(p[8], p[9], p[10], p[11]);
+			p += 12;
 			ret = 0;
 			break;
 		}
 		p++;
 	}
 
-	int offset = sizeof(buf) - (p - buf);
+	offset = sizeof(buf) - (p - buf);
 	if (offset > 0)
 		fseek (fp, -offset, SEEK_CUR);
 	//printf("cur pos: %ld, offset:%d\n", ftell(fp), offset);
@@ -296,29 +298,12 @@ int parser_probe_riff(FILE *fp, avitag_t* tag)
 	return ret;
 }
 
-int parser_is_divx_drm(FILE *fp)
+int parser_lists(FILE *fp, avitag_t* tag1)
 {
-	// Seeking the RIFF
 	avitag_t tag;
-
-	if (parser_probe_riff(fp, &tag) == 0)
+	while(parser_read_tag(fp, &tag) == 0)
 	{
-		if (tag.fcc == FOURCC_RIFF)
-		{
-			printf("Found RIFF, size: %d\n", tag.size);
-	
-			if(parser_read_flag(fp, &tag) == 0)
-			{
-				if (tag.flag == FOURCC_AVI)
-					printf("Found RIFF AVI flag\n");
-				else
-				{
-					printf("not avi format, exit\n");
-				}
-			
-			}		
-		} 
-		else if ( tag.fcc == FOURCC_LIST)
+		if ( tag.fcc == FOURCC_LIST)
 		{
 			printf("Found LIST, size: %d\n", tag.size);
 			if(parser_read_flag(fp, &tag) == 0)
@@ -327,7 +312,6 @@ int parser_is_divx_drm(FILE *fp)
 				{
 					avitag_t tag_avih;
 					printf("Found the flag: hdrl\n");
-					
 
 					if (parser_read_tag(fp, &tag_avih) == 0)
 					{
@@ -352,6 +336,7 @@ int parser_is_divx_drm(FILE *fp)
 										if (tag_strh.fcc = FOURCC_strh)
 										{
 											printf("Found the flag:strh, size:%d\n", tag_strh.size);
+											break;
 										}
 									}
 								}
@@ -360,6 +345,39 @@ int parser_is_divx_drm(FILE *fp)
 					}
 				}
 			}
+		}
+	}
+
+	return 0;
+}
+
+int parser_is_divx_drm(FILE *fp)
+{
+	avitag_t tag;
+
+	if (parser_probe_riff(fp, &tag) == 0)
+	{
+		printf("Found RIFF, size: %d\n", tag.size);
+
+		if (tag.fcc == FOURCC_RIFF)
+		{
+			if (tag.flag == FOURCC_AVI)
+				printf("Found RIFF AVI flag\n");
+			else
+			{
+				printf("not avi format, exit\n");
+				return -1;
+			}
+		} 
+
+		if (parser_lists(fp, &tag) == 0)
+		{
+			printf("Parsed lists sucessfully\n");
+		}
+		else
+		{
+			printf("failed to parser lists\n");
+			return -1;
 		}
 	}
 	else 
