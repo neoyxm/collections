@@ -6,6 +6,10 @@
     ((unsigned int)(unsigned char)(ch0) | ((unsigned int)(unsigned char)(ch1) << 8) |\
     ((unsigned int)(unsigned char)(ch2) << 16) | ((unsigned int)(unsigned char)(ch3) << 24 ))
 
+#define mmioSIZE(ch0, ch1, ch2, ch3)\
+    ((int)(unsigned char)(ch0) | ((int)(unsigned char)(ch1) << 8) |\
+    ((int)(unsigned char)(ch2) << 16) | ((int)(unsigned char)(ch3) << 24 ))
+
 #define FOURCC_RIFF mmioFOURCC('R','I','F','F')
 #define FOURCC_LIST mmioFOURCC('L','I','S','T')
 #define FOURCC_AVI  mmioFOURCC('A','V','I',' ')
@@ -257,12 +261,47 @@ int parser_skip(FILE *fp, const avitag_t* tag)
     return ftell(fp);
 }
 
+#define MAX_RIFF_BUFF (64*1024)
+	
+int parser_probe_riff(FILE *fp, avitag_t* tag)
+{
+	// seeking riff in the first 64k byte data
+	int ret = -1;
+	unsigned char buf[MAX_RIFF_BUFF + 8] = {0}; 
+	unsigned char *p = buf;
+
+	 if (fread(buf, 1, sizeof(buf), fp) != sizeof(buf))
+        return -1;  /* end of file */
+
+    memset(tag, 0, sizeof(avitag_t)); 
+
+	while (p && (p-buf < MAX_RIFF_BUFF-4))
+	{
+		if (mmioFOURCC(p[0], p[1], p[2], p[3]) == FOURCC_RIFF)
+		{
+			tag->fcc = mmioFOURCC(p[0], p[1], p[2], p[3]);
+			tag->size = mmioSIZE(p[4], p[5], p[6], p[7]);
+			p += 8;
+			ret = 0;
+			break;
+		}
+		p++;
+	}
+
+	int offset = sizeof(buf) - (p - buf);
+	if (offset > 0)
+		fseek (fp, -offset, SEEK_CUR);
+	//printf("cur pos: %ld, offset:%d\n", ftell(fp), offset);
+
+	return ret;
+}
+
 int parser_is_divx_drm(FILE *fp)
 {
 	// Seeking the RIFF
 	avitag_t tag;
 
-	while (parser_read_tag(fp, &tag) == 0)
+	if (parser_probe_riff(fp, &tag) == 0)
 	{
 		if (tag.fcc == FOURCC_RIFF)
 		{
@@ -275,7 +314,6 @@ int parser_is_divx_drm(FILE *fp)
 				else
 				{
 					printf("not avi format, exit\n");
-					break;
 				}
 			
 			}		
@@ -322,8 +360,11 @@ int parser_is_divx_drm(FILE *fp)
 					}
 				}
 			}
-			break;
 		}
+	}
+	else 
+	{
+		printf("Error: not a riff file\n");
 	}
 
 	return 0;
