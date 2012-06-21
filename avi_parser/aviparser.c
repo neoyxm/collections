@@ -371,7 +371,10 @@ int parser_lists(FILE *fp, avitag_t* tag1)
 
 							if (parser_read_tag(fp, &tag_list)==0)
 							{
-								printf("Found LIST, size: %d\n", tag_list.size);
+								if (tag_list.fcc == FOURCC_LIST)
+								{
+									printf("Found LIST, size: %d\n", tag_list.size);
+								}
 								if(parser_read_flag(fp, &tag_list) == 0)
 								if (tag_list.flag == FOURCC_strl)
 								{
