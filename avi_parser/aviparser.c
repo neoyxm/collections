@@ -17,7 +17,9 @@
 #define FOURCC_avih  mmioFOURCC('a','v','i','h')
 #define FOURCC_strl  mmioFOURCC('s','t','r','l')
 #define FOURCC_strh  mmioFOURCC('s','t','r','h')
+#define FOURCC_strf  mmioFOURCC('s','t','r','f')
 #define FOURCC_strd  mmioFOURCC('s','t','r','d')
+
 
 
 typedef struct avitag avitag_t;
@@ -226,6 +228,51 @@ int parse_strl(FILE *fp, const avitag_t *tag)
 	return 0;
 }
 #endif 
+int parse_strh(FILE *fp, const avitag_t *tag)
+{
+    unsigned char strh[56];
+    char fourcc[5];
+    unsigned int value;
+    unsigned long pos = ftell(fp);
+    int idx= tag->nested+1;;
+ 
+    if (sizeof(strh) != fread(&strh, 1, sizeof(strh), fp))
+        return -1;
+ 
+    while (idx-- >= 0)
+    {
+        putchar(0x20);
+    }
+ 
+    putchar('{');
+    memcpy(fourcc, strh, 4);
+    fourcc[4] = 0;
+    printf("[%s], ", fourcc);
+    memcpy(fourcc, strh+4, 4);
+    fourcc[4] = 0;
+    printf("[%s], ", fourcc);
+    value = strh[16] | (strh[17]<<8) | (strh[18]<<16) | (strh[19]<<24);	
+    printf("Initial %d, ", value);
+    value = strh[20] | (strh[21]<<8) | (strh[22]<<16) | (strh[23]<<24);	
+    printf("%d/", value);	
+    value = strh[24] | (strh[25]<<8) | (strh[26]<<16) | (strh[27]<<24);	
+    printf("%d, ", value);	
+    value = strh[28] | (strh[29]<<8) | (strh[30]<<16) | (strh[31]<<24);	
+    printf("%d+", value);
+    value = strh[32] | (strh[33]<<8) | (strh[34]<<16) | (strh[35]<<24);	
+    printf("%d, ", value);	
+    value = strh[36] | (strh[37]<<8) | (strh[38]<<16) | (strh[39]<<24);	
+    printf("Buffer:%d Bytes, ", value);
+    value = strh[40] | (strh[41]<<8) | (strh[42]<<16) | (strh[43]<<24);		
+    printf("quality:0x%x, ", value);
+    value = strh[44] | (strh[45]<<8) | (strh[46]<<16) | (strh[47]<<24);		
+    printf("Size of Sample:%d, ", value);	
+    putchar('}');
+    putchar('\n');
+ 
+    fseek(fp, pos+tag->size+(tag->size&1), SEEK_SET);   
+    return ftell(fp);
+}
 
 int parser_read_tag(FILE *fp, avitag_t *tag)
 {
@@ -329,16 +376,56 @@ int parser_lists(FILE *fp, avitag_t* tag1)
 								if (tag_list.flag == FOURCC_strl)
 								{
 									avitag_t tag_strh;
+									avitag_t tag_strf;
+									avitag_t tag_strd;
 									printf("Found the flag: strl\n");
 									
 									if (parser_read_tag(fp, &tag_strh)==0)
 									{
-										if (tag_strh.fcc = FOURCC_strh)
+										if (tag_strh.fcc == FOURCC_strh)
 										{
 											printf("Found the flag:strh, size:%d\n", tag_strh.size);
-											break;
+											
+											parse_strh(fp, &tag_strh);
 										}
 									}
+									
+									if (parser_read_tag(fp, &tag_strf)==0)
+									{
+										if (tag_strh.fcc == FOURCC_strf)
+										{
+											printf("Skip the flag:strf, size:%d\n", tag_strf.size);
+											
+											parser_skip(fp, &tag_strf);
+										}
+										else
+										{
+											printf("Can't find the strf tag\n");
+										}
+									}
+									else
+									{
+										printf("Error reading the strf tag\n");
+									}
+									
+									if (parser_read_tag(fp, &tag_strd)==0)
+									{
+										if (tag_strh.fcc == FOURCC_strd)
+										{
+											printf("Found the flag:strd, size:%d\n", tag_strd.size);
+											
+											parser_skip(fp, &tag_strd);
+										}
+										else
+										{
+											printf("Can't find the strd tag\n");
+										}
+									}
+									else
+									{
+										printf("Error reading the strd tag\n");
+									}
+									break;
 								}
 							}
 						}
