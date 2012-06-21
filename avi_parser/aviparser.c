@@ -434,6 +434,12 @@ int parser_lists(FILE *fp, avitag_t* tag1)
 						}
 					}
 				}
+				else
+				{
+					// if not hdrl, skip this LIST tag
+					fseek(fp, tag.size-4, SEEK_CUR);
+					continue;
+				}
 			}
 		}
 	}
