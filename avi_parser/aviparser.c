@@ -175,6 +175,71 @@ int parser_probe_hdrl(FILE *fp, avitag_t* tag)
 	return 1;
 }
 
+int parser_strl_list(FILE *fp,  avitag_t* tag_hdrl, long long int hdrl_offset)
+{
+	avitag_t tag_list;
+	while (parser_read_tag(fp, &tag_list)==0)
+	{
+		hdrl_offset +=8;
+		if (hdrl_offset >= tag_hdrl->size )
+			break;
+			
+		if (tag_list.fcc == FOURCC_LIST)
+		{
+			printf("Found LIST, size: %d\n", tag_list.size);
+			hdrl_offset += tag_list.size;
+		}
+		
+		if(parser_read_flag(fp, &tag_list) == 0)
+		{
+			if (tag_list.flag == FOURCC_strl)
+			{
+				avitag_t tag_strl;
+				long long int offset = 0;
+				
+				while((tag_list.size - 4) - offset > 8 && parser_read_tag(fp, &tag_strl)==0)
+				{
+					offset +=8;
+
+					switch(tag_strl.fcc)
+					{
+						case FOURCC_strh:
+							{
+								printf("Found the flag:strh, size:%d\n", tag_strl.size);
+								parse_strh(fp, &tag_strl);
+								offset += tag_strl.size;
+								//printf("1offset :%lld \n", offset);
+							}
+							break;
+						case FOURCC_strf:
+							{
+								printf("Skip the flag:strf, size:%d\n", tag_strl.size);
+								parser_skip(fp, &tag_strl);
+								offset += tag_strl.size;
+								//printf("2offset :%lld \n", offset);
+							}
+							break;
+						case FOURCC_strd:
+							{
+								printf("Found the flag:strd, size:%d\n", tag_strl.size);
+								parser_skip(fp, &tag_strl);
+								offset += tag_strl.size;
+								//printf("3offset :%lld \n", offset);
+							}
+							break;
+						default: break;
+					}
+					
+				}
+				if ((tag_list.size - 4) - offset > 0)
+					fseek(fp, (tag_list.size - 4) - offset, SEEK_CUR);
+			}
+		}
+	}
+	
+	return 0;
+}
+
 int parser_hdrl_list(FILE *fp, avitag_t* tag_hdrl)
 {
 	avitag_t tag_avih;
@@ -186,65 +251,10 @@ int parser_hdrl_list(FILE *fp, avitag_t* tag_hdrl)
 						
 		if (tag_avih.fcc == FOURCC_avih)
 		{
-			avitag_t tag_list;
 			printf("Found the flag: avih, size:%d\n", tag_avih.size);
 			parser_skip(fp, &tag_avih);
 			hdrl_offset += tag_avih.size;
-
-			while (parser_read_tag(fp, &tag_list)==0)
-			{
-				hdrl_offset +=8;
-				if (hdrl_offset >= tag_hdrl->size )
-					break;
-				if (tag_list.fcc == FOURCC_LIST)
-				{
-					printf("Found LIST, size: %d\n", tag_list.size);
-					hdrl_offset += tag_list.size;
-				}
-				if(parser_read_flag(fp, &tag_list) == 0)
-				if (tag_list.flag == FOURCC_strl)
-				{
-					avitag_t tag_strl;
-					long long int offset = 0;
-					
-					while((tag_list.size - 4) - offset > 8 && parser_read_tag(fp, &tag_strl)==0)
-					{
-						offset +=8;
-
-						switch(tag_strl.fcc)
-						{
-							case FOURCC_strh:
-								{
-									printf("Found the flag:strh, size:%d\n", tag_strl.size);
-									parse_strh(fp, &tag_strl);
-									offset += tag_strl.size;
-									//printf("1offset :%lld \n", offset);
-								}
-								break;
-							case FOURCC_strf:
-								{
-									printf("Skip the flag:strf, size:%d\n", tag_strl.size);
-									parser_skip(fp, &tag_strl);
-									offset += tag_strl.size;
-									//printf("2offset :%lld \n", offset);
-								}
-								break;
-							case FOURCC_strd:
-								{
-									printf("Found the flag:strd, size:%d\n", tag_strl.size);
-									parser_skip(fp, &tag_strl);
-									offset += tag_strl.size;
-									//printf("3offset :%lld \n", offset);
-								}
-								break;
-							default: break;
-						}
-						
-					}
-					if ((tag_list.size - 4) - offset > 0)
-						fseek(fp, (tag_list.size - 4) - offset, SEEK_CUR);
-				}	
-			}
+			parser_strl_list(fp, tag_hdrl, hdrl_offset);
 		}
 	}
 
