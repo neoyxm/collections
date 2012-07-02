@@ -147,100 +147,103 @@ int parser_probe_riff(FILE *fp, avitag_t* tag)
 	return ret;
 }
 
-int parser_lists(FILE *fp, avitag_t* tag1)
+int parser_probe_hdrl(FILE *fp, avitag_t* tag)
 {
-	avitag_t tag;
-	while(parser_read_tag(fp, &tag) == 0)
+	while(parser_read_tag(fp, tag) == 0)
 	{
-		if ( tag.fcc == FOURCC_LIST)
+		if ( tag->fcc == FOURCC_LIST)
 		{
-			printf("Found LIST, size: %d\n", tag.size);
-			if(parser_read_flag(fp, &tag) == 0)
+			printf("Found LIST, size: %d\n", tag->size);
+			if(parser_read_flag(fp, tag) == 0)
 			{
-				if (tag.flag == FOURCC_hdrl)
+				if (tag->flag == FOURCC_hdrl)
 				{
-					avitag_t tag_avih;
-					long long int hdrl_offset = 0;
-					printf("Found the flag: hdrl,size:%d\n", tag.size);
+					printf("Found the flag: hdrl,size:%d\n", tag->size);
+					return 0;
+				}
+			} 
+			else 
+			{
+				// if not hdrl, skip this LIST tag
+				printf("not hdrl,just skip it\n\n");
+				fseek(fp, tag->size-4, SEEK_CUR);
+				continue;
+			}
+		}
+	}
+	
+	return 1;
+}
 
-					if (parser_read_tag(fp, &tag_avih) == 0)
-					{
-						hdrl_offset += 8;
+int parser_hdrl_list(FILE *fp, avitag_t* tag_hdrl)
+{
+	avitag_t tag_avih;
+	long long int hdrl_offset = 0;
+	
+	if (parser_read_tag(fp, &tag_avih) == 0)
+	{
+		hdrl_offset += 8;
 						
-						if (tag_avih.fcc == FOURCC_avih)
-						{
-							avitag_t tag_list;
-							printf("Found the flag: avih, size:%d\n", tag_avih.size);
-							parser_skip(fp, &tag_avih);
-							hdrl_offset += tag_avih.size;
+		if (tag_avih.fcc == FOURCC_avih)
+		{
+			avitag_t tag_list;
+			printf("Found the flag: avih, size:%d\n", tag_avih.size);
+			parser_skip(fp, &tag_avih);
+			hdrl_offset += tag_avih.size;
 
-							while (parser_read_tag(fp, &tag_list)==0)
-							{
-								hdrl_offset +=8;
-								if (hdrl_offset >= tag.size )
-									break;
-								if (tag_list.fcc == FOURCC_LIST)
-								{
-									printf("Found LIST, size: %d\n", tag_list.size);
-									hdrl_offset += tag_list.size;
-								}
-								if(parser_read_flag(fp, &tag_list) == 0)
-								if (tag_list.flag == FOURCC_strl)
-								{
-									avitag_t tag_strl;
-									long long int offset = 0;
-									
-									while((tag_list.size - 4) - offset > 8 && parser_read_tag(fp, &tag_strl)==0)
-									{
-										offset +=8;
-
-										switch(tag_strl.fcc)
-										{
-											case FOURCC_strh:
-												{
-													printf("Found the flag:strh, size:%d\n", tag_strl.size);
-													parse_strh(fp, &tag_strl);
-													offset += tag_strl.size;
-													//printf("1offset :%lld \n", offset);
-												}
-												break;
-											case FOURCC_strf:
-												{
-													printf("Skip the flag:strf, size:%d\n", tag_strl.size);
-													parser_skip(fp, &tag_strl);
-													offset += tag_strl.size;
-													//printf("2offset :%lld \n", offset);
-												}
-												break;
-											case FOURCC_strd:
-												{
-													printf("Found the flag:strd, size:%d\n", tag_strl.size);
-													parser_skip(fp, &tag_strl);
-													offset += tag_strl.size;
-													//printf("3offset :%lld \n", offset);
-												}
-												break;
-											default: break;
-										}
-										
-									}
-									if ((tag_list.size - 4) - offset > 0)
-										fseek(fp, (tag_list.size - 4) - offset, SEEK_CUR);
-								}
-								
-
-							}
-						}
-					}
+			while (parser_read_tag(fp, &tag_list)==0)
+			{
+				hdrl_offset +=8;
+				if (hdrl_offset >= tag_hdrl->size )
 					break;
-				}
-				else
+				if (tag_list.fcc == FOURCC_LIST)
 				{
-					// if not hdrl, skip this LIST tag
-					printf("not hdrl,just skip it\n\n");
-					fseek(fp, tag.size-4, SEEK_CUR);
-					continue;
+					printf("Found LIST, size: %d\n", tag_list.size);
+					hdrl_offset += tag_list.size;
 				}
+				if(parser_read_flag(fp, &tag_list) == 0)
+				if (tag_list.flag == FOURCC_strl)
+				{
+					avitag_t tag_strl;
+					long long int offset = 0;
+					
+					while((tag_list.size - 4) - offset > 8 && parser_read_tag(fp, &tag_strl)==0)
+					{
+						offset +=8;
+
+						switch(tag_strl.fcc)
+						{
+							case FOURCC_strh:
+								{
+									printf("Found the flag:strh, size:%d\n", tag_strl.size);
+									parse_strh(fp, &tag_strl);
+									offset += tag_strl.size;
+									//printf("1offset :%lld \n", offset);
+								}
+								break;
+							case FOURCC_strf:
+								{
+									printf("Skip the flag:strf, size:%d\n", tag_strl.size);
+									parser_skip(fp, &tag_strl);
+									offset += tag_strl.size;
+									//printf("2offset :%lld \n", offset);
+								}
+								break;
+							case FOURCC_strd:
+								{
+									printf("Found the flag:strd, size:%d\n", tag_strl.size);
+									parser_skip(fp, &tag_strl);
+									offset += tag_strl.size;
+									//printf("3offset :%lld \n", offset);
+								}
+								break;
+							default: break;
+						}
+						
+					}
+					if ((tag_list.size - 4) - offset > 0)
+						fseek(fp, (tag_list.size - 4) - offset, SEEK_CUR);
+				}	
 			}
 		}
 	}
@@ -267,13 +270,16 @@ int parser_is_divx_drm(FILE *fp)
 			}
 		} 
 
-		if (parser_lists(fp, &tag) == 0)
+		if (parser_probe_hdrl(fp, &tag) == 0)
 		{
-			printf("Parsed lists sucessfully\n");
+			//printf("Found the hdrl\n");
+			parser_hdrl_list(fp, &tag);
+			
+			printf("Sucessfully parse the avi hdrl\n");
 		}
 		else
 		{
-			printf("failed to parser lists\n");
+			printf("Unable to find the hdrl\n");
 			return -1;
 		}
 	}
