@@ -21,8 +21,10 @@
 #define FOURCC_strd  mmioFOURCC('s','t','r','d')
 #define FOURCC_divx  mmioFOURCC('d','i','v','x')
 #define FOURCC_DIVX  mmioFOURCC('D','I','V','X')
+#define FOURCC_vids  mmioFOURCC('v','i','d','s')
 
 typedef struct avitag avitag_t;
+typedef struct videoinfo videoinfo_t;
 struct avitag
 {
     unsigned int fcc;
@@ -31,8 +33,15 @@ struct avitag
     int nested;
     int has_sub;
 }; 
+
+struct videoinfo
+{
+	unsigned int tag_fcc;
+	unsigned int codec_fcc;
+	int has_strd;
+};
  
-int parse_strh(FILE *fp, const avitag_t *tag, unsigned int *fourcc_codec)
+int parse_strh(FILE *fp, const avitag_t *tag, videoinfo_t * videoinfo)
 {
     unsigned char strh[56];
     char fourcc[5];
@@ -52,10 +61,12 @@ int parse_strh(FILE *fp, const avitag_t *tag, unsigned int *fourcc_codec)
     memcpy(fourcc, strh, 4);
     fourcc[4] = 0;
     printf("[%s], ", fourcc);
+	videoinfo->tag_fcc = mmioFOURCC(fourcc[0],fourcc[1],fourcc[2],fourcc[3]);
     memcpy(fourcc, strh+4, 4);
     fourcc[4] = 0;
     printf("[%s], ", fourcc);
-	*fourcc_codec = mmioFOURCC(fourcc[0],fourcc[1],fourcc[2],fourcc[3]);
+	if (videoinfo->tag_fcc == FOURCC_vids)
+		videoinfo->codec_fcc = mmioFOURCC(fourcc[0],fourcc[1],fourcc[2],fourcc[3]);
     value = strh[16] | (strh[17]<<8) | (strh[18]<<16) | (strh[19]<<24);	
     printf("Initial %d, ", value);
     value = strh[20] | (strh[21]<<8) | (strh[22]<<16) | (strh[23]<<24);	
@@ -178,7 +189,7 @@ int parser_probe_hdrl(FILE *fp, avitag_t* tag)
 	return 1;
 }
 
-int parser_strl_list(FILE *fp,  avitag_t* tag_hdrl, long long int hdrl_offset)
+int parser_strl_list(FILE *fp,  avitag_t* tag_hdrl, long long int hdrl_offset, videoinfo_t *videoinfo)
 {
 	avitag_t tag_list;
 	while (parser_read_tag(fp, &tag_list)==0)
@@ -199,8 +210,8 @@ int parser_strl_list(FILE *fp,  avitag_t* tag_hdrl, long long int hdrl_offset)
 			{
 				avitag_t tag_strl;
 				long long int offset = 0;
-				int bFoundDivXCodec = 0;
-				int bFoundStrdTag   = 0;
+				int bVideoStrl = 0;
+
 				while((tag_list.size - 4) - offset > 8 && parser_read_tag(fp, &tag_strl)==0)
 				{
 					offset +=8;
@@ -211,15 +222,10 @@ int parser_strl_list(FILE *fp,  avitag_t* tag_hdrl, long long int hdrl_offset)
 							{
 								unsigned int fourcc_codec = 0;
 								printf("Found the flag:strh, size:%d\n", tag_strl.size);
-								parse_strh(fp, &tag_strl, &fourcc_codec);
+								parse_strh(fp, &tag_strl, videoinfo);
+								if (videoinfo->tag_fcc == FOURCC_vids)
+									bVideoStrl = 1;
 								offset += tag_strl.size;
-								if (fourcc_codec == FOURCC_divx || fourcc_codec == FOURCC_DIVX)
-								{
-									printf("== Found DivX codec ==\n", offset);
-									bFoundDivXCodec = 1;
-								}
-									
-								//printf("1offset :%lld \n", offset);
 							}
 							break;
 						case FOURCC_strf:
@@ -227,7 +233,6 @@ int parser_strl_list(FILE *fp,  avitag_t* tag_hdrl, long long int hdrl_offset)
 								printf("Skip the flag:strf, size:%d\n", tag_strl.size);
 								parser_skip(fp, &tag_strl);
 								offset += tag_strl.size;
-								//printf("2offset :%lld \n", offset);
 							}
 							break;
 						case FOURCC_strd:
@@ -235,8 +240,8 @@ int parser_strl_list(FILE *fp,  avitag_t* tag_hdrl, long long int hdrl_offset)
 								printf("Found the flag:strd, size:%d\n", tag_strl.size);
 								parser_skip(fp, &tag_strl);
 								offset += tag_strl.size;
-								bFoundStrdTag = 1;
-								//printf("3offset :%lld \n", offset);
+								if (bVideoStrl)
+									videoinfo->has_strd = 1;
 							}
 							break;
 						default: break;
@@ -246,11 +251,6 @@ int parser_strl_list(FILE *fp,  avitag_t* tag_hdrl, long long int hdrl_offset)
 				if ((tag_list.size - 4) - offset > 0)
 					fseek(fp, (tag_list.size - 4) - offset, SEEK_CUR);
 				
-				if (bFoundDivXCodec && bFoundStrdTag)
-				{
-					printf("<<<< Yes, it's DivX DRM clip >>>>\n");
-					break;
-				}
 			}
 		}
 	}
@@ -258,7 +258,7 @@ int parser_strl_list(FILE *fp,  avitag_t* tag_hdrl, long long int hdrl_offset)
 	return 0;
 }
 
-int parser_hdrl_list(FILE *fp, avitag_t* tag_hdrl)
+int parser_hdrl_list(FILE *fp, avitag_t* tag_hdrl, videoinfo_t *videoinfo)
 {
 	avitag_t tag_avih;
 	long long int hdrl_offset = 0;
@@ -272,7 +272,7 @@ int parser_hdrl_list(FILE *fp, avitag_t* tag_hdrl)
 			printf("Found the flag: avih, size:%d\n", tag_avih.size);
 			parser_skip(fp, &tag_avih);
 			hdrl_offset += tag_avih.size;
-			parser_strl_list(fp, tag_hdrl, hdrl_offset);
+			parser_strl_list(fp, tag_hdrl, hdrl_offset, videoinfo);
 		}
 	}
 
@@ -300,10 +300,17 @@ int parser_is_divx_drm(FILE *fp)
 
 		if (parser_probe_hdrl(fp, &tag) == 0)
 		{
-			//printf("Found the hdrl\n");
-			parser_hdrl_list(fp, &tag);
+			videoinfo_t videoinfo;
+			memset(&videoinfo, 0, sizeof(videoinfo_t));
+			parser_hdrl_list(fp, &tag, &videoinfo);
 			
 			printf("Sucessfully parse the avi hdrl\n");
+			
+			if ((videoinfo.codec_fcc ==FOURCC_DIVX ||  videoinfo.codec_fcc ==FOURCC_divx) &&
+					videoinfo.has_strd)
+			{
+				return 0;
+			}
 		}
 		else
 		{
@@ -316,7 +323,7 @@ int parser_is_divx_drm(FILE *fp)
 		printf("Error: not a riff file\n");
 	}
 
-	return 0;
+	return -1;
 }
 
 
@@ -337,7 +344,14 @@ int main(int argc, char**argv)
         return -1;
     }
  
-    parser_is_divx_drm(fp);
+    if (parser_is_divx_drm(fp) == 0)
+	{
+		printf("<<< It is divx drm file >>> \n");
+	} 
+	else
+	{
+		printf("<<< It is not divx drm file >>>\n");
+	}
     fclose(fp);
  
  
