@@ -25,7 +25,7 @@
 #define MAX_RIFF_BUFF (64*1024)
 
 typedef struct avitag avitag_t;
-typedef struct videoinfo videoinfo_t;
+typedef struct strlinfo strlinfo_t;
 struct avitag
 {
     unsigned int fcc;
@@ -35,11 +35,12 @@ struct avitag
     int has_sub;
 }; 
 
-struct videoinfo
+struct strlinfo
 {
 	unsigned int tag_fcc;
 	unsigned int codec_fcc;
 	int has_strd;
+    strlinfo_t *next;
 };
 
 #endif //__AVI_PARSER_H__ 
