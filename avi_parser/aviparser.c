@@ -86,8 +86,6 @@ int parser_skip(FILE *fp, const avitag_t* tag)
     fseek(fp, size, SEEK_CUR);
     return ftell(fp);
 }
-
-#define MAX_RIFF_BUFF (64*1024)
 	
 int parser_probe_riff(FILE *fp, avitag_t* tag)
 {

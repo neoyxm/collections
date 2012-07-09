@@ -22,6 +22,8 @@
 #define FOURCC_DIVX  mmioFOURCC('D','I','V','X')
 #define FOURCC_vids  mmioFOURCC('v','i','d','s')
 
+#define MAX_RIFF_BUFF (64*1024)
+
 typedef struct avitag avitag_t;
 typedef struct videoinfo videoinfo_t;
 struct avitag
