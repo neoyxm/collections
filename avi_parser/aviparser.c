@@ -150,7 +150,7 @@ int parser_probe_hdrl(FILE *fp, avitag_t* tag)
 	return 1;
 }
 
-int parser_strl_list(FILE *fp,  avitag_t* tag_hdrl, long long int hdrl_offset, strlinfo_t *strlinfo_list)
+int parser_strl_list(FILE *fp,  avitag_t* tag_hdrl, long long int hdrl_offset, strlinfo_t **strlinfo_list)
 {
 	avitag_t tag_list;
 	strlinfo_t *tail = NULL;
@@ -177,8 +177,8 @@ int parser_strl_list(FILE *fp,  avitag_t* tag_hdrl, long long int hdrl_offset, s
 
 				memset(p, 0, sizeof(strlinfo_t));
 
-				if (strlinfo_list == NULL)
-					tail = strlinfo_list = p;
+				if (*strlinfo_list == NULL)
+					tail = *strlinfo_list = p;
 				else
 				{
 					if (tail != NULL)
@@ -238,7 +238,7 @@ int parser_strl_list(FILE *fp,  avitag_t* tag_hdrl, long long int hdrl_offset, s
 	return 0;
 }
 
-int parser_hdrl_list(FILE *fp, avitag_t* tag_hdrl, strlinfo_t *strlinfo_list)
+int parser_hdrl_list(FILE *fp, avitag_t* tag_hdrl, strlinfo_t **strlinfo_list)
 {
 	avitag_t tag_avih;
 	long long int hdrl_offset = 0;
@@ -283,13 +283,11 @@ int parser_is_divx_drm(FILE *fp)
 			strlinfo_t *strlinfo_list	= NULL;
 			strlinfo_t *p 				= NULL;
 			
-			parser_hdrl_list(fp, &tag, strlinfo_list);
+			parser_hdrl_list(fp, &tag, &strlinfo_list);
 			
 			printf("Sucessfully parse the avi hdrl\n");
-
-			p = strlinfo_list;
 			
-			while (p!= NULL) 
+			while ((p= strlinfo_list) != NULL) 
 			{
 				if (p->tag_fcc == FOURCC_vids)
 				{
@@ -300,10 +298,10 @@ int parser_is_divx_drm(FILE *fp)
 						return 0;
 					}
 				}	
-				strlinfo_list = p;
-				p = p->next;
-
-				free(strlinfo_list);
+				
+				strlinfo_list = p->next;
+				p->next		  = NULL;
+				free(p);
 			}	
 		}
 		else
