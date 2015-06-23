@@ -47,6 +47,8 @@ int main(int argc, char **argv)
 
 	cout << "result: " << str << endl;
 
-
+#ifdef _WIN32
+	char c = getchar();
+#endif
 	return 0;
 }
