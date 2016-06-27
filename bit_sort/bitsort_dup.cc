@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "common.h" 
+#include "common.h"
 
 using namespace std;
 
@@ -32,10 +32,10 @@ void output_sort (int *vector, int vector_len)
         for (int offset = 0; offset < UNIT_SIZE; offset++) {
             for (char dup = 0x0; dup < GET_COUNTER(vector[i], offset); dup++) {
                 cout << i*UNIT_SIZE + offset << ", ";
-			}
+            }
         }
-     }
-     cout << endl;
+    }
+    cout << endl;
 }
 
 int main()
@@ -44,14 +44,14 @@ int main()
     int *vector = new int[VECTOR_SIZE];
     int vector_len = VECTOR_SIZE;
 
-	memset(vector, 0x0, VECTOR_SIZE*sizeof(int));
+    memset(vector, 0x0, VECTOR_SIZE*sizeof(int));
 
     do {
-       cin >> input;
-       if (input >= 0 && input <= MAX_NUMBER)
-           set_bit(vector, vector_len, input);   
+        cin >> input;
+        if (input >= 0 && input <= MAX_NUMBER)
+            set_bit(vector, vector_len, input);
     } while (input > 0);
-    
+
     output_sort (vector, vector_len);
 
     quit();

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "common.h" 
+#include "common.h"
 
 using namespace std;
 
@@ -24,7 +24,7 @@ void output_sort (int *vector, int vector_len)
             if (vector[i] & (0x01 << offset))
                 cout << i*UNIT_SIZE + offset << ", ";
         }
-     cout << endl;
+    cout << endl;
 }
 
 int main()
@@ -33,17 +33,17 @@ int main()
     int *vector = new int[MAX_NUMBER / UNIT_SIZE  + 1];
     int vector_len = MAX_NUMBER / UNIT_SIZE  + 1;
 
-	memset(vector, 0x0, vector_len*sizeof(int));
+    memset(vector, 0x0, vector_len*sizeof(int));
 
     do {
-       cin >> input;
-       if (input >= 0 && input <= MAX_NUMBER)
-           set_bit(vector, vector_len, input);   
+        cin >> input;
+        if (input >= 0 && input <= MAX_NUMBER)
+            set_bit(vector, vector_len, input);
     } while (input > 0);
-    
+
     output_sort (vector, vector_len);
 
-	delete [] vector;
+    delete [] vector;
 
     quit();
 

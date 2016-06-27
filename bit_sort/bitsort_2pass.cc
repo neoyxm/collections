@@ -2,14 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "common.h" 
+#include "common.h"
 
 using namespace std;
 
 #define MAX_NUMBER (32)
 #define UNIT_SIZE  (sizeof(int) * 8)
 
-static int sample_data[35] = { 34,33,4,20,9,10,27,4,31,5,7,8,14,0,13, 34,12,4,20,9,10,27,4,31,5,7,8,14,0,13, 27,1,16,34,32}; 
+static int sample_data[35] = { 34,33,4,20,9,10,27,4,31,5,7,8,14,0,13, 34,12,4,20,9,10,27,4,31,5,7,8,14,0,13, 27,1,16,34,32};
 
 void set_bit(int *vector, int vector_len, int pos)
 {
@@ -26,7 +26,7 @@ void output_sort (int *vector, int vector_len, int base)
             if (vector[i] & (0x01 << offset))
                 cout << base + i*UNIT_SIZE + offset << ", ";
         }
-     cout << endl;
+    cout << endl;
 }
 
 int main()
@@ -40,7 +40,7 @@ int main()
         int base = i * MAX_NUMBER;
         cout << "set base to : " << base << endl;
         for (int j = 0; j < sample_len; j++) {
-            if (sample_data[j] >= base && sample_data[j] < base + MAX_NUMBER) 
+            if (sample_data[j] >= base && sample_data[j] < base + MAX_NUMBER)
                 set_bit(vector, vector_len, sample_data[j]- base);
         }
         output_sort(vector, vector_len, base);
