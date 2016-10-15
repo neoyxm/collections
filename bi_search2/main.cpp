@@ -1,6 +1,3 @@
-#include <iostream>
-#include <stdlib.h>
-
 using namespace std;
 
 #define N (10)
@@ -29,12 +26,12 @@ int bi_search(int *pData, int n, int target)
 }
 
 #define UNIT_TEST(target, expect) while(1){\
-int ret = bi_search(data, N, target) ;\
-if(expect == ret)\
-cout << "search :" << target << " return: " << ret << " passed\n";\
-else \
-cout << "search :" << target << " return: " << ret << ", expect:" << expect<<" failed\n";\
-break;}\
+    int ret = bi_search(data, N, target) ;\
+    if(expect == ret)\
+        cout << "search :" << target << " return: " << ret << " passed\n";\
+    else \
+        cout << "search :" << target << " return: " << ret << ", expect:" << expect<<" failed\n";\
+    break;}\
 
 int main()
 {
