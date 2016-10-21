@@ -48,7 +48,7 @@ int main()
     cout << endl;
     cout << "after empty the list and you should see nothing above" << endl;
 
-#ifdef WIN32
+#ifdef _WIN32
     int i;
     cin >> i;
 #endif
