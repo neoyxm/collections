@@ -34,6 +34,10 @@ int main()
     cout << "Remove the not exists element 5" << endl;
     PrintLinklist(L);
     
+    last = Delete(L, 1, last);
+    cout << "Remove the element 1" << endl;
+    PrintLinklist(L);
+    
     cout << "add new element 8 after removing the previous one" << endl;
     last = Insert(L, 8, last);
     PrintLinklist(L);
