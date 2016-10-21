@@ -17,6 +17,7 @@ Position Insert(Linklist L, ElementType e, Position p);
 bool IsEmpty(Linklist L);
 bool IsLast(Linklist L, Position p);
 Position FindPrevious(Linklist L, ElementType e);
-Position Delete(Linklist L, ElementType e);
+Position Delete(Linklist L, ElementType e, Position last);
+Position Empty(Linklist L);
 void PrintLinklist(Linklist L);
 #endif

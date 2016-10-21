@@ -39,17 +39,38 @@ Position FindPrevious(Linklist L, ElementType e)
     return p;
 }
 
-Position Delete(Linklist L, ElementType e)
+Position Delete(Linklist L, ElementType e, Position last)
 {
     Position p = FindPrevious(L, e);
 
     if (!IsLast(L, p))
     {
+        
         PtrNode removedOne = p->next;
         p->next = removedOne->next;
+        
+        if (last == removedOne)
+            last = p;
         delete removedOne;
     }
-    return p;
+    return last;
+}
+
+Position Empty(Linklist L)
+{
+    Position p =  L->next;
+    
+    while(p)
+    {
+        PtrNode removeNode = p;
+        p = p->next;
+        
+        removeNode->next = NULL;
+        delete removeNode;
+    }
+    
+    L->next = NULL;
+    return L;
 }
 
 void PrintLinklist(Linklist L)
