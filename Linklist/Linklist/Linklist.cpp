@@ -21,7 +21,7 @@ bool IsLast(Linklist L, Position p)
 
 Position Insert(Linklist L, ElementType e, Position p)
 {
-    Node *newNode = new Node();
+    PtrNode newNode = new Node();
     newNode->data = e;
     newNode->next = p->next;
     p->next = newNode;
@@ -45,7 +45,7 @@ Position Delete(Linklist L, ElementType e)
 
     if (!IsLast(L, p))
     {
-        Node *removedOne = p->next;
+        PtrNode removedOne = p->next;
         p->next = removedOne->next;
         delete removedOne;
     }
@@ -54,7 +54,7 @@ Position Delete(Linklist L, ElementType e)
 
 void PrintLinklist(Linklist L)
 {
-    Node *p = L->next;
+    Position p = L->next;
 
     while (p)
     {
