@@ -12,12 +12,24 @@ struct Node {
     Position    next;
 };
 
-Linklist MakeEmpty();
-Position Insert(Linklist L, ElementType e, Position p);
+struct LinklistImpl{
+    Linklist L;
+    Position Tail;
+};
+
+int MakeEmpty(LinklistImpl *pLinklistImpl);
+
+int Insert(LinklistImpl *pLinklistImpl, ElementType e, Position p);
+bool IsLast(LinklistImpl *pLinklistImpl, Position p);
+int Add(LinklistImpl *pLinklistImpl, ElementType e);
+void PrintLinklist(LinklistImpl *pLinklistImpl);
+
+#if 0
 bool IsEmpty(Linklist L);
 bool IsLast(Linklist L, Position p);
 Position FindPrevious(Linklist L, ElementType e);
 Position Delete(Linklist L, ElementType e, Position last);
 Position Empty(Linklist L);
 void PrintLinklist(Linklist L);
+#endif
 #endif

@@ -3,43 +3,50 @@
 #include <iostream>
 using namespace std;
 
+void InsertSort(LinklistImpl *pLinklistImpl, ElementType e)
+{
+    Position p = pLinklistImpl->L;
+
+    while (p)
+    {
+        if (p->next)
+        {
+            if (e <= p->next->data)
+            {
+                Insert(pLinklistImpl, e, p);
+                break;
+            }   
+        }
+        else
+        {
+            Insert(pLinklistImpl, e, p);
+            break;
+        }
+        p = p->next;
+    }
+}
+
+
+
 int main()
 {
-    Linklist L = MakeEmpty();
-    Position last = L;
+     LinklistImpl objLinklist = {0};
 
-    if (IsEmpty(L))
-        cout << "The list is empty" << endl;
-    if (IsLast(L, last))
-        cout << "The current pos is last" << endl;
+     MakeEmpty(&objLinklist);
 
-    last = Insert(L, 1, last);
-    last = Insert(L, 2, last);
-    last = Insert(L, 3, last);
-    last = Insert(L, 4, last);
+     InsertSort(&objLinklist, 4);
+     InsertSort(&objLinklist, 2);
+     InsertSort(&objLinklist, 3);
+     InsertSort(&objLinklist, 1);
+     PrintLinklist(&objLinklist);
 
-    PrintLinklist(L);
-
-    if (!IsEmpty(L))
-        cout << "The list is not empty" << endl;
-
-    if (IsLast(L, last))
-        cout << "The current pos is last" << endl;
-
-    last = Delete(L, 4, last);
-    cout << "Remove the element 4" << endl;
-    PrintLinklist(L);
-
-    last = Delete(L, 5, last);
-    cout << "Remove the not exists element 5" << endl;
-    PrintLinklist(L);
-    
-    last = Delete(L, 1, last);
-    cout << "Remove the element 1" << endl;
-    PrintLinklist(L);
-    
-    cout << "add new element 8 after removing the previous one" << endl;
-    last = Insert(L, 8, last);
+#if 0
+    InsertSort(L, 5);
+    InsertSort(L, 2);
+    InsertSort(L, 1);
+    InsertSort(L, 6);
+    InsertSort(L, 2);
+    InsertSort(L, 0);
     PrintLinklist(L);
     
     cout << "start to empty the list" << endl;
@@ -47,6 +54,7 @@ int main()
     PrintLinklist(L);
     cout << endl;
     cout << "after empty the list and you should see nothing above" << endl;
+#endif
 
 #ifdef _WIN32
     int i;
