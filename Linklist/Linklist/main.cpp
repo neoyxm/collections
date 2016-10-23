@@ -42,7 +42,16 @@ int main()
      Add(&objLinklist, 8);
      Add(&objLinklist, 12);
 
+     Delete(&objLinklist, 12);
+     Delete(&objLinklist, 8);
+
      PrintLinklist(&objLinklist);
+
+     cout << "start to empty the list" << endl;
+     Empty(&objLinklist);
+     PrintLinklist(&objLinklist);
+     cout << endl;
+     cout << "after empty the list and you should see nothing above" << endl;
 
 #if 0
     InsertSort(L, 5);

@@ -60,69 +60,66 @@ void PrintLinklist(LinklistImpl *pLinklistImpl)
         p = p->next;
     }
 }
-#if 0
 
-
-bool IsEmpty(Linklist L)
+bool IsEmpty(LinklistImpl *pLinklistImpl)
 {
-    return (L->next == NULL)?true:false;
+    if (!pLinklistImpl)
+        return true;
+
+    return (pLinklistImpl->L->next == NULL) ? true : false;
 }
 
 
-
-
-Position FindPrevious(Linklist L, ElementType e)
+Position FindPrevious(LinklistImpl *pLinklistImpl, ElementType e)
 {
-    Position p = L;
-    
+    if (!pLinklistImpl)
+        return NULL;
+
+    Position p = pLinklistImpl->L;
+
     while (p->next && p->next->data != e)
         p = p->next;
 
     return p;
 }
 
-Position Delete(Linklist L, ElementType e, Position last)
+int Delete(LinklistImpl *pLinklistImpl, ElementType e)
 {
-    Position p = FindPrevious(L, e);
+    if (!pLinklistImpl)
+        return -1;
 
-    if (!IsLast(L, p))
+    Position p = FindPrevious(pLinklistImpl, e);
+
+    if (!IsLast(pLinklistImpl, p))
     {
-        
+
         PtrNode removedOne = p->next;
         p->next = removedOne->next;
-        
-        if (last == removedOne)
-            last = p;
+
         delete removedOne;
     }
-    return last;
+
+    return 0;
 }
 
-Position Empty(Linklist L)
+Position Empty(LinklistImpl *pLinklistImpl)
 {
-    Position p =  L->next;
-    
+    if (!pLinklistImpl)
+        return NULL;
+
+    Position p = pLinklistImpl->L->next;
+
     while(p)
     {
         PtrNode removeNode = p;
         p = p->next;
-        
+
         removeNode->next = NULL;
         delete removeNode;
     }
-    
-    L->next = NULL;
-    return L;
+
+    pLinklistImpl->L->next = NULL;
+    pLinklistImpl->Tail    = pLinklistImpl->L;
+    return pLinklistImpl->L;
 }
 
-void PrintLinklist(Linklist L)
-{
-    Position p = L->next;
-
-    while (p)
-    {
-        cout << p->data << endl;
-        p = p->next;
-    }
-}
-#endif
