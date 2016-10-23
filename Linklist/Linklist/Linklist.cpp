@@ -28,13 +28,9 @@ int Insert(LinklistImpl *pLinklistImpl, ElementType e, Position p)
 
     if (IsLast(pLinklistImpl, p))
     {
-        p->next = newNode;
         pLinklistImpl->Tail = newNode;
     }   
-    else
-    {
-        p->next = newNode;
-    }
+    p->next = newNode;
 
     return 0;
 }

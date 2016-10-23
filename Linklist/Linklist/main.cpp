@@ -26,8 +26,6 @@ void InsertSort(LinklistImpl *pLinklistImpl, ElementType e)
     }
 }
 
-
-
 int main()
 {
      LinklistImpl objLinklist = {0};
@@ -38,6 +36,12 @@ int main()
      InsertSort(&objLinklist, 2);
      InsertSort(&objLinklist, 3);
      InsertSort(&objLinklist, 1);
+
+     Add(&objLinklist, 11);
+     Add(&objLinklist, 9);
+     Add(&objLinklist, 8);
+     Add(&objLinklist, 12);
+
      PrintLinklist(&objLinklist);
 
 #if 0
