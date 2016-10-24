@@ -53,22 +53,6 @@ int main()
      cout << endl;
      cout << "after empty the list and you should see nothing above" << endl;
 
-#if 0
-    InsertSort(L, 5);
-    InsertSort(L, 2);
-    InsertSort(L, 1);
-    InsertSort(L, 6);
-    InsertSort(L, 2);
-    InsertSort(L, 0);
-    PrintLinklist(L);
-    
-    cout << "start to empty the list" << endl;
-    last = Empty(L);
-    PrintLinklist(L);
-    cout << endl;
-    cout << "after empty the list and you should see nothing above" << endl;
-#endif
-
 #ifdef _WIN32
     int i;
     cin >> i;
