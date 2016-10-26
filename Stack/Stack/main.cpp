@@ -2,23 +2,52 @@
 #include "Stack.h"
 using namespace std;
 
+bool isPeer(char c, char b)
+{
+    switch (c)
+    {
+        case '(':
+            if (b == ')')
+                return true;
+        case '[':
+            if (b == ']')
+                return true;
+        case '{':
+            if (b == '}')
+                return true;
+    }
+    return false;
+}
+
+int checkBrace()
+{
+    Stack s = NULL;
+    s = createStack(10);
+    char c = ' ';
+    while (cin >> c)
+    {
+        if (isEmpty(s))
+            push(s, c);
+        else
+        {
+            char b = ' '; 
+            top(s, b);
+            if (isPeer(b, c))
+                pop(s, b);
+            else
+                push(s, c);
+        }
+    }
+    
+    return isEmpty(s);
+}
+
 int main()
 {
-    Stack s = createStack(5);
-    
-    int e = 0;
-    while (cin>>e)
-    {
-        if(push(s, e) < 0)
-            cerr << "failed to push " << e << " to stack\n"; 
-    }
-
-    while (pop(s, e) ==0)
-        cout << "pop:  " << e << endl;
-
-    destroyStack(s);
-    s = NULL;
-
+    if(checkBrace())
+        cout << "check brace ok" << endl;
+    else
+        cout << "check brace failed" << endl;
 //#ifdef _WIN32
     int i;
     cin >> i;
