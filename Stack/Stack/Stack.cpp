@@ -43,6 +43,21 @@ int pop(Stack s, ElementType &e)
     return 0;
 }
 
+int top(Stack s, ElementType &e)
+{
+    if (!s || s->top < 0)
+        return -1;
+
+    e = s->stackArray[s->top];
+
+    return 0;
+}
+
+bool isEmpty(Stack s)
+{
+    return s->top < 0;
+}
+
 void destroyStack(Stack s)
 {
     if (!s)
