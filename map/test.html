@@ -43,7 +43,7 @@ createMakers(center_data);
 		for (var i = 0; i < point_list.data.length; i++) {
 			var point = new BMap.Point(point_list.data[i][0],point_list.data[i][1]);
 			var marker = new BMap.Marker(point);
-			var icon = new BMap.Icon(point_list.icon, new BMap.Size(30,30));
+			var icon = new BMap.Icon(point_list.icon, new BMap.Size(30,39));
 			marker.setIcon(icon);
 			marker.setTitle(point_list.data[i][2]);
 			map.addOverlay(marker);
