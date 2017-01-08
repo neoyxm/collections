@@ -1,0 +1,70 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />  
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+<title>Hello, World</title>  
+<style type="text/css">  
+html{height:100%}  
+body{height:100%;margin:0px;padding:0px}  
+#container{height:100%}  
+</style>  
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=iXzxI2nrkmk3teRUIzhiHPS138Ly4tth">
+
+</script>
+
+	<script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+	<script type="text/javascript" src="./data.js"></script>
+	<link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+</head>  
+ 
+<body>  
+<div id="container"></div> 
+
+</body>  
+</html>
+
+<script type="text/javascript"> 
+
+var map = new BMap.Map("container");          
+var point = new BMap.Point(121.497136,31.285672);   /*121.497136,31.285672*/
+map.centerAndZoom(point, 15);   
+map.enableScrollWheelZoom(true);                  
+map.addControl(new BMap.NavigationControl());
+
+
+
+createMakers(street_data);
+createMakers(police_data);
+createMakers(center_data);
+
+    function createMakers(point_list)
+	{
+		for (var i = 0; i < point_list.data.length; i++) {
+			var point = new BMap.Point(point_list.data[i][0],point_list.data[i][1]);
+			var marker = new BMap.Marker(point);
+			var icon = new BMap.Icon(point_list.icon, new BMap.Size(30,30));
+			marker.setIcon(icon);
+			marker.setTitle(point_list.data[i][2]);
+			map.addOverlay(marker);
+			marker.addEventListener('click', callback);   
+        }	
+	}
+
+	function callback(e)//单击热点图层
+	{
+			//var customPoi = e.customPoi;//poi的默认字段
+			//var contentPoi=e.content;//poi的自定义字段
+			//var content = '<p style="width:280px;margin:0;line-height:20px;">地址：' + customPoi.address + '<br/>价格:'+contentPoi.dayprice+'元'+'</p>';
+			var content = '<img src="./image/mm.jpg"></img>';
+			var searchInfoWindow = new BMapLib.SearchInfoWindow(map, content, {
+				title: this.getTitle(), //标题
+				width: 500, //宽度
+				height: 400, //高度
+				panel : "panel", //检索结果面板
+				enableAutoPan : true, //自动平移
+			});
+			var point = new BMap.Point(this.getPosition().lng,this.getPosition().lat);
+			searchInfoWindow.open(point);	
+	}
+</script>  
