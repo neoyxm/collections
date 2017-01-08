@@ -9,6 +9,47 @@ html{height:100%}
 body{height:100%;margin:0px;padding:0px}  
 #container{height:100%}  
 </style>  
+<style type="text/css">
+		body, html{
+			width: 100%;
+			height: 100%;
+			margin:0;
+			font-family:"微软雅黑";
+			font-size:14px;
+		}
+
+		#result{
+			width:100%;
+		}
+		li{
+			line-height:28px;
+		}
+		.sel_container{
+			z-index:9999;
+			font-size:12px;
+			position:absolute;
+			right:0px;
+			top:0px;
+			width:240px;
+			background:rgba(255,255,255,0.8);
+			height:30px;
+			line-height:30px;
+			padding:5px;
+		}
+		.point_list
+		{
+			z-index:9998;
+			font-size:12px;
+			position:absolute;
+			right:0px;
+			top:50px;
+			width:240px;
+			background:rgba(255,255,255,0.8);
+			height:500px;
+			line-height:30px;
+			padding:5px;
+		}
+	</style>
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=iXzxI2nrkmk3teRUIzhiHPS138Ly4tth">
 
 </script>
@@ -20,22 +61,36 @@ body{height:100%;margin:0px;padding:0px}
  
 <body>  
 <div id="container"></div> 
+<div class="sel_container">
+	<button id="street" onClick=onBtnClick(this)>街道</button>
+	<button id="center" onClick=onBtnClick(this)>社区中心</button>
+	<button id="police" onClick=onBtnClick(this)>派出所</button>
+	<button id="all" onClick=onBtnClick(this)>全部</button>
+</div>
+<!--
+<div class="point_list">
+
+</div>
+-->
 
 </body>  
 </html>
 
 <script type="text/javascript"> 
 	var map = new BMap.Map("container");          
-	var point = new BMap.Point(121.497136,31.285672);   /*121.497136,31.285672*/
+	var point = new BMap.Point(121.511531,31.270384);   /*121.497136,31.285672*/
 	map.centerAndZoom(point, 15);   
 	map.enableScrollWheelZoom(true);                  
 	map.addControl(new BMap.NavigationControl());
+	
+	var street_marker_vec = [];
+	createMarkers(street_data, street_marker_vec);
+	var police_marker_vec = [];
+	createMarkers(police_data, police_marker_vec);
+	var center_marker_vec = [];
+	createMarkers(center_data, center_marker_vec);
 
-	createMakers(street_data);
-	createMakers(police_data);
-	createMakers(center_data);
-
-    function createMakers(point_list)
+    function createMarkers(point_list, out_vec)
 	{
 		for (var i = 0; i < point_list.data.length; i++) {
 			var point = new BMap.Point(point_list.data[i][0],point_list.data[i][1]);
@@ -45,7 +100,22 @@ body{height:100%;margin:0px;padding:0px}
 			marker.setTitle(point_list.data[i][2]);
 			map.addOverlay(marker);
 			marker.addEventListener('click', callback);   
+			out_vec.push(marker);
         }	
+	}
+	
+	function enableMarkers(out_vec)
+	{
+		for (var i = 0; i < out_vec.length; i++) {
+			map.addOverlay(out_vec[i]);
+		}
+	}
+	
+	function disableMarkers(out_vec)
+	{
+		for (var i = 0; i < out_vec.length; i++) {
+			map.removeOverlay(out_vec[i]);
+		}
 	}
 
 	function callback(e)//单击热点图层
@@ -60,9 +130,37 @@ body{height:100%;margin:0px;padding:0px}
 				height: 350, //高度
 				panel : "panel", //检索结果面板
 				enableAutoPan : true, //自动平移
+				enableSendToPhone: false,
 				searchTypes :[]
 			});
 			var point = new BMap.Point(this.getPosition().lng,this.getPosition().lat);
 			searchInfoWindow.open(point);	
+	}
+	
+	function onBtnClick(e)
+	{
+		switch(e.id)
+		{
+			case "street":
+				enableMarkers(street_marker_vec);
+				disableMarkers(center_marker_vec)
+				disableMarkers(police_marker_vec);
+				break;
+			case "center":			
+				enableMarkers(center_marker_vec);
+				disableMarkers(street_marker_vec);
+				disableMarkers(police_marker_vec);
+				break;
+			case "police":			
+				enableMarkers(police_marker_vec);
+				disableMarkers(center_marker_vec);
+				disableMarkers(street_marker_vec);
+				break;
+			default:	
+				enableMarkers(police_marker_vec);
+				enableMarkers(center_marker_vec);
+				enableMarkers(street_marker_vec);
+		}
+		
 	}
 </script>  
