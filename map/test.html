@@ -25,18 +25,15 @@ body{height:100%;margin:0px;padding:0px}
 </html>
 
 <script type="text/javascript"> 
+	var map = new BMap.Map("container");          
+	var point = new BMap.Point(121.497136,31.285672);   /*121.497136,31.285672*/
+	map.centerAndZoom(point, 15);   
+	map.enableScrollWheelZoom(true);                  
+	map.addControl(new BMap.NavigationControl());
 
-var map = new BMap.Map("container");          
-var point = new BMap.Point(121.497136,31.285672);   /*121.497136,31.285672*/
-map.centerAndZoom(point, 15);   
-map.enableScrollWheelZoom(true);                  
-map.addControl(new BMap.NavigationControl());
-
-
-
-createMakers(street_data);
-createMakers(police_data);
-createMakers(center_data);
+	createMakers(street_data);
+	createMakers(police_data);
+	createMakers(center_data);
 
     function createMakers(point_list)
 	{
