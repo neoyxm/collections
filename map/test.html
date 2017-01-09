@@ -62,10 +62,10 @@ body{height:100%;margin:0px;padding:0px}
 <body>  
 <div id="container"></div> 
 <div class="sel_container">
-	<button id="street" onClick=onBtnClick(this)>街道</button>
-	<button id="center" onClick=onBtnClick(this)>社区中心</button>
-	<button id="police" onClick=onBtnClick(this)>派出所</button>
-	<button id="all" onClick=onBtnClick(this)>全部</button>
+	<button name="selBtn" id="street" onClick=onBtnClick(this)>街道</button>
+	<button name="selBtn" id="center" onClick=onBtnClick(this)>社区中心</button>
+	<button name="selBtn" id="police" onClick=onBtnClick(this)>派出所</button>
+	<button  id="all" onClick=onBtnClick(this)>全部</button>
 </div>
 <!--
 <div class="point_list">
@@ -117,17 +117,34 @@ body{height:100%;margin:0px;padding:0px}
 			map.removeOverlay(out_vec[i]);
 		}
 	}
+	
+	function findItemByTitle(title)
+	{
+		for (var i = 0; i < data_list.length; i++)
+		{
+			var currData = data_list[i];
+			for (var j = 0; j <  currData.data.length; j++)
+			{
+				if (currData.data[j][2] == title)
+					return currData.data[j];
+			}
+		}
+		return null;
+	}
 
 	function callback(e)//单击热点图层
-	{
-			//var customPoi = e.customPoi;//poi的默认字段
-			//var contentPoi=e.content;//poi的自定义字段
-			//var content = '<p style="width:280px;margin:0;line-height:20px;">地址：' + customPoi.address + '<br/>价格:'+contentPoi.dayprice+'元'+'</p>';
+	{		
+			var currItem = findItemByTitle(this.getTitle());
+			if(currItem == null)
+				return null;
+
 			var content = '<img src="./image/mm.jpg"></img>';
+			content = content +  '<p style="width:280px;margin:0;line-height:20px;">地址：' + currItem[4] + '<br/>电话:'+currItem[3]+'</p>';
+
 			var searchInfoWindow = new BMapLib.SearchInfoWindow(map, content, {
 				title: this.getTitle(), //标题
 				width: 500, //宽度
-				height: 350, //高度
+				height: 400, //高度
 				panel : "panel", //检索结果面板
 				enableAutoPan : true, //自动平移
 				enableSendToPhone: false,
@@ -135,6 +152,19 @@ body{height:100%;margin:0px;padding:0px}
 			});
 			var point = new BMap.Point(this.getPosition().lng,this.getPosition().lat);
 			searchInfoWindow.open(point);	
+	}
+	
+	function disableBtnByID(id)
+	{
+		var btnList = document.getElementsByName("selBtn");
+		
+		for(var i = 0; i < btnList.length; i++)
+		{
+			if (id == btnList[i].id)
+				btnList[i].disabled = true;
+			else
+				btnList[i].disabled = false;
+		}
 	}
 	
 	function onBtnClick(e)
@@ -145,34 +175,22 @@ body{height:100%;margin:0px;padding:0px}
 				enableMarkers(street_marker_vec);
 				disableMarkers(center_marker_vec)
 				disableMarkers(police_marker_vec);
-				e.disabled = true;
-				document.getElementById("center").disabled = false;
-				document.getElementById("police").disabled = false;
 				break;
 			case "center":			
 				enableMarkers(center_marker_vec);
 				disableMarkers(street_marker_vec);
 				disableMarkers(police_marker_vec);
-				e.disabled = true;
-				document.getElementById("street").disabled = false;
-				document.getElementById("police").disabled = false;
 				break;
 			case "police":			
 				enableMarkers(police_marker_vec);
 				disableMarkers(center_marker_vec);
 				disableMarkers(street_marker_vec);
-				e.disabled = true;
-				document.getElementById("street").disabled = false;
-				document.getElementById("center").disabled = false;
 				break;
 			default:	
 				enableMarkers(police_marker_vec);
 				enableMarkers(center_marker_vec);
 				enableMarkers(street_marker_vec);
-				document.getElementById("street").disabled = false;
-				document.getElementById("center").disabled = false;
-				document.getElementById("police").disabled = false;
-		}
-		
+		}	
+		disableBtnByID(e.id);
 	}
 </script>  
