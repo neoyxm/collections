@@ -145,21 +145,33 @@ body{height:100%;margin:0px;padding:0px}
 				enableMarkers(street_marker_vec);
 				disableMarkers(center_marker_vec)
 				disableMarkers(police_marker_vec);
+				e.disabled = true;
+				document.getElementById("center").disabled = false;
+				document.getElementById("police").disabled = false;
 				break;
 			case "center":			
 				enableMarkers(center_marker_vec);
 				disableMarkers(street_marker_vec);
 				disableMarkers(police_marker_vec);
+				e.disabled = true;
+				document.getElementById("street").disabled = false;
+				document.getElementById("police").disabled = false;
 				break;
 			case "police":			
 				enableMarkers(police_marker_vec);
 				disableMarkers(center_marker_vec);
 				disableMarkers(street_marker_vec);
+				e.disabled = true;
+				document.getElementById("street").disabled = false;
+				document.getElementById("center").disabled = false;
 				break;
 			default:	
 				enableMarkers(police_marker_vec);
 				enableMarkers(center_marker_vec);
 				enableMarkers(street_marker_vec);
+				document.getElementById("street").disabled = false;
+				document.getElementById("center").disabled = false;
+				document.getElementById("police").disabled = false;
 		}
 		
 	}
