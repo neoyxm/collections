@@ -82,54 +82,41 @@ body{height:100%;margin:0px;padding:0px}
 	map.centerAndZoom(point, 15);   
 	map.enableScrollWheelZoom(true);                  
 	map.addControl(new BMap.NavigationControl());
-	
-	var street_marker_vec = [];
-	createMarkers(street_data, street_marker_vec);
-	var police_marker_vec = [];
-	createMarkers(police_data, police_marker_vec);
-	var center_marker_vec = [];
-	createMarkers(center_data, center_marker_vec);
 
-    function createMarkers(point_list, out_vec)
+	var marker_vec = [];
+	createMarkers(data_list, marker_vec);
+
+    function createMarkers(data_list, out_vec)
 	{
-		for (var i = 0; i < point_list.data.length; i++) {
-			var point = new BMap.Point(point_list.data[i][0],point_list.data[i][1]);
-			var marker = new BMap.Marker(point);
-			var icon = new BMap.Icon(point_list.icon, new BMap.Size(30,39));
-			marker.setIcon(icon);
-			marker.setTitle(point_list.data[i][2]);
-			map.addOverlay(marker);
-			marker.addEventListener('click', callback);   
-			out_vec.push(marker);
-        }	
-	}
-	
-	function enableMarkers(out_vec)
-	{
-		for (var i = 0; i < out_vec.length; i++) {
-			map.addOverlay(out_vec[i]);
-		}
-	}
-	
-	function disableMarkers(out_vec)
-	{
-		for (var i = 0; i < out_vec.length; i++) {
-			map.removeOverlay(out_vec[i]);
-		}
-	}
-	
-	function findItemByTitle(title)
-	{
-		for (var i = 0; i < data_list.length; i++)
-		{
-			var currData = data_list[i];
-			for (var j = 0; j <  currData.data.length; j++)
-			{
-				if (currData.data[j][2] == title)
-					return currData.data[j];
+		for (var j = 0; j <  data_list.length; j++) {
+			var point_list = data_list[j];
+			for (var i = 0; i < point_list.data.length; i++) {
+				var point = new BMap.Point(point_list.data[i][0],point_list.data[i][1]);
+				var marker = new BMap.Marker(point);
+				var icon = new BMap.Icon(point_list.icon, new BMap.Size(30,39));
+				marker.setIcon(icon);
+				marker.setTitle(point_list.data[i][2]);
+				map.addOverlay(marker);
+				marker.addEventListener('click', callback); 
+				//make the element to contain the marker & type
+				var markerElem = [];
+				markerElem.push(marker);
+				markerElem.push(point_list.type);
+				//put the element to vector
+				out_vec.push(markerElem);
 			}
+		}			
+	}
+	
+	function showMarkersByType(out_vec, type)
+	{
+		for (var i = 0; i < out_vec.length; i++) {
+			var markerElem = out_vec[i];
+			if (markerElem[1] == type || type == "all")
+				map.addOverlay(markerElem[0]);
+			else
+				map.removeOverlay(markerElem[0]);
 		}
-		return null;
 	}
 
 	function callback(e)//单击热点图层
@@ -169,28 +156,7 @@ body{height:100%;margin:0px;padding:0px}
 	
 	function onBtnClick(e)
 	{
-		switch(e.id)
-		{
-			case "street":
-				enableMarkers(street_marker_vec);
-				disableMarkers(center_marker_vec)
-				disableMarkers(police_marker_vec);
-				break;
-			case "center":			
-				enableMarkers(center_marker_vec);
-				disableMarkers(street_marker_vec);
-				disableMarkers(police_marker_vec);
-				break;
-			case "police":			
-				enableMarkers(police_marker_vec);
-				disableMarkers(center_marker_vec);
-				disableMarkers(street_marker_vec);
-				break;
-			default:	
-				enableMarkers(police_marker_vec);
-				enableMarkers(center_marker_vec);
-				enableMarkers(street_marker_vec);
-		}	
+		showMarkersByType(marker_vec, e.id)
 		disableBtnByID(e.id);
 	}
 </script>  
