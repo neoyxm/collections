@@ -88,24 +88,21 @@ body{height:100%;margin:0px;padding:0px}
 
     function createMarkers(data_list, out_vec)
 	{
-		for (var j = 0; j <  data_list.length; j++) {
-			var point_list = data_list[j];
-			for (var i = 0; i < point_list.data.length; i++) {
-				var point = new BMap.Point(point_list.data[i][0],point_list.data[i][1]);
+			for (var i = 0; i < data_list.length; i++) {
+				var point = new BMap.Point(data_list[i].lng,data_list[i].lat);
 				var marker = new BMap.Marker(point);
-				var icon = new BMap.Icon(point_list.icon, new BMap.Size(30,39));
+				var icon = new BMap.Icon(getIcon(data_list[i].type]), new BMap.Size(30,39));
 				marker.setIcon(icon);
-				marker.setTitle(point_list.data[i][2]);
+				marker.setTitle(data_list[i].title);
 				map.addOverlay(marker);
 				marker.addEventListener('click', callback); 
 				//make the element to contain the marker & type
 				var markerElem = [];
 				markerElem.push(marker);
-				markerElem.push(point_list.type);
+				markerElem.push(data_list[i].type);
 				//put the element to vector
 				out_vec.push(markerElem);
-			}
-		}			
+			}		
 	}
 	
 	function showMarkersByType(out_vec, type)
@@ -119,6 +116,25 @@ body{height:100%;margin:0px;padding:0px}
 		}
 	}
 
+	function findItemByTitle(title)
+	{
+		for (var i = 0; i < data_list.length; i++) {
+			if (data_list[i].title == title)
+				return data_list[i];
+		}
+		return null;
+	}
+	
+	function getIcon(type)
+	{
+		for (var i = 0; i < icon_list.length; i++)
+		{
+			if(icon_list[i].type == type)
+				return icon_list[i].icon;
+		}
+		return null;
+	}
+	
 	function callback(e)//单击热点图层
 	{		
 			var currItem = findItemByTitle(this.getTitle());
@@ -126,7 +142,7 @@ body{height:100%;margin:0px;padding:0px}
 				return null;
 
 			var content = '<img src="./image/mm.jpg"></img>';
-			content = content +  '<p style="width:280px;margin:0;line-height:20px;">地址：' + currItem[4] + '<br/>电话:'+currItem[3]+'</p>';
+			content = content +  '<p style="width:280px;margin:0;line-height:20px;">地址：' + currItem.addr + '<br/>电话:'+currItem.tel+'</p>';
 
 			var searchInfoWindow = new BMapLib.SearchInfoWindow(map, content, {
 				title: this.getTitle(), //标题
