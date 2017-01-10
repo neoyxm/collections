@@ -45,9 +45,10 @@ body{height:100%;margin:0px;padding:0px}
 			top:50px;
 			width:240px;
 			background:rgba(255,255,255,0.8);
-			height:500px;
+			height:400px;
 			line-height:30px;
 			padding:5px;
+			overflow: scroll;
 		}
 	</style>
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=iXzxI2nrkmk3teRUIzhiHPS138Ly4tth">
@@ -67,15 +68,15 @@ body{height:100%;margin:0px;padding:0px}
 	<button name="selBtn" id="police" onClick=onBtnClick(this)>派出所</button>
 	<button  id="all" onClick=onBtnClick(this)>全部</button>
 </div>
-<!--
-<div class="point_list">
-
+<div class="point_list" id="check_list">
+    <p> </p>
+    <p> 曲阳派出所</p>
+    <p> 曲阳社保中心</p>
+    <p> 广中社保中心</p>
 </div>
--->
 
 </body>  
 </html>
-
 <script type="text/javascript"> 
 	var map = new BMap.Map("container");          
 	var point = new BMap.Point(121.511531,31.270384);   /*121.497136,31.285672*/
