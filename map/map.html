@@ -103,6 +103,7 @@
 	function loadDetailedInfoByType(type, keyword)
 	{
 		var content = '';
+		var indexs_vec = [];
 		for (var i = 0; i < data_list.length; i++) {
 			if(data_list[i].type == type || type == "all")
 			{
@@ -110,10 +111,16 @@
 				if (typeof keyword === 'string')
 				{
 					if( data_list[i].title.match(keyword) != null || data_list[i].addr.match(keyword) != null)
+					{
 						content += info_line;
+						indexs_vec.push(i);
+					}
 				}
 				else
+				{
 					content += info_line;
+					indexs_vec.push(i);
+				}
 			}
 		}
 		
@@ -125,6 +132,7 @@
 			
 		var check_list = document.getElementById("check_list");
 		check_list.innerHTML = content;
+		return indexs_vec;
 	}
 
     function createMarkers(data_list, out_vec)
@@ -157,6 +165,14 @@
 				map.addOverlay(markerElem[0]);
 			else
 				map.removeOverlay(markerElem[0]);
+		}
+	}
+
+	function showMarkersByIndexs(out_vec, indexs_vec)
+	{
+		for (var i = 0; i < indexs_vec.length; i++) {
+			var markerElem = out_vec[indexs_vec[i]];
+			map.addOverlay(markerElem[0]);
 		}
 	}
 
@@ -249,13 +265,19 @@
 	{
 		var searchInput= document.getElementById("searchInput");
 		
-		loadDetailedInfoByType(currSelectedType, searchInput.value);
+		loadDetailedInfoByType(currSelectedType, searchInput.value.trim());
 	}
 	
 	function onSearchEnter(e)
 	{
 	    if(event.keyCode == 13) {
-			loadDetailedInfoByType(currSelectedType, e.value);	
+			var indexs_vec = loadDetailedInfoByType(currSelectedType, e.value.trim());	
+			if (indexs_vec.length > 0)
+			{
+				map.clearOverlays();
+				showMarkersByIndexs(marker_vec, indexs_vec);
+				map.centerAndZoom(point, 14);   
+			}
 		}
 	}
 </script>  
