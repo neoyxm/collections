@@ -127,7 +127,9 @@
 		if (content == '' && typeof keyword === 'string')
 		{
 			//use the current selected type to back
-			content = '<center><p> 没有找到相关内容 <br><button class="button" name="search" id="'+currSelectedType+'" onClick=onBtnClick(this)>返回</button> </p></center>';
+			content = '<center><p> 没有找到相关内容 <br>';
+			content +='<button class="button" name="search" id="'+currSelectedType+'" onClick=onBtnClick(this)>返回</button>';
+			content +='</p></center>';
 		}
 			
 		var check_list = document.getElementById("check_list");
@@ -195,7 +197,7 @@
 		return null;
 	}
 	
-	function callback(e)//单击热点图层
+	function callback(e)
 	{		
 		var currItem = findItemByTitle(this.getTitle());
 		if(currItem == null)
@@ -265,19 +267,25 @@
 	{
 		var searchInput= document.getElementById("searchInput");
 		
-		loadDetailedInfoByType(currSelectedType, searchInput.value.trim());
+		getSearchResult(searchInput.value.trim());
 	}
 	
 	function onSearchEnter(e)
 	{
+		//on input the enter key, trigger the search function
 	    if(event.keyCode == 13) {
-			var indexs_vec = loadDetailedInfoByType(currSelectedType, e.value.trim());	
-			if (indexs_vec.length > 0)
-			{
-				map.clearOverlays();
-				showMarkersByIndexs(marker_vec, indexs_vec);
-				map.centerAndZoom(point, 14);   
-			}
+			getSearchResult(e.value.trim());
+		}
+	}
+
+	function getSearchResult(keyword)
+	{
+		var indexs_vec = loadDetailedInfoByType(currSelectedType, keyword);	
+		if (indexs_vec.length > 0)
+		{
+			map.clearOverlays();
+			showMarkersByIndexs(marker_vec, indexs_vec);
+			map.centerAndZoom(point, 14);   
 		}
 	}
 </script>  
