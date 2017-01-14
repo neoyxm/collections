@@ -2,15 +2,15 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>虹口区社区信息云系统</title>
+<title></title>
 
 <link href="public/css/base.css" rel="stylesheet" type="text/css">
 <link href="public/css/login.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="./config.js"></script>
 </head>
 <body>
 
 <div class="login">
-	<div class="logo">虹口区社区信息云系统</div>
     <div class="login_form">
        <button class="button" id="submit" type="submit" onclick="window.open('./map.html', '_self')">登入</button> 
     </div>
@@ -21,3 +21,8 @@
 </div>
 </body>
 </html>
+
+<script type="text/javascript">
+setTitle(document);
+setLogo(document.getElementById("logo"));
+</script>
