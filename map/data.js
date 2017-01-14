@@ -21,4 +21,10 @@ var icon_list = [
 	{type:"center", icon:"./icon/icon3.png"},		
 ];
 
+var initial_point = {lng:121.497053, lat:31.286188};
+var initial_zoom_level = 14;
+var show_result_zoom_level = 14;
+var show_info_zoom_level = 19;
+
+
 

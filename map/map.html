@@ -95,8 +95,8 @@ setTitle(document);
 	var currInfoWindow;
 	var currSelectedType="all";
 	var map = new BMap.Map("container");          
-	var point = new BMap.Point(121.497053,31.286188);   /*121.497136,31.285672*/
-	map.centerAndZoom(point, 14);   
+	var point = new BMap.Point(initial_point.lng, initial_point.lat);   /*121.497136,31.285672*/
+	map.centerAndZoom(point, initial_zoom_level);   
 	map.enableScrollWheelZoom(true);                  
 	map.addControl(new BMap.NavigationControl());
 
@@ -254,7 +254,7 @@ setTitle(document);
 		showMarkersByType(marker_vec, e.id)
 		loadDetailedInfoByType(e.id);
 		disableBtnByID(e.id);
-		map.centerAndZoom(point, 14);   
+		map.centerAndZoom(point, show_result_zoom_level);   
 		
 		currSelectedType = e.id;
 	}
@@ -263,7 +263,7 @@ setTitle(document);
 	{
 		var marker =  marker_vec[e.id];
 
-		map.centerAndZoom(marker[0].getPosition(), 19);		
+		map.centerAndZoom(marker[0].getPosition(), show_info_zoom_level);		
 	
 		showInfoWindow(data_list[e.id]);
 	}
@@ -290,7 +290,7 @@ setTitle(document);
 		{
 			map.clearOverlays();
 			showMarkersByIndexs(marker_vec, indexs_vec);
-			map.centerAndZoom(point, 14);   
+			map.centerAndZoom(point, show_result_zoom_level);   
 		}
 	}
 </script>  
