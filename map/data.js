@@ -25,18 +25,51 @@ var icon_list = [
 	{type:"3", icon:"./icon/icon3.png"},		
 ];
 
+var Quyangboundary_list = [
+new BMap.Point(121.48723,31.296219),
+new BMap.Point(121.4875,31.291791),
+new BMap.Point(121.487931,31.290896),
+
+new BMap.Point(121.487823,31.290001),
+new BMap.Point(121.487913,31.28656),
+new BMap.Point(121.488506,31.285033),
+new BMap.Point(121.486799,31.280928),
+
+new BMap.Point(121.489656,31.280774),
+new BMap.Point(121.493716,31.282224),
+
+//new BMap.Point(121.50313,31.282101),
+new BMap.Point(121.50322,31.281924),
+new BMap.Point(121.502627,31.288952),
+
+
+new BMap.Point(121.503795,31.291035),
+new BMap.Point(121.508897,31.294923),
+new BMap.Point(121.505358,31.297199),
+new BMap.Point(121.505178,31.298564),
+new BMap.Point(121.504729,31.300832),
+new BMap.Point(121.48723,31.296219),
+];
+
+var styleJson = [
+    {
+        "featureType": "poi",
+        "elementType": "all",
+        "stylers": { "visibility": "off" }
+    }
+];
+
 var initial_point = {lng:121.497242, lat:31.290280};
 var initial_max_zoom=19;
 var initial_min_zoom=16;
-var initial_zoom_level = 17;
+var initial_zoom_level = 16;
 var show_result_zoom_level = 14;
 var show_info_zoom_level = 18;
-
+/*
 //if under the low screen resolution, use the low zoom level
 if (window.screen.height < 1080)
 {
 	initial_zoom_level = 16;
 }
-
-
+*/
 
