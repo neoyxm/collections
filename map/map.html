@@ -77,9 +77,9 @@
 <body>  
 	<div id="container"></div> 
 	<div class="sel_container">
-		<button class="button" name="selBtn" id="street" onClick=onBtnClick(this)>街道</button>
-		<button  class="button" name="selBtn" id="center" onClick=onBtnClick(this)>社区中心</button>
-		<button  class="button" name="selBtn" id="police" onClick=onBtnClick(this)>派出所</button>
+		<button class="button" name="selBtn" id="1" onClick=onBtnClick(this)>居委会</button>
+		<button  class="button" name="selBtn" id="2" onClick=onBtnClick(this)>社区企业</button>
+		<button  class="button" name="selBtn" id="3" onClick=onBtnClick(this)>社区单位</button>
 		<button  class="button"  id="all" onClick=onBtnClick(this)>全部</button>
 		<br>
 		<input name="search" type="text" id="searchInput" onkeydown="onSearchEnter(this)"/> <button  class="button"  name="search" id="searchBtn" onClick=onSearchBtnClick()>搜索</button>
@@ -99,6 +99,17 @@ setTitle(document);
 	map.centerAndZoom(point, initial_zoom_level);   
 	map.enableScrollWheelZoom(true);                  
 	map.addControl(new BMap.NavigationControl());
+
+	var styleJson = [
+          {
+                    "featureType": "poi",
+                    "elementType": "all",
+                    "stylers": {
+                              "visibility": "off"
+                    }
+          }
+	];
+	map.setMapStyle({styleJson:styleJson});
 
 	var marker_vec = [];
 	createMarkers(data_list, marker_vec);
@@ -149,16 +160,20 @@ setTitle(document);
 				var marker = new BMap.Marker(point);
 				var icon_name = getIcon(data_list[i].type);
 				if(icon_name != null){
-					var icon = new BMap.Icon(icon_name, new BMap.Size(30,39));
-					marker.setIcon(icon);
+			//		var icon = new BMap.Icon(icon_name, new BMap.Size(30,39));
+			//		marker.setIcon(icon);
 				}
 				marker.setTitle(data_list[i].title);
+				var alias_label =  new BMap.Label(data_list[i].alias, {offset:{width:22, height:5 }});
+				alias_label.setStyle({fontSize : "12px",background:"rgba(255,255,255,0)", border:"none"});
+				marker.setLabel(alias_label);
 				map.addOverlay(marker);
 				marker.addEventListener('click', callback); 
 				//make the element to contain the marker & type
 				var markerElem = [];
-				markerElem.push(marker);
-				markerElem.push(data_list[i].type);
+				markerElem.push(marker);  //save the marker
+				markerElem.push(data_list[i].type); //save the type
+				markerElem.push(alias_label); // save the label
 				//put the element to vector
 				out_vec.push(markerElem);
 			}		
@@ -169,7 +184,10 @@ setTitle(document);
 		for (var i = 0; i < out_vec.length; i++) {
 			var markerElem = out_vec[i];
 			if (markerElem[1] == type || type == "all")
-				map.addOverlay(markerElem[0]);
+			{
+				markerElem[0].setLabel(markerElem[2]); //rollback the label
+				map.addOverlay(markerElem[0]);         //rollback the marker
+			}
 			else
 				map.removeOverlay(markerElem[0]);
 		}
@@ -214,12 +232,13 @@ setTitle(document);
 	function showInfoWindow(currItem)
 	{
 		var content = '<img src="./image/mm.jpg"></img>';
-		content = content +  '<p style="width:280px;margin:0;line-height:20px;">地址：' + currItem.addr + '<br/>电话:'+currItem.tel+'</p>';
+		content = content +  '<p style="margin:0;line-height:20px;">' + currItem.info + '</p>';
+		content = content +  '<p style="margin:0;line-height:20px;"><b>地址</b>：' + currItem.addr + '。 <b>电话</b>:'+currItem.tel+'</p>';
 
 		var searchInfoWindow = new BMapLib.SearchInfoWindow(map, content, {
 			title: currItem.title, //标题
 			width: 500, //宽度
-			height: 350, //高度
+			height: 360, //高度
 			panel : "panel", //检索结果面板
 			enableAutoPan : true, //自动平移
 			enableSendToPhone: false,
