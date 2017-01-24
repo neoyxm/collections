@@ -35,7 +35,7 @@ new BMap.Point(121.487913,31.28656),
 new BMap.Point(121.488506,31.285033),
 new BMap.Point(121.486799,31.280928),
 
-new BMap.Point(121.489656,31.280774),
+new BMap.Point(121.489198,31.280488),
 new BMap.Point(121.493716,31.282224),
 
 //new BMap.Point(121.50313,31.282101),
