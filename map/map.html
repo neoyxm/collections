@@ -104,10 +104,49 @@ setTitle(document);
 	map.setMapStyle({styleJson:styleJson});
 	setQuyangBoundary();
 
+	var missed_rd_lb_vec =	initMissedRoad(MissedRoad_list, map.getZoom());
+	map.addEventListener("zoomend", onMapZoomed);
+
+
+
 	var marker_vec = [];
 	createMarkers(data_list, marker_vec);
 	loadDetailedInfoByType("all");
 	
+	function initMissedRoad(missed_list, curr_level)
+	{
+		var missed_rd_lb_vec = [];
+		for (var i = 0; i < missed_list.length; i++)
+		{
+			var missed_rd = new BMap.Label(missed_list[i].label, {position:missed_list[i].pos});
+			missed_rd.setStyle({fontSize : "12px",background:"rgba(255,255,255,0)", border:"none"});
+			if(missed_list[i].max_level >= curr_level)
+				missed_rd.show();
+			else	
+				missed_rd.hide();
+			map.addOverlay(missed_rd);
+			missed_rd_lb_vec.push({lb:missed_rd, max_level:missed_list[i].max_level})
+		}
+		return missed_rd_lb_vec;
+	}
+
+	function showMissRoad(lb_vec, curr_level)
+	{
+		for(var i = 0;  i < lb_vec.length; i++)
+		{
+			if (lb_vec[i].max_level >= curr_level)
+				lb_vec[i].lb.show();
+			else
+				lb_vec[i].lb.hide();
+		}
+	}
+
+	function onMapZoomed()
+	{
+		//alert("current level" + this.getZoom());
+		showMissRoad(missed_rd_lb_vec, this.getZoom());
+	}
+
 	function setQuyangBoundary(){    
 		var pointArray = [];
 		var count = Quyangboundary_list.length;

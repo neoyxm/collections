@@ -45,9 +45,11 @@ new BMap.Point(121.502627,31.288952),
 
 new BMap.Point(121.503795,31.291035),
 new BMap.Point(121.508897,31.294923),
-new BMap.Point(121.505358,31.297199),
-new BMap.Point(121.505178,31.298564),
-new BMap.Point(121.504729,31.300832),
+
+new BMap.Point(121.505893,31.297056),
+new BMap.Point(121.506225,31.298822),
+new BMap.Point(121.507959,31.299393),
+new BMap.Point(121.507186,31.301329),
 new BMap.Point(121.487356,31.295941),
 ];
 
@@ -59,8 +61,33 @@ var styleJson = [
     }
 ];
 
+var MissedRoad_list = [
+{label:"运", pos: new BMap.Point(121.499726,31.298055), max_level:16 },
+{label:"光", pos: new BMap.Point(121.501019,31.29645), max_level:16 },
+{label:"路", pos: new BMap.Point(121.503175,31.296481), max_level:16 },
+
+{label:"腾", pos: new BMap.Point(121.497965,31.296493), max_level:18 },
+{label:"克", pos: new BMap.Point(121.498769,31.29674), max_level:18 },
+{label:"路", pos: new BMap.Point(121.499609,31.296967), max_level:18 },
+
+{label:"伊", pos: new BMap.Point(121.500588,31.295775), max_level:18 },
+{label:"敏", pos: new BMap.Point(121.500233,31.294788), max_level:18 },
+{label:"河", pos: new BMap.Point(121.49982,31.293561), max_level:18 },
+{label:"路", pos: new BMap.Point(121.499721,31.292312), max_level:18 },
+
+{label:"松", pos: new BMap.Point(121.504851,31.299578), max_level:17 },
+{label:"花", pos: new BMap.Point(121.504868,31.298228), max_level:17 },
+{label:"江", pos: new BMap.Point(121.506,31.296693), max_level:17 },
+{label:"路", pos: new BMap.Point(121.507402,31.295829), max_level:17 },
+
+
+{label:"辉", pos: new BMap.Point(121.504797,31.296817), max_level:16 },
+{label:"河", pos: new BMap.Point(121.504797,31.295891), max_level:16 },
+{label:"路", pos: new BMap.Point(121.504833,31.294472), max_level:16 },
+];
+
 var initial_point = {lng:121.497242, lat:31.290280};
-var initial_max_zoom=19;
+var initial_max_zoom=20;
 var initial_min_zoom=16;
 var initial_zoom_level = 16;
 var show_result_zoom_level = 14;
