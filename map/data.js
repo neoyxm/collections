@@ -26,7 +26,7 @@ var icon_list = [
 ];
 
 var Quyangboundary_list = [
-new BMap.Point(121.48723,31.296219),
+new BMap.Point(121.487356,31.295941),
 new BMap.Point(121.4875,31.291791),
 new BMap.Point(121.487931,31.290896),
 
@@ -48,7 +48,7 @@ new BMap.Point(121.508897,31.294923),
 new BMap.Point(121.505358,31.297199),
 new BMap.Point(121.505178,31.298564),
 new BMap.Point(121.504729,31.300832),
-new BMap.Point(121.48723,31.296219),
+new BMap.Point(121.487356,31.295941),
 ];
 
 var styleJson = [
