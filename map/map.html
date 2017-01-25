@@ -13,10 +13,11 @@
 </head>  
  
 <body>  
-<table border="0" width="100%" height="100%" cellpadding="0" cellspacing="0" >
-<tr>
-<td id="container"></td>
-<td style=" border:1px solid #999" valign="top" width="260">
+
+<div class="rTable">
+<div class="rTableRow">
+<div class="rTableCell" id="container"></div>
+<div class="rTableCell-right">
 	<div class="sel_container">
 		<button class="button" name="selBtn" id="1" onClick=onBtnClick(this)>居委</button>
 		<button  class="button" name="selBtn" id="2" onClick=onBtnClick(this)>社区企业</button>
@@ -26,13 +27,13 @@
 		<input name="search" type="text" id="searchInput" onkeydown="onSearchEnter(this)"/> <button  class="button"  name="search" id="searchBtn" onClick=onSearchBtnClick()>搜索</button>
 	</div>
 	<div class="point_list" id="check_list"></div>
-</td>
-</tr>
-</table>
+</div>
+</div>
+</div>
+
 </body>  
 </html>
 <script type="text/javascript">
 setTitle(document);
 </script>
-  
 <script type="text/javascript" src="./map.js"></script>
