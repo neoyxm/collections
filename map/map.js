@@ -12,8 +12,6 @@
 	var missed_rd_lb_vec =	initMissedRoad(MissedRoad_list, map.getZoom());
 	map.addEventListener("zoomend", onMapZoomed);
 
-
-
 	var marker_vec = [];
 	createMarkers(data_list, marker_vec);
 	loadDetailedInfoByType("all");
