@@ -151,16 +151,6 @@
 		}
 	}
 
-	function showMarkersByIndexs(out_vec, indexs_vec)
-	{
-		for (var i = 0; i < out_vec.length; i++) {
-			if(indexs_vec.indexOf(i) >= 0)
-				out_vec[i][0].show();
-			else
-				out_vec[i][0].hide();
-		}
-	}
-
 	function findItemByTitle(title)
 	{
 		for (var i = 0; i < data_list.length; i++) {
