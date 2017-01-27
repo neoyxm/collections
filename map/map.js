@@ -61,7 +61,7 @@
 		map.setViewport(pointArray);                
 	}
 
-	function loadDetailedInfoByType(type, keyword)
+	function loadDetailedInfoByType(param)
 	{
 		var content = '';
 		var count = 0;
@@ -71,28 +71,30 @@
 			if(typeof marker_vec[i] !== 'object' )
 				createMarker(data_list[i], marker_vec);
 
-			if(data_list[i].type == type || type == "all")
+			if(typeof param.type === 'string' && (data_list[i].type == param.type || param.type == "all"))
 			{
 				var info_line1 = '<div class="info" id='+i+' onclick="onInfoClick(this)"> ';
 				var info_line2 = ': '+ data_list[i].title +'<br>'+ data_list[i].addr +'</div>';
-				if (typeof keyword === 'string')
-				{
-					if( data_list[i].title.match(keyword) != null || data_list[i].addr.match(keyword) != null)
-					{
-						content += info_line1 + (count++) + info_line2;
-						marker_vec[i][0].show();
-						has_result = true;
-					}
-					else
-					{
-						marker_vec[i][0].hide();
-					}
-				}
-				else
 				{
 					content += info_line1 + (count++) + info_line2;
 					marker_vec[i][0].show();
 					has_result = true;
+				}
+			}
+			else if (typeof param.keyword === 'string')
+			{
+				var info_line1 = '<div class="info" id='+i+' onclick="onInfoClick(this)"> ';
+				var info_line2 = ': '+ data_list[i].title +'<br>'+ data_list[i].addr +'</div>';
+
+				if( data_list[i].title.match(param.keyword) != null || data_list[i].addr.match(param.keyword) != null)
+				{
+					content += info_line1 + (count++) + info_line2;
+					marker_vec[i][0].show();
+					has_result = true;
+				}
+				else
+				{
+					marker_vec[i][0].hide();
 				}
 			}
 			else
@@ -221,7 +223,7 @@
 		}
 
 		showMarkersByType(marker_vec, e.id)
-		loadDetailedInfoByType(e.id);
+		loadDetailedInfoByType({type:e.id});
 		disableBtnByID(e.id); 
 		map.reset();
 		currSelectedType = e.id;
@@ -250,6 +252,6 @@
 
 	function getSearchResult(keyword)
 	{
-		var has_result = loadDetailedInfoByType(currSelectedType, keyword);	
+		var has_result = loadDetailedInfoByType({keyword:keyword});	
 		map.reset();
 	}
