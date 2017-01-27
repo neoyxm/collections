@@ -13,8 +13,8 @@
 	map.addEventListener("zoomend", onMapZoomed);
 
 	var marker_vec = [];
-	createMarkers(data_list, marker_vec);
-	loadDetailedInfoByType("all");
+	//default , not loading the data
+	//loadDetailedInfoByType("1");
 	
 	function initMissedRoad(missed_list, curr_level)
 	{
@@ -64,9 +64,13 @@
 	function loadDetailedInfoByType(type, keyword)
 	{
 		var content = '';
-		var indexs_vec = [];
 		var count = 1;
+		var has_result = false;
 		for (var i = 0; i < data_list.length; i++) {
+			// create the marker if not existing
+			if(typeof marker_vec[i] !== 'object' )
+				createMarker(data_list[i], marker_vec);
+
 			if(data_list[i].type == type || type == "all")
 			{
 				var info_line = '<div class="info" id='+i+' onclick="onInfoClick(this)"> '+ (count++) + ': '+ data_list[i].title +'<br>'+ data_list[i].addr +'</div>';
@@ -75,18 +79,29 @@
 					if( data_list[i].title.match(keyword) != null || data_list[i].addr.match(keyword) != null)
 					{
 						content += info_line;
-						indexs_vec.push(i);
+						marker_vec[i][0].show();
+						has_result = true;
+					}
+					else
+					{
+						marker_vec[i][0].hide();
 					}
 				}
 				else
 				{
 					content += info_line;
-					indexs_vec.push(i);
+					marker_vec[i][0].show();
+					has_result = true;
 				}
 			}
+			else
+			{
+				marker_vec[i][0].hide();
+			}
+
 		}
 		
-		if (content == '' && typeof keyword === 'string')
+		if (false == has_result && typeof keyword === 'string')
 		{
 			//use the current selected type to back
 			content = '<center><p> 没有找到相关内容 <br>';
@@ -96,35 +111,33 @@
 			
 		var check_list = document.getElementById("check_list");
 		check_list.innerHTML = content;
-		return indexs_vec;
+		return has_result;
 	}
 
-    function createMarkers(data_list, out_vec)
+	function createMarker(data_item, out_vec)
 	{
-			for (var i = 0; i < data_list.length; i++) {
-				var point = new BMap.Point(data_list[i].lng,data_list[i].lat);
-				var marker = new BMap.Marker(point);
-				var icon_name = getIcon(data_list[i].type);
-				if(icon_name != null){
-			//		var icon = new BMap.Icon(icon_name, new BMap.Size(30,39));
-			//		marker.setIcon(icon);
-				}
-				marker.setTitle(data_list[i].title);
-				var alias_label =  new BMap.Label(data_list[i].alias, {offset:{width:22, height:5 }});
-				alias_label.setStyle({fontSize : "12px",background:"rgba(255,255,255,0)", border:"none"});
-				marker.setLabel(alias_label);
-				map.addOverlay(marker);
-				marker.addEventListener('click', callback); 
-				//make the element to contain the marker & type
-				var markerElem = [];
-				markerElem.push(marker);  //save the marker
-				markerElem.push(data_list[i].type); //save the type
-				markerElem.push(alias_label); // save the label
-				//put the element to vector
-				out_vec.push(markerElem);
-			}		
+		var point = new BMap.Point(data_item.lng,data_item.lat);
+		var marker = new BMap.Marker(point);
+		var icon_name = getIcon(data_item.type);
+		if(icon_name != null){
+	//		var icon = new BMap.Icon(icon_name, new BMap.Size(30,39));
+	//		marker.setIcon(icon);
+		}
+		marker.setTitle(data_item.title);
+		var alias_label =  new BMap.Label(data_item.alias, {offset:{width:22, height:5 }});
+		alias_label.setStyle({fontSize : "12px",background:"rgba(255,255,255,0)", border:"none"});
+		marker.setLabel(alias_label);
+		map.addOverlay(marker);
+		marker.addEventListener('click', callback); 
+		//make the element to contain the marker & type
+		var markerElem = [];
+		markerElem.push(marker);  //save the marker
+		markerElem.push(data_item.type); //save the type
+		markerElem.push(alias_label); // save the label
+		//put the element to vector
+		out_vec.push(markerElem);
 	}
-	
+
 	function showMarkersByType(out_vec, type)
 	{
 		for (var i = 0; i < out_vec.length; i++) {
@@ -247,10 +260,6 @@
 
 	function getSearchResult(keyword)
 	{
-		var indexs_vec = loadDetailedInfoByType(currSelectedType, keyword);	
-		if (indexs_vec.length > 0)
-		{
-			showMarkersByIndexs(marker_vec, indexs_vec);
-			map.reset();
-		}
+		var has_result = loadDetailedInfoByType(currSelectedType, keyword);	
+		map.reset();
 	}
