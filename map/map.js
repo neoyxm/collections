@@ -64,7 +64,7 @@
 	function loadDetailedInfoByType(type, keyword)
 	{
 		var content = '';
-		var count = 1;
+		var count = 0;
 		var has_result = false;
 		for (var i = 0; i < data_list.length; i++) {
 			// create the marker if not existing
@@ -73,12 +73,13 @@
 
 			if(data_list[i].type == type || type == "all")
 			{
-				var info_line = '<div class="info" id='+i+' onclick="onInfoClick(this)"> '+ (count++) + ': '+ data_list[i].title +'<br>'+ data_list[i].addr +'</div>';
+				var info_line1 = '<div class="info" id='+i+' onclick="onInfoClick(this)"> ';
+				var info_line2 = ': '+ data_list[i].title +'<br>'+ data_list[i].addr +'</div>';
 				if (typeof keyword === 'string')
 				{
 					if( data_list[i].title.match(keyword) != null || data_list[i].addr.match(keyword) != null)
 					{
-						content += info_line;
+						content += info_line1 + (count++) + info_line2;
 						marker_vec[i][0].show();
 						has_result = true;
 					}
@@ -89,7 +90,7 @@
 				}
 				else
 				{
-					content += info_line;
+					content += info_line1 + (count++) + info_line2;
 					marker_vec[i][0].show();
 					has_result = true;
 				}
@@ -98,7 +99,6 @@
 			{
 				marker_vec[i][0].hide();
 			}
-
 		}
 		
 		if (false == has_result && typeof keyword === 'string')
