@@ -16,6 +16,8 @@
 	//default , not loading the data
 	//loadDetailedInfoByType("1");
 	
+	var page_result_list = {index:[], currPageNo:0};
+	
 	function initMissedRoad(missed_list, curr_level)
 	{
 		var missed_rd_lb_vec = [];
@@ -64,8 +66,11 @@
 	function loadDetailedInfoByType(param)
 	{
 		var content = '';
-		var count = 0;
 		var has_result = false;
+		
+		page_result_list.index = [];
+		page_result_list.currPageNo = 0;
+
 		for (var i = 0; i < data_list.length; i++) {
 			// create the marker if not existing
 			if(typeof marker_vec[i] !== 'object' )
@@ -73,47 +78,58 @@
 
 			if(typeof param.type === 'string' && (data_list[i].type == param.type || param.type == "all"))
 			{
-				var info_line1 = '<div class="info" id='+i+' onclick="onInfoClick(this)"> ';
-				var info_line2 = ': '+ data_list[i].title +'<br>'+ data_list[i].addr +'</div>';
-				{
-					content += info_line1 + (count++) + info_line2;
-					marker_vec[i][0].show();
-					has_result = true;
-				}
+				page_result_list.index.push(i);
+				has_result = true;
 			}
 			else if (typeof param.keyword === 'string')
 			{
-				var info_line1 = '<div class="info" id='+i+' onclick="onInfoClick(this)"> ';
-				var info_line2 = ': '+ data_list[i].title +'<br>'+ data_list[i].addr +'</div>';
 
 				if( data_list[i].title.match(param.keyword) != null || data_list[i].addr.match(param.keyword) != null)
 				{
-					content += info_line1 + (count++) + info_line2;
-					marker_vec[i][0].show();
+					page_result_list.index.push(i);
 					has_result = true;
 				}
-				else
-				{
-					marker_vec[i][0].hide();
-				}
-			}
-			else
-			{
-				marker_vec[i][0].hide();
 			}
 		}
 		
-		if (false == has_result && typeof keyword === 'string')
+		if(true == has_result)
+		{
+			showResultInPageMode(0,  page_result_list);	
+		}
+		else if (false == has_result && typeof param.keyword === 'string')
 		{
 			//use the current selected type to back
 			content = '<center><p> 没有找到相关内容 <br>';
 			content +='<button class="button" name="search" id="'+currSelectedType+'" onClick=onBtnClick(this)>返回</button>';
 			content +='</p></center>';
+			var check_list = document.getElementById("check_list");
+			check_list.innerHTML = content;
 		}
 			
+		return has_result;
+	}
+
+	function showResultInPageMode(begin_no, result_list)
+	{
+		for(var i = 0; i < marker_vec.length; i++)
+		{
+			marker_vec[i][0].hide();
+		
+		}
+		var content = '';
+		var count = 1;
+		for(var i = 0; i < result_list.index.length; i++)
+		{
+			var index = result_list.index[i];
+			var info_line1 = '<div class="info" id='+index+' onclick="onInfoClick(this)"> ';
+			var info_line2 = ': '+ data_list[index].title +'<br>'+ data_list[index].addr +'</div>';
+			{
+				content += info_line1 + (count++) + info_line2;
+			}
+			marker_vec[index][0].show();
+		}	
 		var check_list = document.getElementById("check_list");
 		check_list.innerHTML = content;
-		return has_result;
 	}
 
 	function createMarker(data_item, out_vec)
