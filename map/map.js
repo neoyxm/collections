@@ -16,7 +16,7 @@
 	//default , not loading the data
 	//loadDetailedInfoByType("1");
 	
-	var page_result_list = {index:[], currPageNo:0};
+	var page_result_list = {index:[], currPageStartNo:0, currPageEndNo:0};
 	
 	function initMissedRoad(missed_list, curr_level)
 	{
@@ -69,7 +69,8 @@
 		var has_result = false;
 		
 		page_result_list.index = [];
-		page_result_list.currPageNo = 0;
+		page_result_list.currPageEndNo = 0;
+		page_result_list.currPageStartNo = 0;
 
 		for (var i = 0; i < data_list.length; i++) {
 			// create the marker if not existing
@@ -117,19 +118,39 @@
 		
 		}
 		var content = '';
-		var count = 1;
-		for(var i = 0; i < result_list.index.length; i++)
+		page_result_list.currPageStartNo = begin_no;
+		for(var i = begin_no; i < result_list.index.length && (i - begin_no + 1) <= show_max_items; i++)
 		{
 			var index = result_list.index[i];
 			var info_line1 = '<div class="info" id='+index+' onclick="onInfoClick(this)"> ';
 			var info_line2 = ': '+ data_list[index].title +'<br>'+ data_list[index].addr +'</div>';
 			{
-				content += info_line1 + (count++) + info_line2;
+				content += info_line1 + (i+1) + info_line2;
 			}
 			marker_vec[index][0].show();
+			result_list.currPageEndNo = i;
 		}	
 		var check_list = document.getElementById("check_list");
 		check_list.innerHTML = content;
+	}
+	
+	function showPrevPage()
+	{
+		if (page_result_list.currPageStartNo > 0)
+		{
+			var prevBeginNo =  page_result_list.currPageStartNo - show_max_items;
+			if (prevBeginNo < 0)
+				prevBeginNo = 0;
+			showResultInPageMode(prevBeginNo, page_result_list);
+		}
+	}
+	
+	function showNextPage()
+	{
+		if (page_result_list.currPageEndNo + 1 < page_result_list.index.length)
+		{
+			showResultInPageMode(page_result_list.currPageEndNo + 1 , page_result_list);
+		}
 	}
 
 	function createMarker(data_item, out_vec)
