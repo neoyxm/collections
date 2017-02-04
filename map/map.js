@@ -17,6 +17,11 @@
 	//loadDetailedInfoByType("1");
 	
 	var page_result_list = {index:[], currPageStartNo:0, currPageEndNo:0};
+
+	//init the page button
+	setButtonState(document.getElementById("prev"), false);	
+	setButtonState(document.getElementById("next"), false);	
+
 	
 	function initMissedRoad(missed_list, curr_level)
 	{
@@ -110,6 +115,14 @@
 		return has_result;
 	}
 
+	function setButtonState(btnElement, state)
+	{
+		if (state == true)
+			btnElement.disabled = false;
+		else
+			btnElement.disabled = true;
+	}
+
 	function showResultInPageMode(begin_no, result_list)
 	{
 		for(var i = 0; i < marker_vec.length; i++)
@@ -129,13 +142,23 @@
 			}
 			marker_vec[index][0].show();
 			result_list.currPageEndNo = i;
-		}	
+		}
+
+		if(result_list.index.length > show_max_items)
+			setButtonState(document.getElementById("next"), true);	
+		else
+		{
+			setButtonState(document.getElementById("prev"), false);	
+			setButtonState(document.getElementById("next"), false);
+		}
+
 		var check_list = document.getElementById("check_list");
 		check_list.innerHTML = content;
 	}
 	
 	function showPrevPage()
 	{
+		setButtonState(document.getElementById("next"), true);	
 		if (page_result_list.currPageStartNo > 0)
 		{
 			var prevBeginNo =  page_result_list.currPageStartNo - show_max_items;
@@ -143,13 +166,22 @@
 				prevBeginNo = 0;
 			showResultInPageMode(prevBeginNo, page_result_list);
 		}
+		else
+		{
+			setButtonState(document.getElementById("prev"), false);	
+		}
 	}
 	
 	function showNextPage()
 	{
+		setButtonState(document.getElementById("prev"), true);	
 		if (page_result_list.currPageEndNo + 1 < page_result_list.index.length)
 		{
 			showResultInPageMode(page_result_list.currPageEndNo + 1 , page_result_list);
+		}
+		else
+		{
+			setButtonState(document.getElementById("next"), false);	
 		}
 	}
 
