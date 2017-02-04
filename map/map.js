@@ -151,7 +151,7 @@
 			setButtonState(document.getElementById("prev"), false);	
 			setButtonState(document.getElementById("next"), false);
 		}
-
+		document.getElementById("show_rec").innerHTML = "共 " + result_list.index.length + " 个单位";
 		var check_list = document.getElementById("check_list");
 		check_list.innerHTML = content;
 	}

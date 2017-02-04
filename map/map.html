@@ -27,8 +27,16 @@
 		<input name="search" type="text" id="searchInput" onkeydown="onSearchEnter(this)"/> <button  class="button"  name="search" id="searchBtn" onClick=onSearchBtnClick()>搜索</button>
 	</div>
 	<div class="pageBtn_div" id="pageBtn_div">
+		<table>
+		<tr>
+		<td>
 		<button class="button" name="pageBtn" id="prev" onClick=showPrevPage()>上一页</button>
 		<button class="button" name="pageBtn" id="next" onClick=showNextPage()>下一页</button>
+		</td>
+		<td id="show_rec">
+		</td>
+		</tr>
+		</table>
 	</div>
 	<div class="point_list" id="check_list"></div>
 </div>
