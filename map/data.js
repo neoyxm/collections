@@ -115,7 +115,7 @@ var initial_min_zoom=16;
 var initial_zoom_level = 16;
 var show_result_zoom_level = 14;
 var show_info_zoom_level = 18;
-var show_max_items = 5;
+var show_max_items = 25;
 /*
 //if under the low screen resolution, use the low zoom level
 if (window.screen.height < 1080)
