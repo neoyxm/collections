@@ -250,9 +250,15 @@
 		showInfoWindow(currItem);	
 	}
 
+	function showBrief(title)
+	{
+		window.open("./brief/"+title+".html","_blank","toolbar=yes, location=yes, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=450, height=430");
+	}
+	
 	function showInfoWindow(currItem)
 	{
 		var content = '<img src="./image/' + currItem.alias + '.jpg"></img>';
+		content = '<a href="#" onclick=showBrief("' + currItem.alias  + '")>' + content + '</a>';
 		content = content +  '<p style="margin:0;line-height:20px;">' + currItem.info + '</p>';
 		content = content +  '<p style="margin:0;line-height:20px;"><b>地址</b>：' + currItem.addr + '。 <b>电话</b>:'+currItem.tel+'</p>';
 
