@@ -256,10 +256,14 @@
 		content = content +  '<p style="margin:0;line-height:20px;">' + currItem.info + '</p>';
 		content = content +  '<p style="margin:0;line-height:20px;"><b>地址</b>：' + currItem.addr + '。 <b>电话</b>:'+currItem.tel+'</p>';
 
+		var searchInfoWin_height = 400;
+		if(typeof currItem.height !== "undefined")
+			searchInfoWin_height = currItem.height;
+
 		var searchInfoWindow = new BMapLib.SearchInfoWindow(map, content, {
 			title: currItem.title, //标题
-			width: 500, //宽度
-			height: 400, //高度
+			width: 460, //宽度
+			height: searchInfoWin_height, //高度
 			panel : "panel", //检索结果面板
 			enableAutoPan : true, //自动平移
 			enableSendToPhone: false,
