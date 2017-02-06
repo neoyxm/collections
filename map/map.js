@@ -170,6 +170,10 @@
 			if (prevBeginNo < 0)
 				prevBeginNo = 0;
 			showResultInPageMode(prevBeginNo, page_result_list);
+			if (typeof currInfoWindow === 'object')
+			{
+				currInfoWindow.close();
+			}
 		}
 		else
 		{
@@ -183,6 +187,10 @@
 		if (page_result_list.currPageEndNo + 1 < page_result_list.index.length)
 		{
 			showResultInPageMode(page_result_list.currPageEndNo + 1 , page_result_list);
+			if (typeof currInfoWindow === 'object')
+			{
+				currInfoWindow.close();
+			}
 		}
 		else
 		{
@@ -190,6 +198,14 @@
 		}
 	}
 
+	function getOffset(offset_idx)
+	{
+		if (typeof offset_idx === "undefined")
+			return offset_list[OFFSET_RIGHT];
+		else
+			return offset_list[offset_idx];
+	}
+	
 	function createMarker(data_item, out_vec)
 	{
 		var point = new BMap.Point(data_item.lng,data_item.lat);
@@ -200,8 +216,9 @@
 	//		marker.setIcon(icon);
 		}
 		marker.setTitle(data_item.title);
-		var alias_label =  new BMap.Label(data_item.alias, {offset:{width:22, height:5 }});
-		alias_label.setStyle({fontSize : "12px",background:"rgba(255,255,255,0)", border:"none"});
+		var offset = getOffset(data_item.offset);
+		var alias_label =  new BMap.Label(data_item.alias, {offset:{width:offset.w, height:offset.h}});
+		alias_label.setStyle({fontSize : "12px",background:"#FFDEAD", border:"none"});
 		marker.setLabel(alias_label);
 		map.addOverlay(marker);
 		marker.addEventListener('click', callback); 
