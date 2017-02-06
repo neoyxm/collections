@@ -145,7 +145,12 @@
 		}
 
 		if(result_list.index.length > show_max_items)
-			setButtonState(document.getElementById("next"), true);	
+		{
+			if(result_list.currPageEndNo + 1 < result_list.index.length)
+				setButtonState(document.getElementById("next"), true);	
+			else
+				setButtonState(document.getElementById("next"), false);	
+		}
 		else
 		{
 			setButtonState(document.getElementById("prev"), false);	
