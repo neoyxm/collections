@@ -63,7 +63,6 @@ var data_list = [
    {type:"1", lng:121.503122,lat:31.29361, title:"巴林居委会", alias:"巴林", tel:"55884995", addr:"巴林路41弄14号",  info:"<b>总支书记</b>: 方国华 55885026、13023243100<br><b>居委主任</b>: 沈惠娟 65542331、18916196726",offset:OFFSET_DOWN},
    {type:"1", lng:121.492901,lat:31.288253, title:"鸿雁家委会", alias:"鸿雁", tel:"65830642", addr:"赤峰路600弄9号101室",  info:"<b>总支书记</b>: 冯  建 55887113、13162308880<br><b>居委主任</b>: 金今花 65611244、18917077812",offset:OFFSET_DOWN},
    {type:"1", lng:121.493905,lat:31.290398, title:"银联居委会", alias:"银联", tel:"65364462", addr:"东体育会路880弄10号102室",  info:"<b>总支书记</b>: 杨德新 65539362、13621652846<br><b>居委副主任</b>:佘华丽 13795270928"},
- 
   //p1
    {type:"2",lng:121.488974,lat:31.281105, title:"上海外语教育出版社有限公司", alias:"外教出版",tel:"021-65425300-4064", addr:"大连西路558号", info:"<b>联系人</b>: 吴宏年",offset:OFFSET_LEFT4},
    {type:"2",lng:121.496944,lat:31.285556, title:"上海中星集团怡城实业有限公司", alias:"中星",tel:"50874105", addr:"曲阳路561号", info:"<b>联系人</b>: 刘瑾", offset:OFFSET_DOWN},
@@ -90,7 +89,6 @@ var data_list = [
    {type:"2",lng:121.504059,lat:31.299574, title:"上海储融检测技术股份有限公司", alias:"储融",tel:"36366937", addr:"邯郸路135号2幢301室", info:"<b>联系人</b>: 唐然", offset:OFFSET_DOWN},
   {type:"2",lng:121.494086,lat:31.289286, title:"上海四海建设工程造价咨询监理有限公司", alias:"四海建设",tel:"65759707", addr:"东体育会路816号A座605室", info:"<b>联系人</b>: 朱惠莉"},
      {type:"2",lng:121.500876,lat:31.29236, title:"上海峥锦实业有限公司", alias:"峥锦",tel:"65968957", addr:"中山北二路1800号7幢8楼805室", info:"<b>联系人</b>: 黄国政", offset:OFFSET_DOWN},
-
   //p2
 	   {type:"2",lng:121.503967,lat:31.29984, title:"上海圣康达实业有限公司", alias:"圣康达",tel:"55572265", addr:"邯郸路135号2幢510室", info:"<b>联系人</b>: 郭纯洁", offset:OFFSET_DOWN3},
   {type:"2",lng:121.494053,lat:31.296058, title:"上海老板电器销售有限公司", alias:"老板电器",tel:"65164764", addr:"中山北一路1200号3楼一楼", info:"<b>联系人</b>: 王昱婷"},
@@ -117,9 +115,6 @@ var data_list = [
     {type:"2",lng:121.504539,lat:31.297893, title:"美奥正畸（上海）贸易有限公司", alias:"美奥正畸",tel:"66525323", addr:"虹口区松花江路2601号6幢203室", info:"<b>联系人</b>: 顾正安",offset:OFFSET_LEFT4},
     {type:"2",lng:121.494857,lat:31.296827, title:"上海都赛商务咨询有限公司", alias:"都赛商务",tel:"55800300", addr:"中山北一路1230号A609室", info:"<b>联系人</b>: 高强",offset:OFFSET_LEFT4},
 	   {type:"2",lng:121.505921,lat:31.29844, title:"上海豪锦通信科技有限公司", alias:"豪锦通信",tel:"65372340", addr:"邯郸路173号9号单体2层206单元", info:"<b>联系人</b>: 孙伟萍"},
-
- 
-
 //p3121.493729,31.295863
      {type:"2",lng:121.498543,lat:31.292545, title:"泰科拉软件（上海）有限公司", alias:"泰科拉",tel:"65549695", addr:"曲阳路800号1203室", info:"<b>联系人</b>: 陈燕"},
   {type:"2",lng:121.493729,lat:31.295863, title:"上海乐之语通讯设备有限公司", alias:"乐之语",tel:"69096369", addr:"中山北一路1200号4幢2号楼第六层", info:"<b>联系人</b>: 陈兴明", offset:OFFSET_DOWN3},
@@ -146,7 +141,6 @@ var data_list = [
  {type:"2",lng:121.488124,lat:31.291917, title:"上海乐松商贸有限公司", alias:"乐松商贸",tel:"34182265", addr:"广灵四路52号底层", info:"<b>联系人</b>: 周建萍"},
  {type:"2",lng:121.496736,lat:31.294674, title:"上海虹口大柏树房地产市场经营管理有限公司", alias:"大柏树地产",tel:"65607217", addr:"东体育会路1130号502室", info:"<b>联系人</b>: 沈月琴", offset:OFFSET_DOWN5},
  {type:"2",lng:121.498807,lat:31.29568, title:"上海汇舶展览有限公司", alias:"汇舶展览",tel:"61400107", addr:"曲阳路900弄3号617室", info:"<b>联系人</b>: 邹楚君"},
-
  //p4
 {type:"2",lng:121.503033,lat:31.299877, title:"上海市理诚律师事务所", alias:"理诚律所",tel:"63937886", addr:"中山北一路1230号1808室", info:"<b>联系人</b>: 李慈玲", offset:OFFSET_DOWN4},
  {type:"2",lng:121.497961,lat:31.28632, title:"上海市虹口区曲阳文化馆", alias:"曲阳文化馆",tel:"65533134", addr:"曲阳路570号", info:"<b>联系人</b>: 米达"},
@@ -191,7 +185,7 @@ var data_list = [
  {type:"2",lng:121.498867,lat:31.296021, title:"上海顺顺投资发展有限公司", alias:"顺顺投",tel:"65850126", addr:"曲阳路900弄3号711室", info:"<b>联系人</b>: 张英", offset:OFFSET_DOWN3},
  {type:"2",lng:121.498377,lat:31.292253, title:"东方创业投资管理有限公司", alias:"东方创投",tel:"13661793792", addr:"曲阳路800号902室", info:"<b>联系人</b>: 王淑华", offset:OFFSET_DOWN4},
 
-//center121.498543,31.292545  121.506348,31.300483
+// unit
 	{type:"3",lng:121.506348,lat:31.300483, title:"优族园区", alias:"优族园区", tel:"(021)65558177", addr:"邯郸路173号(近松花江路)", info:"<b>名称</b>:优族园区", offset:OFFSET_DOWN4},
 	{type:"3",lng:121.501219,lat:31.299457, title:"上海市南湖职业学校第二分校", alias:"南湖职校二", tel:"021-65556195", addr:"邯郸路53号", info:"<b>名称</b>:上海市南湖职业学校第二分校", offset:OFFSET_DOWN5},
 	{type:"3",lng:121.496193,lat:31.297177, title:"沪办大厦", alias:"沪办大厦", tel:"(021)65425141", addr:"中山北一路1250号", info:"<b>名称</b>:沪办大厦", offset:OFFSET_DOWN4},
@@ -202,7 +196,6 @@ var data_list = [
 	{type:"3",lng:121.49023,lat:31.292615, title:"上海市公安局刑侦/经侦总队", alias:"市刑侦经侦总队", tel:"110", addr:"中山北一路805号", info:"<b>名称</b>:上海市公安局刑侦/经侦总队", offset:OFFSET_DOWN5},
 	{type:"3",lng:121.492152,lat:31.294304, title:"北区文化中兴", alias:"北区文化中兴", tel:"", addr:"中山北一路998号", info:"<b>名称</b>:北区文化中兴", offset:OFFSET_DOWN5},
 {type:"3",lng:121.496931,lat:31.293872, title:"新疆沪办", alias:"新疆沪办", tel:"(021)65532387", addr:"曲阳路775号9层", info:"<b>名称</b>:新疆维吾尔自治区政府驻上海办事处", offset:OFFSET_DOWN4},
-//{type:"3",lng:121.499711,lat:31.29326, title:"上海和平眼科医院", alias:"和平眼科",tel:"55890118", addr:"伊敏河路61号", info:"<b>名称</b>: 上海和平眼科医院有限公司"},121.503067,31.293966
 {type:"3",lng:121.49782,lat:31.297035, title:"930创业园区", alias:"930创业园",tel:"", addr:"曲阳路930号（近腾克路）", info:"<b>名称</b>: 930创业园区"},
 {type:"3",lng:121.49888,lat:31.295577, title:"复城国际", alias:"复城国际",tel:"", addr:"伊敏河路99弄", info:"<b>名称</b>:复城国际"},
 {type:"3",lng:121.50052,lat:31.294694, title:"曲阳路街道社区事务受理服务中心", alias:"街道办事处",tel:"", addr:"伊敏河路88号", info:"<b>名称</b>:曲阳路街道社区事务受理服务中心", offset:OFFSET_LEFT5},
@@ -229,19 +222,14 @@ var data_list = [
 {type:"3",lng:121.495084,lat:31.282492, title:"阳光之家", alias:"阳光之家",tel:"", addr:"上海市虹口区", info:"<b>名称</b>:阳光之家", offset:OFFSET_DOWN4},
 {type:"3",lng:121.497601,lat:31.284767, title:"曲阳医院", alias:"曲阳医院",tel:"65558555", addr:"上海市虹口区玉田路333号", info:"<b>名称</b>:曲阳医院", offset:OFFSET_DOWN4},
 {type:"3",lng:121.497928,lat:31.285276, title:"家乐福(曲阳店)", alias:"家乐福",tel:"55896078", addr:"上海市虹口区曲阳路560号曲阳生活购物中心1-2层", info:"<b>名称</b>:家乐福(曲阳店)"},
-
  {type:"3",lng:121.498411,lat:31.286258, title:"上海市虹口区曲阳图书馆", alias:"曲阳图书馆",tel:"65533134", addr:"曲阳路574号", info:"<b>名称</b>: 上海市虹口区曲阳图书馆"},
 {type:"3",lng:121.501543,lat:31.286124, title:"虹口区曲阳第三小学", alias:"曲阳三小",tel:"13917074798", addr:"赤峰路317弄17号", info:"<b>名称</b>: 虹口区曲阳第三小学"},
-
 {type:"3",lng:121.500876,lat:31.285321, title:"曲阳市场监督管理所", alias:"曲阳监管所",tel:"51851401", addr:"上海市虹口区玉田路252号", info:"<b>名称</b>: 上海市虹口区市场监督管理局曲阳市场监督管理所", offset:OFFSET_DOWN5},
 {type:"3",lng:121.502075,lat:31.284881, title:"曲阳第二中学", alias:"曲阳二中",tel:"65526354", addr:"虹口区玉田路180号", info:"<b>名称</b>: 曲阳第二中学"},
 {type:"3",lng:121.500256,lat:31.283986, title:"上海市迅行中学", alias:"迅行中学",tel:"65558282", addr:"上海市虹口区玉田路248号", info:"<b>名称</b>: 上海市迅行中学(玉田路)", offset:OFFSET_DOWN4},
 {type:"3",lng:121.501416,lat:31.282235, title:"曲阳社区文体广场", alias:"曲阳文体广场",tel:"64391731", addr:"曲阳路", info:"<b>名称</b>: 曲阳社区文体广场运动场", offset:OFFSET_DOWN5},
 {type:"3",lng:121.500643,lat:31.292086, title:"科技中心(海鸥大厦)", alias:"科技中心(海鸥大厦)",tel:"", addr:"上海虹口区中山北二路1800号", info:"<b>名称</b>: 科技中心(海鸥大厦)"},
 {type:"3",lng:121.506741,lat:31.295377, title:"四中心民办实验小学", alias:"四中心民办小学",tel:"", addr:"辉河路40", info:"<b>名称</b>: 四中心民办实验小学"},
-
-
- 
 ];
 
 var icon_list = [
@@ -250,29 +238,20 @@ var icon_list = [
 	{type:"3", icon:"./icon/icon3.png"},		
 ];
 
-
-
 var Quyangboundary_list = [
 new BMap.Point(121.487356,31.295941),
 new BMap.Point(121.4875,31.291791),
 new BMap.Point(121.487931,31.290896),
-
 new BMap.Point(121.487823,31.290001),
 new BMap.Point(121.487913,31.28656),
 new BMap.Point(121.488506,31.285033),
 new BMap.Point(121.486799,31.280928),
-
 new BMap.Point(121.489198,31.280488),
 new BMap.Point(121.493716,31.282224),
-
-//new BMap.Point(121.50313,31.282101),
 new BMap.Point(121.50322,31.281924),
 new BMap.Point(121.502627,31.288952),
-
-
 new BMap.Point(121.503795,31.291035),
 new BMap.Point(121.508897,31.294923),
-
 new BMap.Point(121.507186,31.301329),
 new BMap.Point(121.487356,31.295941),
 ];
@@ -303,7 +282,6 @@ var MissedRoad_list = [
 {label:"花", pos: new BMap.Point(121.504868,31.298600), max_level:17 },
 {label:"江", pos: new BMap.Point(121.506,31.296693), max_level:17 },
 {label:"路", pos: new BMap.Point(121.508075,31.295528), max_level:17 },
-
 
 {label:"辉", pos: new BMap.Point(121.504797,31.296999), max_level:16 },
 {label:"河", pos: new BMap.Point(121.504797,31.295891), max_level:16 },

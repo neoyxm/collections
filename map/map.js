@@ -8,30 +8,34 @@
 	map.enableContinuousZoom();
 	map.setMapStyle({styleJson:styleJson});
 
-	initGUI();
-
-	setQuyangBoundary();
-
-	var missed_rd_lb_vec =	initMissedRoad(MissedRoad_list, map.getZoom());
-	map.addEventListener("zoomend", onMapZoomed);
-
 	var marker_vec = [];
-	//default , not loading the data
-	//loadDetailedInfoByType("1");
-	
 	var page_result_list = {index:[], currPageStartNo:0, currPageEndNo:0};
-
-	//init the page button
-	setButtonState(document.getElementById("prev"), false);	
-	setButtonState(document.getElementById("next"), false);	
-
-
 	var max_items = show_max_items;
+	
+	var g_missed_rd_lb_vec = [];
+	
+	initGUI();
 
 	function initGUI()
 	{
+		//init the page button
+		setButtonState(document.getElementById("prev"), false);	
+		setButtonState(document.getElementById("next"), false);	
+		
+		//draw the missed road
+		g_missed_rd_lb_vec = initMissedRoad(MissedRoad_list, map.getZoom());
+		map.addEventListener("zoomend", onMapZoomed);
+		
+		//set the point list height
 		var point_list = document.getElementById("check_list");
 		point_list.style.height= default_piont_list_height;
+		//draw the boundary of quyang
+		setQuyangBoundary();
+		
+		//load the default type
+		loadDetailedInfoByType({type:"1"});
+		disableBtnByID("1");
+		
 	}
 	
 	function initMissedRoad(missed_list, curr_level)
@@ -65,7 +69,7 @@
 	function onMapZoomed()
 	{
 		//alert("current level" + this.getZoom());
-		showMissRoad(missed_rd_lb_vec, this.getZoom());
+		showMissRoad(g_missed_rd_lb_vec, this.getZoom());
 	}
 
 	function setQuyangBoundary(){    
@@ -136,13 +140,11 @@
 
 	function showResultInPageMode(begin_no, result_list)
 	{
-	
-	
 		for(var i = 0; i < marker_vec.length; i++)
 		{
-			marker_vec[i][0].hide();
-		
+			map.removeOverlay(marker_vec[i][0]);
 		}
+		
 		var content = '';
 		page_result_list.currPageStartNo = begin_no;
 		for(var i = begin_no; i < result_list.index.length && (i - begin_no + 1) <= max_items; i++)
@@ -153,7 +155,9 @@
 			{
 				content += info_line1 + (i+1) + info_line2;
 			}
-			marker_vec[index][0].show();
+			//marker_vec[index][0].show();
+			marker_vec[index][0].setLabel(marker_vec[index][2]);
+			map.addOverlay(marker_vec[index][0]);
 			result_list.currPageEndNo = i;
 		}
 
@@ -224,17 +228,19 @@
 	{
 		var point = new BMap.Point(data_item.lng,data_item.lat);
 		var marker = new BMap.Marker(point);
+		/*
 		var icon_name = getIcon(data_item.type);
 		if(icon_name != null){
-	//		var icon = new BMap.Icon(icon_name, new BMap.Size(30,39));
-	//		marker.setIcon(icon);
+			var icon = new BMap.Icon(icon_name, new BMap.Size(30,39));
+			marker.setIcon(icon);
 		}
+		*/
 		marker.setTitle(data_item.title);
 		var offset = getOffset(data_item.offset);
 		var alias_label =  new BMap.Label(data_item.alias, {offset:{width:offset.w, height:offset.h}});
 		alias_label.setStyle({fontSize : "12px",background:"#FFDEAD", border:"none"});
 		marker.setLabel(alias_label);
-		map.addOverlay(marker);
+		//map.addOverlay(marker);
 		marker.addEventListener('click', callback); 
 		//make the element to contain the marker & type
 		var markerElem = [];
@@ -371,7 +377,8 @@
 		{
 			currInfoWindow.close();
 		}
-		map.reset();
+		//map.reset();
+		map.setCenter(new BMap.Point(initial_point.lng,  initial_point.lat));
 	}	
 
 	function onBtnClick(e)
@@ -382,7 +389,7 @@
 			max_items = show_max_items;
 	
 		clearInfoWindow();
-		showMarkersByType(marker_vec, e.id)
+		//showMarkersByType(marker_vec, e.id)
 		loadDetailedInfoByType({type:e.id});
 		disableBtnByID(e.id); 
 		currSelectedType = e.id;
