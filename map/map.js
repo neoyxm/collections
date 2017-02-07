@@ -26,6 +26,8 @@
 	setButtonState(document.getElementById("next"), false);	
 
 
+	var max_items = show_max_items;
+
 	function initGUI()
 	{
 		var point_list = document.getElementById("check_list");
@@ -91,7 +93,7 @@
 			if(typeof marker_vec[i] !== 'object' )
 				createMarker(data_list[i], marker_vec);
 
-			if(typeof param.type === 'string' && (data_list[i].type == param.type || param.type == "all"))
+			if(typeof param.type === 'string' && (data_list[i].type == param.type || param.type === "all"))
 			{
 				page_result_list.index.push(i);
 				has_result = true;
@@ -134,11 +136,7 @@
 
 	function showResultInPageMode(begin_no, result_list)
 	{
-		var max_items = show_max_items;
-		if (currSelectedType == "3")
-			max_items = 50;
-		
-			
+	
 	
 		for(var i = 0; i < marker_vec.length; i++)
 		{
@@ -378,11 +376,16 @@
 
 	function onBtnClick(e)
 	{
-		currSelectedType = e.id;
+		if (e.id == "3")
+			max_items = 9999;
+		else
+			max_items = show_max_items;
+	
 		clearInfoWindow();
 		showMarkersByType(marker_vec, e.id)
 		loadDetailedInfoByType({type:e.id});
 		disableBtnByID(e.id); 
+		currSelectedType = e.id;
 	}
 
 	function onInfoClick(e)
