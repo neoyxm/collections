@@ -150,6 +150,9 @@
 				setButtonState(document.getElementById("next"), true);	
 			else
 				setButtonState(document.getElementById("next"), false);	
+
+			if (result_list.currPageStartNo == 0)
+				setButtonState(document.getElementById("prev"), false);	
 		}
 		else
 		{
@@ -163,6 +166,7 @@
 	
 	function showPrevPage()
 	{
+		clearInfoWindow();
 		setButtonState(document.getElementById("next"), true);	
 		if (page_result_list.currPageStartNo > 0)
 		{
@@ -170,10 +174,6 @@
 			if (prevBeginNo < 0)
 				prevBeginNo = 0;
 			showResultInPageMode(prevBeginNo, page_result_list);
-			if (typeof currInfoWindow === 'object')
-			{
-				currInfoWindow.close();
-			}
 		}
 		else
 		{
@@ -183,6 +183,7 @@
 	
 	function showNextPage()
 	{
+		clearInfoWindow();
 		setButtonState(document.getElementById("prev"), true);	
 		if (page_result_list.currPageEndNo + 1 < page_result_list.index.length)
 		{
@@ -277,21 +278,51 @@
 		window.open("./brief/"+title+".html","_blank","toolbar=yes, location=yes, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=450, height=440");
 	}
 	
-	function showInfoWindow(currItem)
+	function getInfoWinSize(currItem)
 	{
-		var content = '<img src="./image/' + currItem.alias + '.jpg"></img>';
-		content = '<a href="#" onclick=showBrief("' + currItem.alias  + '")>' + content + '</a>';
-		content = content +  '<p style="margin:0;line-height:20px;">' + currItem.info + '</p>';
+		var searchInfoWin_height = 400;
+		var searchInfoWin_width  = 460;
+
+		if (currItem.type == "1")
+		{
+			if(typeof currItem.height !== "undefined")
+				searchInfoWin_height = currItem.height;
+		}
+		else if (currItem.type == "2")
+		{
+			searchInfoWin_width  = 300;		
+			searchInfoWin_height = 70;
+		}
+
+		return {w:searchInfoWin_width, h:searchInfoWin_height};
+	}
+
+	function getInfoWinContent(currItem)
+	{
+
+		var content = '<p style="margin:0;line-height:20px;">' + currItem.info + '</p>';
 		content = content +  '<p style="margin:0;line-height:20px;"><b>地址</b>：' + currItem.addr + '。 <b>电话</b>:'+currItem.tel+'</p>';
 
-		var searchInfoWin_height = 400;
-		if(typeof currItem.height !== "undefined")
-			searchInfoWin_height = currItem.height;
+		if (currItem.type == "1")
+		{
+			var img = '<img src="./image/' + currItem.alias + '.jpg"></img>';
+			img = '<a href="#" onclick=showBrief("' + currItem.alias  + '")>' + img + '</a>';
 
+			content = img + content;
+		}
+
+		return content;
+	}
+
+	function showInfoWindow(currItem)
+	{
+		var content = getInfoWinContent(currItem);
+
+		var searchInfoWin_size = getInfoWinSize(currItem);
 		var searchInfoWindow = new BMapLib.SearchInfoWindow(map, content, {
 			title: currItem.title, //标题
-			width: 460, //宽度
-			height: searchInfoWin_height, //高度
+			width: searchInfoWin_size.w, //宽度
+			height: searchInfoWin_size.h, //高度
 			panel : "panel", //检索结果面板
 			enableAutoPan : true, //自动平移
 			enableSendToPhone: false,
@@ -315,18 +346,22 @@
 		}
 	}
 	
-	function onBtnClick(e)
+	function clearInfoWindow()
 	{
 		//here,  e.id is the type of info
 		if (typeof currInfoWindow === 'object')
 		{
 			currInfoWindow.close();
 		}
+		map.reset();
+	}	
 
+	function onBtnClick(e)
+	{
+		clearInfoWindow();
 		showMarkersByType(marker_vec, e.id)
 		loadDetailedInfoByType({type:e.id});
 		disableBtnByID(e.id); 
-		map.reset();
 		currSelectedType = e.id;
 	}
 
