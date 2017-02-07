@@ -34,6 +34,7 @@
 		//load the default type
 		loadDetailedInfoByType({type:"1"});
 		disableBtnByID("1");
+		currSelectedType = "1";
 	}
 	
 	function initMissedRoad(missed_list, curr_level)
@@ -360,6 +361,17 @@
 		}
 	}
 	
+	 
+	function enableSelBtns()
+	{
+		var btnList = document.getElementsByName("selBtn");
+		
+		for(var i = 0; i < btnList.length; i++)
+		{
+			btnList[i].disabled = false;
+		}
+	}
+	
 	function clearInfoWindow()
 	{
 		//here,  e.id is the type of info
@@ -394,14 +406,18 @@
 	function onSearchBtnClick()
 	{
 		var searchInput= document.getElementById("searchInput");
-		getSearchResult(searchInput.value.trim());
+		var res = getSearchResult(searchInput.value.trim());
+		if(res)
+			enableSelBtns();
 	}
 	
 	function onSearchEnter(e)
 	{
 		//on input the enter key, trigger the search function
 	    if(event.keyCode == 13) {
-			getSearchResult(e.value.trim());
+			var res = getSearchResult(e.value.trim());
+			if(res)
+				enableSelBtns();
 		}
 	}
 
@@ -409,4 +425,5 @@
 	{
 		var has_result = loadDetailedInfoByType({keyword:keyword});	
 		map.reset();
+		return has_result;
 	}
