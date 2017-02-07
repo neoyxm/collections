@@ -11,7 +11,6 @@
 	var marker_vec = [];
 	var page_result_list = {index:[], currPageStartNo:0, currPageEndNo:0};
 	var max_items = show_max_items;
-	
 	var g_missed_rd_lb_vec = [];
 	
 	initGUI();
@@ -35,7 +34,6 @@
 		//load the default type
 		loadDetailedInfoByType({type:"1"});
 		disableBtnByID("1");
-		
 	}
 	
 	function initMissedRoad(missed_list, curr_level)
@@ -73,14 +71,8 @@
 	}
 
 	function setQuyangBoundary(){    
-		var pointArray = [];
-		var count = Quyangboundary_list.length;
-		//for (var i = 0; i < count; i++) {
-			var ply = new BMap.Polyline(Quyangboundary_list, {strokeWeight: 5, strokeColor: "red"});
-			map.addOverlay(ply); 
-			pointArray = pointArray.concat(ply.getPath());
-		//}    
-		map.setViewport(pointArray);                
+		var ply = new BMap.Polyline(Quyangboundary_list, {strokeWeight: 8, strokeColor: "#ff6600"});
+		map.addOverlay(ply);       
 	}
 
 	function loadDetailedInfoByType(param)
@@ -205,10 +197,6 @@
 		if (page_result_list.currPageEndNo + 1 < page_result_list.index.length)
 		{
 			showResultInPageMode(page_result_list.currPageEndNo + 1 , page_result_list);
-			if (typeof currInfoWindow === 'object')
-			{
-				currInfoWindow.close();
-			}
 		}
 		else
 		{
@@ -240,7 +228,6 @@
 		var alias_label =  new BMap.Label(data_item.alias, {offset:{width:offset.w, height:offset.h}});
 		alias_label.setStyle({fontSize : "12px",background:"#FFDEAD", border:"none"});
 		marker.setLabel(alias_label);
-		//map.addOverlay(marker);
 		marker.addEventListener('click', callback); 
 		//make the element to contain the marker & type
 		var markerElem = [];
@@ -318,7 +305,6 @@
 
 	function getInfoWinContent(currItem)
 	{
-
 		var content = '<p style="margin:0;line-height:20px;">' + currItem.info + '</p>';
 		content = content +  '<p style="margin:0;line-height:20px;"><b>地址</b>：' + currItem.addr;
 	
@@ -377,8 +363,7 @@
 		{
 			currInfoWindow.close();
 		}
-		//map.reset();
-		map.setCenter(new BMap.Point(initial_point.lng,  initial_point.lat));
+		map.reset();
 	}	
 
 	function onBtnClick(e)
