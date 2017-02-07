@@ -231,7 +231,7 @@
 		marker.setTitle(data_item.title);
 		var offset = getOffset(data_item.offset);
 		var alias_label =  new BMap.Label(data_item.alias, {offset:{width:offset.w, height:offset.h}});
-		alias_label.setStyle({fontSize : "12px",background:"#FFDEAD", border:"none"});
+		alias_label.setStyle({fontSize : "13px",  background:"#FFDEAD", border:"none", color:"#000099"});
 		marker.setLabel(alias_label);
 		marker.addEventListener('click', callback); 
 		//make the element to contain the marker & type
