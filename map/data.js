@@ -288,7 +288,7 @@ var MissedRoad_list = [
 {label:"路", pos: new BMap.Point(121.504833,31.294200), max_level:16 },
 ];
 
-var initial_point = {lng:121.497242, lat:31.290000};
+var initial_point = {lng:121.497242, lat:31.290800};
 var initial_max_zoom=20;
 var initial_min_zoom=16;
 var initial_zoom_level = 16;
