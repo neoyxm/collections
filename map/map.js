@@ -7,6 +7,9 @@
 	map.addControl(new BMap.NavigationControl());
 	map.enableContinuousZoom();
 	map.setMapStyle({styleJson:styleJson});
+
+	initGUI();
+
 	setQuyangBoundary();
 
 	var missed_rd_lb_vec =	initMissedRoad(MissedRoad_list, map.getZoom());
@@ -22,6 +25,12 @@
 	setButtonState(document.getElementById("prev"), false);	
 	setButtonState(document.getElementById("next"), false);	
 
+
+	function initGUI()
+	{
+		var point_list = document.getElementById("check_list");
+		point_list.style.height= default_piont_list_height;
+	}
 	
 	function initMissedRoad(missed_list, curr_level)
 	{
@@ -125,6 +134,12 @@
 
 	function showResultInPageMode(begin_no, result_list)
 	{
+		var max_items = show_max_items;
+		if (currSelectedType == "3")
+			max_items = 50;
+		
+			
+	
 		for(var i = 0; i < marker_vec.length; i++)
 		{
 			marker_vec[i][0].hide();
@@ -132,7 +147,7 @@
 		}
 		var content = '';
 		page_result_list.currPageStartNo = begin_no;
-		for(var i = begin_no; i < result_list.index.length && (i - begin_no + 1) <= show_max_items; i++)
+		for(var i = begin_no; i < result_list.index.length && (i - begin_no + 1) <= max_items; i++)
 		{
 			var index = result_list.index[i];
 			var info_line1 = '<div class="info" id='+index+' onclick="onInfoClick(this)"> ';
@@ -144,7 +159,7 @@
 			result_list.currPageEndNo = i;
 		}
 
-		if(result_list.index.length > show_max_items)
+		if(result_list.index.length > max_items)
 		{
 			if(result_list.currPageEndNo + 1 < result_list.index.length)
 				setButtonState(document.getElementById("next"), true);	
@@ -170,7 +185,7 @@
 		setButtonState(document.getElementById("next"), true);	
 		if (page_result_list.currPageStartNo > 0)
 		{
-			var prevBeginNo =  page_result_list.currPageStartNo - show_max_items;
+			var prevBeginNo =  page_result_list.currPageStartNo - max_items;
 			if (prevBeginNo < 0)
 				prevBeginNo = 0;
 			showResultInPageMode(prevBeginNo, page_result_list);
@@ -288,7 +303,7 @@
 			if(typeof currItem.height !== "undefined")
 				searchInfoWin_height = currItem.height;
 		}
-		else if (currItem.type == "2")
+		else if (currItem.type == "2" || currItem.type == "3")
 		{
 			searchInfoWin_width  = 300;		
 			searchInfoWin_height = 70;
@@ -301,7 +316,12 @@
 	{
 
 		var content = '<p style="margin:0;line-height:20px;">' + currItem.info + '</p>';
-		content = content +  '<p style="margin:0;line-height:20px;"><b>地址</b>：' + currItem.addr + '。 <b>电话</b>:'+currItem.tel+'</p>';
+		content = content +  '<p style="margin:0;line-height:20px;"><b>地址</b>：' + currItem.addr;
+	
+		if (currItem.tel !== "")
+		{
+			content = content+ '。 <b>电话</b>:'+currItem.tel+'</p>';
+		}
 
 		if (currItem.type == "1")
 		{
@@ -358,11 +378,11 @@
 
 	function onBtnClick(e)
 	{
+		currSelectedType = e.id;
 		clearInfoWindow();
 		showMarkersByType(marker_vec, e.id)
 		loadDetailedInfoByType({type:e.id});
 		disableBtnByID(e.id); 
-		currSelectedType = e.id;
 	}
 
 	function onInfoClick(e)

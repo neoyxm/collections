@@ -69,7 +69,7 @@ var data_list = [
    {type:"2",lng:121.496944,lat:31.285556, title:"上海中星集团怡城实业有限公司", alias:"中星",tel:"50874105", addr:"曲阳路561号", info:"<b>联系人</b>: 刘瑾", offset:OFFSET_DOWN},
    {type:"2",lng:121.505089,lat:31.297278, title:"上海电力建筑工程公司", alias:"电力建筑",tel:"65543401", addr:"虹口区松花江路2600号", info:"<b>联系人</b>: 姜庆盛"},
    {type:"2",lng:121.497681,lat:31.296728, title:"上海华谊建设有限公司", alias:"华谊",tel:"54084637", addr:"曲阳路930号5幢8楼", info:"<b>联系人</b>: 金晓琳"},
-   {type:"2",lng:121.501846,lat:31.29968, title:"上海材料研究所", alias:"上材所",tel:"65556775-202", addr:"邯郸路99号", info:"<b>联系人</b>: 王松",offset:OFFSET_DOWN},
+   {type:"2",lng:121.501846,lat:31.29968, title:"上海材料研究所", alias:"材料研究所",tel:"65556775-202", addr:"邯郸路99号", info:"<b>联系人</b>: 王松",offset:OFFSET_DOWN5},
    {type:"2",lng:121.492101,lat:31.28673, title:"中国科学院上海技术物理研究所", alias:"上海物理所",tel:"65420850", addr:"玉田路500号", info:"<b>联系人</b>: 徐勇"},
    {type:"2",lng:121.497953,lat:31.292488, title:"上海金渤金属材料有限公司", alias:"金渤金属",tel:"55888065", addr:"曲阳路800号2911室", info:"<b>联系人</b>: 唐玉琴",offset:OFFSET_LEFT4},
    {type:"2",lng:121.503427,lat:31.299696, title:"上海财安金融服务股份有限公司", alias:"财安金融",tel:"51278968", addr:"邯郸路135号5号楼2楼", info:"<b>联系人</b>: 萧庆", offset:OFFSET_UP4},
@@ -95,14 +95,14 @@ var data_list = [
 	   {type:"2",lng:121.503967,lat:31.29984, title:"上海圣康达实业有限公司", alias:"圣康达",tel:"55572265", addr:"邯郸路135号2幢510室", info:"<b>联系人</b>: 郭纯洁", offset:OFFSET_DOWN3},
   {type:"2",lng:121.494053,lat:31.296058, title:"上海老板电器销售有限公司", alias:"老板电器",tel:"65164764", addr:"中山北一路1200号3楼一楼", info:"<b>联系人</b>: 王昱婷"},
    {type:"2",lng:121.506089,lat:31.296279, title:"上海天夏景观规划设计有限公司", alias:"天夏景观",tel:"65988789-8512", addr:"松花江路2539号1号楼10层", info:"<b>联系人</b>: 周薇"},
-   {type:"2",lng:121.505559,lat:31.300429, title:"华东电力试验研究院有限公司", alias:"华电试验",tel:"25650000", addr:"邯郸路171号", info:"<b>联系人</b>: 王晓村", offset:OFFSET_DOWN4},
+   {type:"2",lng:121.505559,lat:31.300429, title:"华东电力试验研究院有限公司", alias:"电力研究院",tel:"25650000", addr:"邯郸路171号", info:"<b>联系人</b>: 王晓村", offset:OFFSET_DOWN5},
     {type:"2",lng:121.49635,lat:31.294302, title:"上海申威资产评估有限公司", alias:"申威",tel:"31273006", addr:"东体育会路860号2号楼202室", info:"<b>联系人</b>: 陈一菁" ,offset:OFFSET_DOWN},
     {type:"2",lng:121.502007,lat:31.300262, title:"上海众鑫建筑设计研究院有限公司", alias:"众鑫",tel:"65605305", addr:"邯郸路98号乙3楼", info:"<b>联系人</b>: 倪伊丽" ,offset:OFFSET_DOWN},
  {type:"2",lng:121.501191,lat:31.292105, title:"上海公惠置业有限公司", alias:"公惠",tel:"55898611", addr:"中山北二路1800号7栋1418室", info:"<b>联系人</b>: 戴馨", offset:OFFSET_DOWN},
 {type:"2",lng:121.498162,lat:31.292474, title:"美钻石油钻采系统（上海）有限公司", alias:"美钻石油",tel:"65538126", addr:"曲阳路800号407室", info:"<b>联系人</b>: 毛冠煜",offset:OFFSET_LEFT4},
 {type:"2",lng:121.499711,lat:31.29326, title:"上海和平眼科医院有限公司", alias:"和平眼科",tel:"55890118", addr:"伊敏河路61号", info:"<b>联系人</b>: 庄小佩"},
  {type:"2",lng:121.498311,lat:31.295955, title:"浙商控股集团有限公司上海分公司", alias:"浙商控股",tel:"35093963", addr:"曲阳路910号507室", info:"<b>联系人</b>: 仲敏", offset:OFFSET_DOWN4},
- {type:"2",lng:121.490292,lat:31.287847, title:"上海上外外语教育咨询服务中心", alias:"外教咨询",tel:"35050345", addr:"赤峰路550号上外宾馆204室", info:"<b>联系人</b>: 蔡伟良"},
+ {type:"2",lng:121.490292,lat:31.287847, title:"上海外语教育咨询服务中心", alias:"外教咨询",tel:"35050345", addr:"赤峰路550号上外宾馆204室", info:"<b>联系人</b>: 蔡伟良"},
 {type:"2",lng:121.498597,lat:31.290922, title:"上海侨建房地产有限公司", alias:"侨建",tel:"65548400", addr:"中山北二路1705号801室", info:"<b>联系人</b>: 刘瑛", offset:OFFSET_DOWN},
 {type:"2",lng:121.505052,lat:31.295805, title:"新美达探伤器材有限公司", alias:"新美达",tel:"55896020", addr:"辉河路100号", info:"<b>联系人</b>: 朱浩",offset:OFFSET_LEFT3},
  {type:"2",lng:121.497042,lat:31.294295, title:"上海柏阳君亭酒店管理有限公司", alias:"柏阳君亭",tel:"60672666", addr:"曲阳路777-779号7、9-19层", info:"<b>联系人</b>: 朱佳芬"},
@@ -191,10 +191,57 @@ var data_list = [
  {type:"2",lng:121.498867,lat:31.296021, title:"上海顺顺投资发展有限公司", alias:"顺顺投",tel:"65850126", addr:"曲阳路900弄3号711室", info:"<b>联系人</b>: 张英", offset:OFFSET_DOWN3},
  {type:"2",lng:121.498377,lat:31.292253, title:"东方创业投资管理有限公司", alias:"东方创投",tel:"13661793792", addr:"曲阳路800号902室", info:"<b>联系人</b>: 王淑华", offset:OFFSET_DOWN4},
 
-//center121.498543,31.292545
-	{type:"3",lng:121.493727,lat:31.296917, title:"中国石化加油站", alias:"中石化", tel:"", addr:"中山北一路1123号", info:""},
-	//{type:"center",lng:121.473443,lat:31.257543, title:"广灵社保中心", tel:"(021)66161686", addr:"祁连山路聚丰园路155号"},
-	//{type:"center",lng:121.507794,lat:31.27347, title:"广中社保中心", tel:"021-66050000", addr:"上海市闸北区中山北路1015号"},
+//center121.498543,31.292545  121.506348,31.300483
+	{type:"3",lng:121.506348,lat:31.300483, title:"优族园区", alias:"优族园区", tel:"(021)65558177", addr:"邯郸路173号(近松花江路)", info:"<b>名称</b>:优族园区", offset:OFFSET_DOWN4},
+	{type:"3",lng:121.501219,lat:31.299457, title:"上海市南湖职业学校第二分校", alias:"南湖职校二", tel:"021-65556195", addr:"邯郸路53号", info:"<b>名称</b>:上海市南湖职业学校第二分校", offset:OFFSET_DOWN5},
+	{type:"3",lng:121.496193,lat:31.297177, title:"沪办大厦", alias:"沪办大厦", tel:"(021)65425141", addr:"中山北一路1250号", info:"<b>名称</b>:沪办大厦", offset:OFFSET_DOWN4},
+	{type:"3",lng:121.493785,lat:31.296846, title:"中国石化加油站", alias:"中石化", tel:"", addr:"上海市虹口区中山北一路1123号(近汶水东路)", info:"<b>名称</b>:中国石化加油站", offset:OFFSET_UP3},
+	{type:"3",lng:121.493107,lat:31.29619, title:"上海医药工业研究院", alias:"医工院", tel:"", addr:"上海市虹口区中山北一路1111号", info:"<b>名称</b>:上海医药工业研究院", offset:OFFSET_DOWN3},
+ 	{type:"3",lng:121.494985,lat:31.296074, title:"柏树大厦", alias:"柏树大厦", tel:"(021)65445598", addr:"上海虹口区中山北一路1230号", info:"<b>名称</b>:柏树大厦", offset:OFFSET_DOWN3},
+	{type:"3",lng:121.494652,lat:31.294774, title:"岳阳医院", alias:"岳阳医院", tel:"(021)65161782", addr:"上海市虹口区甘河路110号", info:"<b>名称</b>:上海中医药大学附属岳阳中西医结合医院", offset:OFFSET_DOWN3},
+	{type:"3",lng:121.49023,lat:31.292615, title:"上海市公安局刑侦/经侦总队", alias:"市刑侦经侦总队", tel:"110", addr:"中山北一路805号", info:"<b>名称</b>:上海市公安局刑侦/经侦总队", offset:OFFSET_DOWN5},
+	{type:"3",lng:121.492152,lat:31.294304, title:"北区文化中兴", alias:"北区文化中兴", tel:"", addr:"中山北一路998号", info:"<b>名称</b>:北区文化中兴", offset:OFFSET_DOWN5},
+{type:"3",lng:121.496931,lat:31.293872, title:"新疆沪办", alias:"新疆沪办", tel:"(021)65532387", addr:"曲阳路775号9层", info:"<b>名称</b>:新疆维吾尔自治区政府驻上海办事处", offset:OFFSET_DOWN4},
+//{type:"3",lng:121.499711,lat:31.29326, title:"上海和平眼科医院", alias:"和平眼科",tel:"55890118", addr:"伊敏河路61号", info:"<b>名称</b>: 上海和平眼科医院有限公司"},121.503067,31.293966
+{type:"3",lng:121.49782,lat:31.297035, title:"930创业园区", alias:"930创业园",tel:"", addr:"曲阳路930号（近腾克路）", info:"<b>名称</b>: 930创业园区"},
+{type:"3",lng:121.49888,lat:31.295577, title:"复城国际", alias:"复城国际",tel:"", addr:"伊敏河路99弄", info:"<b>名称</b>:复城国际"},
+{type:"3",lng:121.50052,lat:31.294694, title:"曲阳路街道社区事务受理服务中心", alias:"街道办事处",tel:"", addr:"伊敏河路88号", info:"<b>名称</b>:曲阳路街道社区事务受理服务中心", offset:OFFSET_LEFT5},
+{type:"3",lng:121.501095,lat:31.29393, title:"曲阳路街道社区卫生服务中心", alias:"卫生中心",tel:"", addr:"上海市虹口区巴林路78号", info:"<b>名称</b>:曲阳路街道社区卫生服务中心", offset:OFFSET_LEFT5},
+{type:"3",lng:121.503067,lat:31.293966, title:"上海市公安局虹口分局曲阳路派出所", alias:"曲阳派出所",tel:"(021)65552848", addr:"巴林路56号", info:"<b>名称</b>:上海市公安局虹口分局曲阳路派出所"},
+{type:"3",lng:121.504454,lat:31.295384, title:"上海市虹口实验学校", alias:"实验学校",tel:"(021)55880345", addr:"运光路（近辉河路）", info:"<b>名称</b>:上海市虹口实验学校", offset:OFFSET_LEFT4},
+{type:"3",lng:121.501463,lat:31.294678, title:"曲阳路街道敬老院", alias:"敬老院",tel:"(021)55880345", addr:"上海市虹口区巴林路60弄28号", info:"<b>名称</b>:曲阳路街道敬老院"},
+{type:"3",lng:121.504593,lat:31.29474, title:"曲阳社区市民服务驿站", alias:"服务驿站",tel:"(021)65543061", addr:"辉河路51", info:"<b>名称</b>:曲阳社区市民服务驿站"},
+{type:"3",lng:121.507823,lat:31.294506, title:"上海市虹口区社会福利院", alias:"福利院",tel:"021-65546977", addr:"密云路623号", info:"<b>名称</b>:上海市虹口区社会福利院", offset:OFFSET_DOWN3},
+{type:"3",lng:121.506891,lat:31.29651, title:"复旦大学学生生活园区", alias:"复旦宿舍",tel:"", addr:"松花江路2500弄", info:"<b>名称</b>:复旦大学学生生活园区"},
+{type:"3",lng:121.490503,lat:31.290131, title:"上海建工医院", alias:"建工医院",tel:"65366688", addr:"松花江路2500弄", info:"<b>名称</b>:上海建工医院"},
+{type:"3",lng:121.495814,lat:31.289657, title:"虹口区第四中心小学", alias:"虹口四中小",tel:"65547734", addr:"东体育会路667号", info:"<b>名称</b>:虹口区第四中心小学", offset:OFFSET_LEFT5},
+{type:"3",lng:121.4954,lat:31.290691, title:"虹口体育馆", alias:"虹口体育馆",tel:"65532388", addr:"东体育会路715号", info:"<b>名称</b>:虹口体育馆"},
+{type:"3",lng:121.503197,lat:31.29056, title:"上海市南湖职校二分校新泸校区", alias:"南湖职校二(分部)",tel:"", addr:"上海市虹口区密云路479号-甲-1", info:"<b>名称</b>:上海市南湖职校二分校新泸校区"	},
+{type:"3",lng:121.502203,lat:31.28866, title:"曲阳第四小学", alias:"曲阳四小",tel:"55540123", addr:"密云路471弄1号", info:"<b>名称</b>:曲阳第四小学", offset:OFFSET_DOWN4	},
+{type:"3",lng:121.496583,lat:31.287869, title:"民办宏星小学", alias:"宏星小学",tel:"65522046", addr:"虹口区赤峰路375号(近曲阳路)", info:"<b>名称</b>:民办宏星小学", offset:OFFSET_LEFT4	},
+{type:"3",lng:121.48978,lat:31.285774, title:"曲阳污水处理厂", alias:"污水处理厂",tel:"", addr:"上海虹口区", info:"<b>名称</b>:曲阳污水处理厂", offset:OFFSET_DOWN5	},
+{type:"3",lng:121.493095,lat:31.284449, title:"民办新北郊初级中学", alias:"新北郊初中",tel:"65542623", addr:"大连西路270弄25号", info:"<b>名称</b>:民办新北郊初级中学"},
+{type:"3",lng:121.489321,lat:31.280863, title:"上海外国语大学", alias:"上外",tel:"35372000", addr:"广中路区域大连西路550号", info:"<b>名称</b>:上海外国语大学"},
+{type:"3",lng:121.490789,lat:31.28281, title:"虹口区房管局", alias:"虹口房管局",tel:"65533550", addr:"东体育会路359号", info:"<b>名称</b>:虹口区房管局"},
+{type:"3",lng:121.489399,lat:31.284316, title:"上海外国语大学分部", alias:"上外分部",tel:"35372000", addr:"广中路区域大连西路550号", info:"<b>名称</b>:上海外国语大学分部"},
+{type:"3",lng:121.492355,lat:31.282183, title:"上海市虹口区市场监督管理局", alias:"市场监管局",tel:"", addr:"上海市虹口区大连西路296号", info:"<b>名称</b>:上海市虹口区市场监督管理局", offset:OFFSET_DOWN5},
+{type:"3",lng:121.492835,lat:31.283542, title:"上海外国语大学学生公寓", alias:"上外学生公寓",tel:"", addr:"东体育会路411", info:"<b>名称</b>:上海外国语大学学生公寓"},
+{type:"3",lng:121.495084,lat:31.282492, title:"阳光之家", alias:"阳光之家",tel:"", addr:"上海市虹口区", info:"<b>名称</b>:阳光之家", offset:OFFSET_DOWN4},
+{type:"3",lng:121.497601,lat:31.284767, title:"曲阳医院", alias:"曲阳医院",tel:"65558555", addr:"上海市虹口区玉田路333号", info:"<b>名称</b>:曲阳医院", offset:OFFSET_DOWN4},
+{type:"3",lng:121.497928,lat:31.285276, title:"家乐福(曲阳店)", alias:"家乐福",tel:"55896078", addr:"上海市虹口区曲阳路560号曲阳生活购物中心1-2层", info:"<b>名称</b>:家乐福(曲阳店)"},
+
+ {type:"3",lng:121.498411,lat:31.286258, title:"上海市虹口区曲阳图书馆", alias:"曲阳图书馆",tel:"65533134", addr:"曲阳路574号", info:"<b>名称</b>: 上海市虹口区曲阳图书馆"},
+{type:"3",lng:121.501543,lat:31.286124, title:"虹口区曲阳第三小学", alias:"曲阳三小",tel:"13917074798", addr:"赤峰路317弄17号", info:"<b>名称</b>: 虹口区曲阳第三小学"},
+
+{type:"3",lng:121.500876,lat:31.285321, title:"曲阳市场监督管理所", alias:"曲阳监管所",tel:"51851401", addr:"上海市虹口区玉田路252号", info:"<b>名称</b>: 上海市虹口区市场监督管理局曲阳市场监督管理所", offset:OFFSET_DOWN5},
+{type:"3",lng:121.502075,lat:31.284881, title:"曲阳第二中学", alias:"曲阳二中",tel:"65526354", addr:"虹口区玉田路180号", info:"<b>名称</b>: 曲阳第二中学"},
+{type:"3",lng:121.500256,lat:31.283986, title:"上海市迅行中学", alias:"迅行中学",tel:"65558282", addr:"上海市虹口区玉田路248号", info:"<b>名称</b>: 上海市迅行中学(玉田路)", offset:OFFSET_DOWN4},
+{type:"3",lng:121.501416,lat:31.282235, title:"曲阳社区文体广场", alias:"曲阳文体广场",tel:"64391731", addr:"曲阳路", info:"<b>名称</b>: 曲阳社区文体广场运动场", offset:OFFSET_DOWN5},
+{type:"3",lng:121.500643,lat:31.292086, title:"科技中心(海鸥大厦)", alias:"科技中心(海鸥大厦)",tel:"", addr:"上海虹口区中山北二路1800号", info:"<b>名称</b>: 科技中心(海鸥大厦)"},
+{type:"3",lng:121.506741,lat:31.295377, title:"四中心民办实验小学", alias:"四中心民办小学",tel:"", addr:"辉河路40", info:"<b>名称</b>: 四中心民办实验小学"},
+
+
+ 
 ];
 
 var icon_list = [
@@ -255,12 +302,12 @@ var MissedRoad_list = [
 {label:"松", pos: new BMap.Point(121.504851,31.299578), max_level:17 },
 {label:"花", pos: new BMap.Point(121.504868,31.298600), max_level:17 },
 {label:"江", pos: new BMap.Point(121.506,31.296693), max_level:17 },
-{label:"路", pos: new BMap.Point(121.507402,31.295829), max_level:17 },
+{label:"路", pos: new BMap.Point(121.508075,31.295528), max_level:17 },
 
 
 {label:"辉", pos: new BMap.Point(121.504797,31.296999), max_level:16 },
 {label:"河", pos: new BMap.Point(121.504797,31.295891), max_level:16 },
-{label:"路", pos: new BMap.Point(121.504833,31.294472), max_level:16 },
+{label:"路", pos: new BMap.Point(121.504833,31.294200), max_level:16 },
 ];
 
 var initial_point = {lng:121.497242, lat:31.290000};
@@ -270,11 +317,11 @@ var initial_zoom_level = 16;
 var show_result_zoom_level = 14;
 var show_info_zoom_level = 17;
 var show_max_items = 25;
-/*
+var default_piont_list_height = "550px";
+
 //if under the low screen resolution, use the low zoom level
-if (window.screen.height < 1080)
+if (window.screen.height >= 1080)
 {
-	initial_zoom_level = 16;
+	default_piont_list_height = "820px";
 }
-*/
 
