@@ -152,7 +152,8 @@
 			map.addOverlay(marker_vec[index][0]);
 			result_list.currPageEndNo = i;
 		}
-
+		var total_pages = 1;
+		var curr_page   = 1;
 		if(result_list.index.length > max_items)
 		{
 			if(result_list.currPageEndNo + 1 < result_list.index.length)
@@ -162,13 +163,16 @@
 
 			if (result_list.currPageStartNo == 0)
 				setButtonState(document.getElementById("prev"), false);	
+				
+			total_pages = Math.ceil(result_list.index.length/max_items);
+			curr_page   = Math.ceil((result_list.currPageEndNo + 1)/max_items);
 		}
 		else
 		{
 			setButtonState(document.getElementById("prev"), false);	
 			setButtonState(document.getElementById("next"), false);
 		}
-		document.getElementById("show_rec").innerHTML = "共 " + result_list.index.length + " 个单位";
+		document.getElementById("show_rec").innerHTML = "共 " + result_list.index.length + " 个单位, " + curr_page +"/" + total_pages + " 页";
 		var check_list = document.getElementById("check_list");
 		check_list.innerHTML = content;
 	}
