@@ -144,7 +144,7 @@
 		{
 			var index = result_list.index[i];
 			var info_line1 = '<div class="info" id='+index+' onclick="onInfoClick(this)"> ';
-			var info_line2 = ': '+ data_list[index].title +'<br>'+ data_list[index].addr +'</div>';
+			var info_line2 = ': '+ data_list[index].title +'</div> <div style="font-size:12px;">地址 : '+ data_list[index].addr +'</div>';
 			{
 				content += info_line1 + (i+1) + info_line2;
 			}

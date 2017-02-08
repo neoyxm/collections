@@ -55,7 +55,8 @@ padding:3px;
 
 .info
 {
-font-size:14px;
+#font-size:16px;
+font: bold 15px/25px Arial, sans-serif;
 color:#0000EE;
 line-height:16px;
 margin: 4px 1px;
@@ -92,7 +93,7 @@ margin: 3px 1px;
   	display: table-cell;
   	padding: 3px 10px;
   	border: 1px solid #999999;
-	width:260px;
+	width:280px;
 }
 
 
