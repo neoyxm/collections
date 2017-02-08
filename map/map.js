@@ -220,14 +220,16 @@
 	function createMarker(data_item, out_vec)
 	{
 		var point = new BMap.Point(data_item.lng,data_item.lat);
-		var marker = new BMap.Marker(point);
-		/*
 		var icon_name = getIcon(data_item.type);
+		var icon = null;
 		if(icon_name != null){
-			var icon = new BMap.Icon(icon_name, new BMap.Size(30,39));
-			marker.setIcon(icon);
+			var icon_w = 15;
+			var icon_h = 25;
+			icon = new BMap.Icon(icon_name, new BMap.Size(icon_w,icon_h), {anchor:new BMap.Size(icon_w-9,icon_h)});
 		}
-		*/
+		
+		var marker = new BMap.Marker(point, {icon:icon});
+ 
 		marker.setTitle(data_item.title);
 		var offset = getOffset(data_item.offset);
 		var alias_label =  new BMap.Label(data_item.alias, {offset:{width:offset.w, height:offset.h}});
