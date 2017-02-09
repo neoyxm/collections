@@ -209,14 +209,42 @@
 		}
 	}
 
-	function getOffset(offset_idx)
+ 
+
+	function getOffset(offset_idx, label_text_len)
 	{
+		var w = 0;
+		var h = 0;
+		if (label_text_len <= 0)
+				return;
+
 		if (typeof offset_idx === "undefined")
-			return offset_list[OFFSET_RIGHT];
-		else
-			return offset_list[offset_idx];
-	}
-	
+				offset_idx = OFFSET_RIGHT;
+
+
+		switch(offset_idx)
+		{
+				case OFFSET_RIGHT:
+						w = g_icon_w + g_h_gap; 			 
+						h = Math.ceil(g_icon_label_font_size/2); 			 
+						break;
+				case OFFSET_LEFT:
+						w = -(Math.ceil(g_icon_label_font_size*label_text_len + 2)); 			 
+						h = Math.ceil(g_icon_label_font_size/2); 			 
+						break;
+				case OFFSET_DOWN:
+						w = Math.ceil(g_icon_w/2 - g_icon_label_font_size*label_text_len/2); 			 
+						h = Math.ceil(g_icon_label_font_size/2 + g_icon_h / 2  + 4); 			 
+						break;
+				case OFFSET_UP:
+						w = Math.ceil(g_icon_w/2 - g_icon_label_font_size*label_text_len/2); 			 
+						h = -(Math.ceil(g_icon_label_font_size/2 + g_icon_h/2  - 2)); 			 
+						break;
+		}
+
+		return {w:w, h:h}
+	}	
+
 	function createMarker(data_item, out_vec)
 	{
 		var point = new BMap.Point(data_item.lng,data_item.lat);
@@ -227,13 +255,14 @@
 			var icon_h = 22;
 			icon = new BMap.Icon(icon_name, new BMap.Size(icon_w,icon_h), {anchor:new BMap.Size(icon_w-9,icon_h)});
 		}
-		
+
 		var marker = new BMap.Marker(point, {icon:icon});
- 
+
 		marker.setTitle(data_item.title);
-		var offset = getOffset(data_item.offset);
+		var offset = getOffset(data_item.offset, data_item.alias.length);
 		var alias_label =  new BMap.Label(data_item.alias, {offset:{width:offset.w, height:offset.h}});
-		alias_label.setStyle({fontSize : "12px",  background:"#FFDEAD", border:"none", color:"#000099"});
+		var font_size   = g_icon_label_font_size + "px";
+		alias_label.setStyle({fontSize : font_size,  background:"#FFDEAD", border:"none", color:"#000099", lineHeight: font_size});
 		marker.setLabel(alias_label);
 		marker.addEventListener('click', callback); 
 		//make the element to contain the marker & type
