@@ -27,7 +27,11 @@
 		
 		//set the point list height
 		var point_list = document.getElementById("check_list");
-		point_list.style.height= default_piont_list_height;
+		var h1 = document.getElementById('pageBtn_div').offsetHeight;
+		var h2 = document.getElementById('select_div').offsetHeight;
+		var screen_height = window.screen.availHeight;
+		point_list.style.height = Math.ceil((screen_height - h2 - h1)*0.83) + "px";
+
 		//draw the boundary of quyang
 		setQuyangBoundary();
 		

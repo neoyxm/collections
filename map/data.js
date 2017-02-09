@@ -306,8 +306,8 @@ var show_max_items = 25;
 var default_piont_list_height = "550px";
 
 //if under the low screen resolution, use the low zoom level
-if (window.screen.height >= 1080)
-{
-	default_piont_list_height = "820px";
-}
+//if (window.screen.height >= 1080)
+//{
+//	default_piont_list_height = Math.ceil(window.screen.availHeight*0.7)  +"px";
+//}
 
