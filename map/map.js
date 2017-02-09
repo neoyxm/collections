@@ -177,7 +177,10 @@
 			setButtonState(document.getElementById("prev"), false);	
 			setButtonState(document.getElementById("next"), false);
 		}
-		document.getElementById("show_rec").innerHTML = "共 " + result_list.index.length + " 个单位, " + curr_page +"/" + total_pages + " 页";
+		if(max_items == show_ulimit_items)
+			document.getElementById("show_rec").innerHTML = '共 ' + result_list.index.length + ' 个单位, <button class="button" name="pageBtn"  onClick=onSetPageBtnClick()>分页显示</button>';
+		else
+			document.getElementById("show_rec").innerHTML = "共 " + result_list.index.length + " 个单位, " + curr_page +"/" + total_pages + " 页";
 		var check_list = document.getElementById("check_list");
 		check_list.innerHTML = content;
 	}
@@ -414,8 +417,8 @@
 
 	function onBtnClick(e)
 	{
-		if (e.id == "3")
-			max_items = 9999;
+		if (e.id == "3" || e.id == "2")
+			max_items = show_ulimit_items;
 		else
 			max_items = show_max_items;
 	
@@ -425,7 +428,16 @@
 		disableBtnByID(e.id); 
 		currSelectedType = e.id;
 	}
-
+	
+	function onSetPageBtnClick()
+    {
+		max_items = show_max_items;
+		clearInfoWindow();
+		//showMarkersByType(marker_vec, e.id)
+		loadDetailedInfoByType({type:currSelectedType});
+		enableSelBtns( ); 
+	}
+	
 	function onInfoClick(e)
 	{
 		var marker =  marker_vec[e.id];

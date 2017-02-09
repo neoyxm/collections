@@ -303,6 +303,7 @@ var initial_zoom_level = 16;
 var show_result_zoom_level = 14;
 var show_info_zoom_level = 17;
 var show_max_items = 25;
+var show_ulimit_items = 1000;
 var default_piont_list_height = "550px";
 
 //if under the low screen resolution, use the low zoom level
