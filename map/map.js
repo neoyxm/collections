@@ -223,8 +223,8 @@
 		var icon_name = getIcon(data_item.type);
 		var icon = null;
 		if(icon_name != null){
-			var icon_w = 15;
-			var icon_h = 25;
+			var icon_w = 13;
+			var icon_h = 22;
 			icon = new BMap.Icon(icon_name, new BMap.Size(icon_w,icon_h), {anchor:new BMap.Size(icon_w-9,icon_h)});
 		}
 		
@@ -269,12 +269,7 @@
 	
 	function getIcon(type)
 	{
-		for (var i = 0; i < icon_list.length; i++)
-		{
-			if(icon_list[i].type == type)
-				return icon_list[i].icon;
-		}
-		return null;
+		return "./icon/icon"+type+".png";
 	}
 	
 	function callback(e)
