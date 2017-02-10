@@ -192,21 +192,21 @@ var data_list = [
 	{type:"3",lng:121.493785,lat:31.296846, title:"中国石化加油站", alias:"中石化", tel:"", addr:"上海市虹口区中山北一路1123号(近汶水东路)", info:"<b>名称</b>:中国石化加油站", offset:OFFSET_UP},
 	{type:"3",lng:121.493107,lat:31.29619, title:"上海医药工业研究院", alias:"医工院", tel:"", addr:"上海市虹口区中山北一路1111号", info:"<b>名称</b>:上海医药工业研究院", offset:OFFSET_LEFT},
  	{type:"3",lng:121.494985,lat:31.296074, title:"柏树大厦", alias:"柏树大厦", tel:"(021)65445598", addr:"上海虹口区中山北一路1230号", info:"<b>名称</b>:柏树大厦", offset:OFFSET_DOWN},
-	{type:"3",lng:121.494652,lat:31.294774, title:"岳阳医院", alias:"岳阳医院", tel:"(021)65161782", addr:"上海市虹口区甘河路110号", info:"<b>名称</b>:上海中医药大学附属岳阳中西医结合医院", offset:OFFSET_DOWN},
+	{type:"3",lng:121.494652,lat:31.294774, title:"岳阳医院", alias:"岳阳医院", tel:"(021)65161782", addr:"上海市虹口区甘河路110号", info:"<b>名称</b>:上海中医药大学附属岳阳中西医结合医院", offset:OFFSET_DOWN, icon_idx:"34"},
 	{type:"3",lng:121.49023,lat:31.292615, title:"上海市公安局刑侦/经侦总队", alias:"市刑侦经侦总队", tel:"110", addr:"中山北一路805号", info:"<b>名称</b>:上海市公安局刑侦/经侦总队", offset:OFFSET_DOWN},
 	{type:"3",lng:121.492152,lat:31.294304, title:"北区文化中兴", alias:"北区文化中兴", tel:"", addr:"中山北一路998号", info:"<b>名称</b>:北区文化中兴", offset:OFFSET_DOWN},
-{type:"3",lng:121.496931,lat:31.293872, title:"新疆沪办", alias:"新疆沪办", tel:"(021)65532387", addr:"曲阳路775号9层", info:"<b>名称</b>:新疆维吾尔自治区政府驻上海办事处", offset:OFFSET_DOWN},
+{type:"3",lng:121.496931,lat:31.293872, title:"新疆沪办", alias:"新疆沪办", tel:"(021)65532387", addr:"曲阳路775号9层", info:"<b>名称</b>:新疆维吾尔自治区政府驻上海办事处", offset:OFFSET_LEFT},
 {type:"3",lng:121.49782,lat:31.297035, title:"930创业园区", alias:"930创业园",tel:"", addr:"曲阳路930号（近腾克路）", info:"<b>名称</b>: 930创业园区"},
 {type:"3",lng:121.49888,lat:31.295577, title:"复城国际", alias:"复城国际",tel:"", addr:"伊敏河路99弄", info:"<b>名称</b>:复城国际"},
 {type:"3",lng:121.50052,lat:31.294694, title:"曲阳路街道社区事务受理服务中心", alias:"街道办事处",tel:"", addr:"伊敏河路88号", info:"<b>名称</b>:曲阳路街道社区事务受理服务中心", offset:OFFSET_LEFT},
-{type:"3",lng:121.501095,lat:31.29393, title:"曲阳路街道社区卫生服务中心", alias:"卫生中心",tel:"", addr:"上海市虹口区巴林路78号", info:"<b>名称</b>:曲阳路街道社区卫生服务中心", offset:OFFSET_LEFT},
+{type:"3",lng:121.501095,lat:31.29393, title:"曲阳路街道社区卫生服务中心", alias:"卫生中心",tel:"", addr:"上海市虹口区巴林路78号", info:"<b>名称</b>:曲阳路街道社区卫生服务中心", offset:OFFSET_LEFT, icon_idx:"34"},
 {type:"3",lng:121.503067,lat:31.293966, title:"上海市公安局虹口分局曲阳路派出所", alias:"曲阳派出所",tel:"(021)65552848", addr:"巴林路56号", info:"<b>名称</b>:上海市公安局虹口分局曲阳路派出所", offset:OFFSET_DOWN, icon_idx:"31"},
 {type:"3",lng:121.504454,lat:31.295384, title:"上海市虹口实验学校", alias:"实验学校",tel:"(021)55880345", addr:"运光路（近辉河路）", info:"<b>名称</b>:上海市虹口实验学校", offset:OFFSET_LEFT, icon_idx:"32"},
 {type:"3",lng:121.501463,lat:31.294678, title:"曲阳路街道敬老院", alias:"敬老院",tel:"(021)55880345", addr:"上海市虹口区巴林路60弄28号", info:"<b>名称</b>:曲阳路街道敬老院"},
 {type:"3",lng:121.504593,lat:31.29474, title:"曲阳社区市民服务驿站", alias:"服务驿站",tel:"(021)65543061", addr:"辉河路51", info:"<b>名称</b>:曲阳社区市民服务驿站"},
 {type:"3",lng:121.507823,lat:31.294506, title:"上海市虹口区社会福利院", alias:"福利院",tel:"021-65546977", addr:"密云路623号", info:"<b>名称</b>:上海市虹口区社会福利院", offset:OFFSET_DOWN},
 {type:"3",lng:121.506891,lat:31.29651, title:"复旦大学学生生活园区", alias:"复旦宿舍",tel:"", addr:"松花江路2500弄", info:"<b>名称</b>:复旦大学学生生活园区"},
-{type:"3",lng:121.490503,lat:31.290131, title:"上海建工医院", alias:"建工医院",tel:"65366688", addr:"松花江路2500弄", info:"<b>名称</b>:上海建工医院"},
+{type:"3",lng:121.490503,lat:31.290131, title:"上海建工医院", alias:"建工医院",tel:"65366688", addr:"松花江路2500弄", info:"<b>名称</b>:上海建工医院", icon_idx:"34"},
 {type:"3",lng:121.495814,lat:31.289657, title:"虹口区第四中心小学", alias:"虹口四中小",tel:"65547734", addr:"东体育会路667号", info:"<b>名称</b>:虹口区第四中心小学", offset:OFFSET_LEFT, icon_idx:"32"},
 {type:"3",lng:121.4954,lat:31.290691, title:"虹口体育馆", alias:"虹口体育馆",tel:"65532388", addr:"东体育会路715号", info:"<b>名称</b>:虹口体育馆"},
 {type:"3",lng:121.503197,lat:31.29056, title:"上海市南湖职校二分校新泸校区", alias:"南湖职校二(分部)",tel:"", addr:"上海市虹口区密云路479号-甲-1", info:"<b>名称</b>:上海市南湖职校二分校新泸校区", icon_idx:"32"	},
@@ -220,7 +220,7 @@ var data_list = [
 {type:"3",lng:121.492355,lat:31.282183, title:"上海市虹口区市场监督管理局", alias:"市场监管局",tel:"", addr:"上海市虹口区大连西路296号", info:"<b>名称</b>:上海市虹口区市场监督管理局", offset:OFFSET_DOWN},
 {type:"3",lng:121.492835,lat:31.283542, title:"上海外国语大学学生公寓", alias:"上外学生公寓",tel:"", addr:"东体育会路411", info:"<b>名称</b>:上海外国语大学学生公寓"},
 {type:"3",lng:121.495084,lat:31.282492, title:"阳光之家", alias:"阳光之家",tel:"", addr:"上海市虹口区", info:"<b>名称</b>:阳光之家", offset:OFFSET_DOWN},
-{type:"3",lng:121.497601,lat:31.284767, title:"曲阳医院", alias:"曲阳医院",tel:"65558555", addr:"上海市虹口区玉田路333号", info:"<b>名称</b>:曲阳医院", offset:OFFSET_DOWN},
+{type:"3",lng:121.497601,lat:31.284767, title:"曲阳医院", alias:"曲阳医院",tel:"65558555", addr:"上海市虹口区玉田路333号", info:"<b>名称</b>:曲阳医院", offset:OFFSET_DOWN, icon_idx:"34"},
 {type:"3",lng:121.497928,lat:31.285276, title:"家乐福(曲阳店)", alias:"家乐福",tel:"55896078", addr:"上海市虹口区曲阳路560号曲阳生活购物中心1-2层", info:"<b>名称</b>:家乐福(曲阳店)"},
  {type:"3",lng:121.498411,lat:31.286258, title:"上海市虹口区曲阳图书馆", alias:"曲阳图书馆",tel:"65533134", addr:"曲阳路574号", info:"<b>名称</b>: 上海市虹口区曲阳图书馆", icon_idx:"33"},
 {type:"3",lng:121.501543,lat:31.286124, title:"虹口区曲阳第三小学", alias:"曲阳三小",tel:"13917074798", addr:"赤峰路317弄17号", info:"<b>名称</b>: 虹口区曲阳第三小学", icon_idx:"32"},
@@ -230,6 +230,7 @@ var data_list = [
 {type:"3",lng:121.501416,lat:31.282235, title:"曲阳社区文体广场", alias:"曲阳文体广场",tel:"64391731", addr:"曲阳路", info:"<b>名称</b>: 曲阳社区文体广场运动场", offset:OFFSET_DOWN},
 {type:"3",lng:121.500643,lat:31.292086, title:"科技中心(海鸥大厦)", alias:"科技中心(海鸥大厦)",tel:"", addr:"上海虹口区中山北二路1800号", info:"<b>名称</b>: 科技中心(海鸥大厦)"},
 {type:"3",lng:121.506741,lat:31.295377, title:"四中心民办实验小学", alias:"四中心民办小学",tel:"", addr:"辉河路40", info:"<b>名称</b>: 四中心民办实验小学", icon_idx:"32"},
+{type:"3",lng:121.499711,lat:31.29326, title:"上海和平眼科医院有限公司", alias:"和平眼科",tel:"55890118", addr:"伊敏河路61号", info:"<b>联系人</b>: 庄小佩",offset:OFFSET_LEFT, icon_idx:"34"},
 ];
 
 
@@ -240,6 +241,7 @@ var icon_list = [
 	{type:"31", icon:"./icon/icon_police.png", size:{w:20, h:20}},	
 	{type:"32", icon:"./icon/icon_school.png", size:{w:22, h:22}},	
 	{type:"33", icon:"./icon/icon_lib.png", size:{w:22, h:22}},		
+	{type:"34", icon:"./icon/icon_hospital.png", size:{w:22, h:22}},	
 ];
 
 var g_icon_label_font_size = 12;
