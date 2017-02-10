@@ -232,13 +232,13 @@ var data_list = [
 {type:"3",lng:121.506741,lat:31.295377, title:"四中心民办实验小学", alias:"四中心民办小学",tel:"", addr:"辉河路40", info:"<b>名称</b>: 四中心民办实验小学"},
 ];
 
-/*
+
 var icon_list = [
-	{type:"1", icon:"./icon/icon1.png"},
-	{type:"2", icon:"./icon/icon2.png"},
-	{type:"3", icon:"./icon/icon3.png"},		
+	{type:"1", icon:"./icon/icon1.png", size:{w:13, h:22}},
+	{type:"2", icon:"./icon/icon2.png", size:{w:13, h:22}},
+	{type:"3", icon:"./icon/icon3.png", size:{w:13, h:22}},		
 ];
-*/
+
 
 var g_icon_w = 13;
 var g_icon_h = 22;

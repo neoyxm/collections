@@ -215,24 +215,24 @@
 			setButtonState(document.getElementById("next"), false);	
 		}
 	}
-
- 
-
-	function getOffset(offset_idx, label_text_len)
+	
+	function getOffset(offset_idx, label_text_len, icon_size)
 	{
 		var w = 0;
 		var h = 0;
+		var icon_w = icon_size.width;
+		var icon_h = icon_size.height;
+		console.log(icon_w + " " + icon_h);
 		if (label_text_len <= 0)
 				return;
 
 		if (typeof offset_idx === "undefined")
 				offset_idx = OFFSET_RIGHT;
 
-
 		switch(offset_idx)
 		{
 				case OFFSET_RIGHT:
-						w = g_icon_w + g_h_gap; 			 
+						w = icon_w + g_h_gap; 			 
 						h = Math.ceil(g_icon_label_font_size/2); 			 
 						break;
 				case OFFSET_LEFT:
@@ -240,12 +240,12 @@
 						h = Math.ceil(g_icon_label_font_size/2); 			 
 						break;
 				case OFFSET_DOWN:
-						w = Math.ceil(g_icon_w/2 - g_icon_label_font_size*label_text_len/2); 			 
-						h = Math.ceil(g_icon_label_font_size/2 + g_icon_h / 2  + 4); 			 
+						w = Math.ceil(icon_w/2 - g_icon_label_font_size*label_text_len/2); 			 
+						h = Math.ceil(g_icon_label_font_size/2 + icon_h / 2  + 4); 			 
 						break;
 				case OFFSET_UP:
-						w = Math.ceil(g_icon_w/2 - g_icon_label_font_size*label_text_len/2); 			 
-						h = -(Math.ceil(g_icon_label_font_size/2 + g_icon_h/2  - 2)); 			 
+						w = Math.ceil(icon_w/2 - g_icon_label_font_size*label_text_len/2); 			 
+						h = -(Math.ceil(g_icon_label_font_size/2 + icon_h/2  - 2)); 			 
 						break;
 		}
 
@@ -255,18 +255,16 @@
 	function createMarker(data_item, out_vec)
 	{
 		var point = new BMap.Point(data_item.lng,data_item.lat);
-		var icon_name = getIcon(data_item.type);
+		var icon_obj = getIcon(data_item);
 		var icon = null;
-		if(icon_name != null){
-			var icon_w = 13;
-			var icon_h = 22;
-			icon = new BMap.Icon(icon_name, new BMap.Size(icon_w,icon_h), {anchor:new BMap.Size(icon_w-9,icon_h)});
+		if(icon_obj != null){
+			icon = new BMap.Icon(icon_obj.icon, new BMap.Size(icon_obj.size.w,icon_obj.size.h), {anchor:new BMap.Size(icon_obj.size.w-9,icon_obj.size.h)});
 		}
 
 		var marker = new BMap.Marker(point, {icon:icon});
 
 		marker.setTitle(data_item.title);
-		var offset = getOffset(data_item.offset, data_item.alias.length);
+		var offset = getOffset(data_item.offset, data_item.alias.length, marker.getIcon().size);
 		var alias_label =  new BMap.Label(data_item.alias, {offset:{width:offset.w, height:offset.h}});
 		var font_size   = g_icon_label_font_size + "px";
 		alias_label.setStyle({fontSize : font_size,  background:"#FFDEAD", border:"none", color:"#000099", lineHeight: font_size});
@@ -303,9 +301,18 @@
 		return null;
 	}
 	
-	function getIcon(type)
+	function getIcon(item)
 	{
-		return "./icon/icon"+type+".png";
+		var icon_type = item.type;
+		if(typeof item.icon_idx !== "undefined")
+			icon_type =  item.icon_idx;
+			
+		for (var i = 0; i < icon_list.length; i++)
+		{
+			if (icon_type == icon_list[i].type)
+				return icon_list[i];
+		}
+		return null;
 	}
 	
 	function callback(e)
