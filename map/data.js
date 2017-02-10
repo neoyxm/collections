@@ -200,7 +200,7 @@ var data_list = [
 {type:"3",lng:121.49888,lat:31.295577, title:"复城国际", alias:"复城国际",tel:"", addr:"伊敏河路99弄", info:"<b>名称</b>:复城国际"},
 {type:"3",lng:121.50052,lat:31.294694, title:"曲阳路街道社区事务受理服务中心", alias:"街道办事处",tel:"", addr:"伊敏河路88号", info:"<b>名称</b>:曲阳路街道社区事务受理服务中心", offset:OFFSET_LEFT},
 {type:"3",lng:121.501095,lat:31.29393, title:"曲阳路街道社区卫生服务中心", alias:"卫生中心",tel:"", addr:"上海市虹口区巴林路78号", info:"<b>名称</b>:曲阳路街道社区卫生服务中心", offset:OFFSET_LEFT},
-{type:"3",lng:121.503067,lat:31.293966, title:"上海市公安局虹口分局曲阳路派出所", alias:"曲阳派出所",tel:"(021)65552848", addr:"巴林路56号", info:"<b>名称</b>:上海市公安局虹口分局曲阳路派出所", offset:OFFSET_DOWN},
+{type:"3",lng:121.503067,lat:31.293966, title:"上海市公安局虹口分局曲阳路派出所", alias:"曲阳派出所",tel:"(021)65552848", addr:"巴林路56号", info:"<b>名称</b>:上海市公安局虹口分局曲阳路派出所", offset:OFFSET_DOWN, icon_idx:"31"},
 {type:"3",lng:121.504454,lat:31.295384, title:"上海市虹口实验学校", alias:"实验学校",tel:"(021)55880345", addr:"运光路（近辉河路）", info:"<b>名称</b>:上海市虹口实验学校", offset:OFFSET_LEFT},
 {type:"3",lng:121.501463,lat:31.294678, title:"曲阳路街道敬老院", alias:"敬老院",tel:"(021)55880345", addr:"上海市虹口区巴林路60弄28号", info:"<b>名称</b>:曲阳路街道敬老院"},
 {type:"3",lng:121.504593,lat:31.29474, title:"曲阳社区市民服务驿站", alias:"服务驿站",tel:"(021)65543061", addr:"辉河路51", info:"<b>名称</b>:曲阳社区市民服务驿站"},
@@ -237,6 +237,7 @@ var icon_list = [
 	{type:"1", icon:"./icon/icon1.png", size:{w:13, h:22}},
 	{type:"2", icon:"./icon/icon2.png", size:{w:13, h:22}},
 	{type:"3", icon:"./icon/icon3.png", size:{w:13, h:22}},		
+	{type:"31", icon:"./icon/icon_police.png", size:{w:20, h:20}},		
 ];
 
 
