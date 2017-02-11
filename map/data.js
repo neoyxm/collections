@@ -221,11 +221,11 @@ var data_list = [
 {type:"3",lng:121.492835,lat:31.283542, title:"上海外国语大学学生公寓", alias:"上外学生公寓",tel:"", addr:"东体育会路411", info:"<b>名称</b>:上海外国语大学学生公寓", icon_idx:"32"},
 {type:"3",lng:121.495084,lat:31.282492, title:"阳光之家", alias:"阳光之家",tel:"", addr:"上海市虹口区", info:"<b>名称</b>:阳光之家", offset:OFFSET_DOWN},
 {type:"3",lng:121.497534,lat:31.284603, title:"曲阳医院", alias:"曲阳医院",tel:"65558555", addr:"上海市虹口区玉田路333号", info:"<b>名称</b>:曲阳医院", offset:OFFSET_DOWN,   icon_idx:"34"},
-{type:"3",lng:121.497928,lat:31.285276, title:"家乐福(曲阳店)", alias:"家乐福",tel:"55896078", addr:"上海市虹口区曲阳路560号曲阳生活购物中心1-2层", info:"<b>名称</b>:家乐福(曲阳店)", icon_idx:"33"},
+{type:"3",lng:121.497419,lat:31.285115, title:"家乐福(曲阳店)", alias:"家乐福",tel:"55896078", addr:"上海市虹口区曲阳路560号曲阳生活购物中心1-2层", info:"<b>名称</b>:家乐福(曲阳店)", icon_idx:"33"},
  {type:"3",lng:121.498411,lat:31.286258, title:"上海市虹口区曲阳图书馆", alias:"曲阳图书馆",tel:"65533134", addr:"曲阳路574号", info:"<b>名称</b>: 上海市虹口区曲阳图书馆", icon_idx:"33",offset:OFFSET_UP},
 {type:"3",lng:121.497491,lat:31.285999, title:"上海市虹口区曲阳文化馆", alias:"文化馆",tel:"65533134", addr:"曲阳路570号", info:"<b>名称</b>: 上海市虹口区曲阳文化馆",   icon_idx:"33",offset:OFFSET_LEFT},
  {type:"3",lng:121.501543,lat:31.286124, title:"虹口区曲阳第三小学", alias:"曲阳三小",tel:"13917074798", addr:"赤峰路317弄17号", info:"<b>名称</b>: 虹口区曲阳第三小学", icon_idx:"32"},
-{type:"3",lng:121.500876,lat:31.285321, title:"曲阳市场监督管理所", alias:"曲阳市场监管所",tel:"51851401", addr:"上海市虹口区玉田路252号", info:"<b>名称</b>: 上海市虹口区市场监督管理局曲阳市场监督管理所", icon_idx:"33"},
+{type:"3",lng:121.500487,lat:31.284884, title:"曲阳市场监督管理所", alias:"曲阳市场监管所",tel:"51851401", addr:"上海市虹口区玉田路252号", info:"<b>名称</b>: 上海市虹口区市场监督管理局曲阳市场监督管理所", icon_idx:"33", offset:OFFSET_UP},
 {type:"3",lng:121.502075,lat:31.284881, title:"曲阳第二中学", alias:"曲阳二中",tel:"65526354", addr:"虹口区玉田路180号", info:"<b>名称</b>: 曲阳第二中学", icon_idx:"32", offset:OFFSET_DOWN},
 {type:"3",lng:121.500256,lat:31.283986, title:"上海市迅行中学", alias:"迅行中学",tel:"65558282", addr:"上海市虹口区玉田路248号", info:"<b>名称</b>: 上海市迅行中学(玉田路)", offset:OFFSET_DOWN, icon_idx:"32"},
 {type:"3",lng:121.501416,lat:31.282235, title:"曲阳社区文体广场", alias:"曲阳文体广场",tel:"64391731", addr:"曲阳路", info:"<b>名称</b>: 曲阳社区文体广场运动场", offset:OFFSET_DOWN, icon_idx:"36"},
@@ -242,7 +242,6 @@ var data_list = [
  {type:"3",lng:121.494731,lat:31.285266, title:"曲阳社区市民服务驿站(南)", alias:"服务驿站(南)",tel:"(021)65543061", addr:"玉田路430号4楼(近东体育会路)", info:"<b>名称</b>:曲阳社区市民服务驿站(南)",offset:OFFSET_UP, icon_idx:"36"},
    {type:"3",lng:121.502493,lat:31.29086, title:"上海大庆石油大厦", alias:"石油大厦",tel:"65559191", addr:"中山北二路1515号", info:"<b>联系人</b>: 尤斌", offset:OFFSET_UP, icon_idx:"37"},
    {type:"3",lng:121.496454,lat:31.289513, title:"曲阳社区老年日托站", alias:"老年日托站",tel:"", addr:"上海市虹口区曲阳路上房小区(精武体育馆旁)", info:"<b>名称</b>:曲阳社区老年日托站" },
-    
 ];
  
 var icon_list = [
