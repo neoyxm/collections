@@ -217,7 +217,7 @@ var data_list = [
 {type:"3",lng:121.489321,lat:31.280863, title:"上海外国语大学", alias:"上外",tel:"35372000", addr:"广中路区域大连西路550号", info:"<b>名称</b>:上海外国语大学", icon_idx:"33"},
 {type:"3",lng:121.490789,lat:31.28281, title:"虹口区房地产交易中心/房管局", alias:"虹口房产交易中心/房管局",tel:"65533550", addr:"东体育会路359号", info:"<b>名称</b>:虹口区房地产交易中心/虹口区房管局", offset:OFFSET_LEFT, icon_idx:"33"},
 {type:"3",lng:121.489399,lat:31.284316, title:"上海外国语大学分部", alias:"上外分部",tel:"35372000", addr:"广中路区域大连西路550号", info:"<b>名称</b>:上海外国语大学分部", icon_idx:"32"},
-{type:"3",lng:121.492355,lat:31.282183, title:"上海市虹口区市场监督管理局", alias:"区市场监管局",tel:"", addr:"上海市虹口区大连西路296号", info:"<b>名称</b>:上海市虹口区市场监督管理局", offset:OFFSET_DOWN, icon_idx:"33"},
+{type:"3",lng:121.492355,lat:31.282183, title:"上海市虹口区市场监督管理局", alias:"虹口市场监管局",tel:"", addr:"上海市虹口区大连西路296号", info:"<b>名称</b>:上海市虹口区市场监督管理局", offset:OFFSET_DOWN, icon_idx:"33"},
 {type:"3",lng:121.492835,lat:31.283542, title:"上海外国语大学学生公寓", alias:"上外学生公寓",tel:"", addr:"东体育会路411", info:"<b>名称</b>:上海外国语大学学生公寓", icon_idx:"32"},
 {type:"3",lng:121.495084,lat:31.282492, title:"阳光之家", alias:"阳光之家",tel:"", addr:"上海市虹口区", info:"<b>名称</b>:阳光之家", offset:OFFSET_DOWN},
 {type:"3",lng:121.497534,lat:31.284603, title:"曲阳医院", alias:"曲阳医院",tel:"65558555", addr:"上海市虹口区玉田路333号", info:"<b>名称</b>:曲阳医院", offset:OFFSET_DOWN,   icon_idx:"34"},
