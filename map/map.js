@@ -4,7 +4,7 @@
 	var point = new BMap.Point(initial_point.lng, initial_point.lat);   /*121.497136,31.285672*/
 	map.centerAndZoom(point, initial_zoom_level);   
 	map.enableScrollWheelZoom(true);                  
-	map.addControl(new BMap.NavigationControl());
+//	map.addControl(new BMap.NavigationControl());
 	map.enableContinuousZoom();
 	map.setMapStyle({styleJson:styleJson});
 
@@ -17,6 +17,9 @@
 
 	function initGUI()
 	{
+		//init the icon info
+		createIconInfoList();
+
 		//init the page button
 		setButtonState(document.getElementById("prev"), false);	
 		setButtonState(document.getElementById("next"), false);	
@@ -434,6 +437,7 @@
 		loadDetailedInfoByType({type:e.id});
 		disableBtnByID(e.id); 
 		currSelectedType = e.id;
+		onButtonCommonAction(e);
 	}
 	
 	function onSetPageBtnClick()
@@ -452,21 +456,27 @@
 		showInfoWindow(data_list[e.id]);
 	}
 	
+	function doSearch(keyword)
+	{
+		var res = getSearchResult(keyword);
+		if(res)
+		{
+			enableSelBtns();
+			setVisiableIconInfo(false);
+		}
+	}
+	
 	function onSearchBtnClick()
 	{
 		var searchInput= document.getElementById("searchInput");
-		var res = getSearchResult(searchInput.value.trim());
-		if(res)
-			enableSelBtns();
+		doSearch(searchInput.value.trim());
 	}
 	
 	function onSearchEnter(e)
 	{
 		//on input the enter key, trigger the search function
 	    if(event.keyCode == 13) {
-			var res = getSearchResult(e.value.trim());
-			if(res)
-				enableSelBtns();
+			doSearch(e.value.trim());
 		}
 	}
 
@@ -475,4 +485,48 @@
 		var has_result = loadDetailedInfoByType({keyword:keyword});	
 		map.reset();
 		return has_result;
+	}
+
+	function createIconInfoList()
+	{
+		var html = '';
+		for(var i = 0; i < icon_list.length; i++)
+		{
+			if (icon_list[i].type.charAt(0) === "3")
+			{
+				html += '<tr>';
+				html += '<td>' + '<img src="' + icon_list[i].icon + '"/>' + "</td>";
+				var icon_desc = '';
+				if(typeof icon_list[i].desc !== "undefined")
+						icon_desc = icon_list[i].desc;
+					
+				html += '<td>' +  icon_desc +  '</td>';
+				html += '</tr>';
+			}
+		}
+
+		if (html !== '')
+		{
+			document.getElementById("icon_info_tab").innerHTML 	=  html; 
+		}
+		// initially , it's hidden
+		setVisiableIconInfo(false);
+	}
+	
+	function setVisiableIconInfo(switch_val)
+	{
+		var div_icon_info = document.getElementById("icon_info").style;	
+
+		if (switch_val ==  true)
+				div_icon_info.visibility='visible';
+		else
+				div_icon_info.visibility='hidden';
+	}
+
+	function onButtonCommonAction(e)
+	{
+		if (currSelectedType == "3")
+			setVisiableIconInfo(true);
+		else
+			setVisiableIconInfo(false);
 	}

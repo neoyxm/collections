@@ -245,16 +245,19 @@ var data_list = [
 ];
  
 var icon_list = [
+	//group 1
 	{type:"1", icon:"./icon/icon1.png", size:{w:13, h:22}},
+	//group 2
 	{type:"2", icon:"./icon/icon2.png", size:{w:13, h:22}},
-	{type:"3", icon:"./icon/icon3.png", size:{w:13, h:22}},		
-	{type:"31", icon:"./icon/icon_police.png", size:{w:20, h:20}},	
-	{type:"32", icon:"./icon/icon_green.png", size:{w:13, h:21}},	
-	{type:"33", icon:"./icon/icon_blue_d.png", size:{w:13, h:21}},		
-	{type:"34", icon:"./icon/icon_hospital.png", size:{w:22, h:22}},	
-	{type:"35", icon:"./icon/icon_star.png", size:{w:18, h:18}},
-	{type:"36", icon:"./icon/icon_yellow.png", size:{w:13, h:21}},	
-	{type:"37", icon:"./icon/icon_sci.png", size:{w:20, h:20}},	
+	//group 3
+	{type:"35", icon:"./icon/icon_star.png", size:{w:18, h:18}, desc:"街道办事处"},
+	{type:"3", icon:"./icon/icon3.png", size:{w:13, h:22}, desc:"社区单位"},		
+	{type:"31", icon:"./icon/icon_police.png", size:{w:20, h:20}, desc:"派出所"},	
+	{type:"32", icon:"./icon/icon_green.png", size:{w:13, h:21}, desc:"学校／文化艺术"},	
+	{type:"33", icon:"./icon/icon_blue_d.png", size:{w:13, h:21}, desc:"企事业单位"},		
+	{type:"34", icon:"./icon/icon_hospital.png", size:{w:22, h:22},  desc:"医院"},	
+	{type:"36", icon:"./icon/icon_yellow.png", size:{w:13, h:21}, desc:"社区公共服务"},	
+	{type:"37", icon:"./icon/icon_sci.png", size:{w:20, h:20}, desc:"科研单位"},	
 ];
 
 var g_icon_label_font_size = 12;
