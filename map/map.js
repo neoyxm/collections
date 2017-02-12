@@ -462,7 +462,7 @@
 		if(res)
 		{
 			enableSelBtns();
-			setVisiableIconInfo(false);
+			//setVisiableIconInfo(false);
 		}
 	}
 	
@@ -492,7 +492,7 @@
 		var html = '';
 		for(var i = 0; i < icon_list.length; i++)
 		{
-			if (icon_list[i].type.charAt(0) === "3")
+			//if (icon_list[i].type.charAt(0) === "3")
 			{
 				html += '<tr>';
 				html += '<td>' + '<img src="' + icon_list[i].icon + '"/>' + "</td>";
@@ -510,7 +510,7 @@
 			document.getElementById("icon_info_tab").innerHTML 	=  html; 
 		}
 		// initially , it's hidden
-		setVisiableIconInfo(false);
+		//setVisiableIconInfo(false);
 	}
 	
 	function setVisiableIconInfo(switch_val)
@@ -525,8 +525,10 @@
 
 	function onButtonCommonAction(e)
 	{
+	/*
 		if (currSelectedType == "3")
 			setVisiableIconInfo(true);
 		else
 			setVisiableIconInfo(false);
+	*/
 	}

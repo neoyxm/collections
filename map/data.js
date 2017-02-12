@@ -246,9 +246,9 @@ var data_list = [
  
 var icon_list = [
 	//group 1
-	{type:"1", icon:"./icon/icon1.png", size:{w:13, h:22}},
+	{type:"1", icon:"./icon/icon1.png", size:{w:13, h:22}, desc:"居委"},
 	//group 2
-	{type:"2", icon:"./icon/icon2.png", size:{w:13, h:22}},
+	{type:"2", icon:"./icon/icon2.png", size:{w:13, h:22}, desc:"社区企业"},
 	//group 3
 	{type:"35", icon:"./icon/icon_star.png", size:{w:18, h:18}, desc:"街道办事处"},
 	{type:"3", icon:"./icon/icon3.png", size:{w:13, h:22}, desc:"社区单位"},		
@@ -260,7 +260,7 @@ var icon_list = [
 	{type:"37", icon:"./icon/icon_sci.png", size:{w:20, h:20}, desc:"科研单位"},	
 ];
 
-var g_icon_label_font_size = 12;
+var g_icon_label_font_size = 13;
 var g_v_gap = 1;
 var g_h_gap = 1;
 
