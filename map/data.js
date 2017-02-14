@@ -190,7 +190,7 @@ var data_list = [
 	{type:"3",lng:121.501219,lat:31.299457, title:"上海市南湖职业学校第二分校", alias:"南湖职校二", tel:"021-65556195", addr:"邯郸路53号", info:"<b>名称</b>:上海市南湖职业学校第二分校", offset:OFFSET_UP, icon_idx:"32"},
 	{type:"3",lng:121.496193,lat:31.297177, title:"沪办大厦", alias:"沪办大厦", tel:"(021)65425141", addr:"中山北一路1250号", info:"<b>名称</b>:沪办大厦", offset:OFFSET_DOWN, icon_idx:"33"},
 	{type:"3",lng:121.493785,lat:31.296846, title:"中国石化加油站", alias:"中石化", tel:"", addr:"上海市虹口区中山北一路1123号(近汶水东路)", info:"<b>名称</b>:中国石化加油站", offset:OFFSET_UP, icon_idx:"33"},
-	{type:"3",lng:121.493107,lat:31.29619, title:"上海医药工业研究院", alias:"医工院", tel:"", addr:"上海市虹口区中山北一路1111号", info:"<b>名称</b>:上海医药工业研究院", offset:OFFSET_LEFT, icon_idx:"37"},
+	{type:"3",lng:121.493107,lat:31.29619, title:"上海医药工业研究院", alias:"医工院", tel:"", addr:"上海市虹口区中山北一路1111号", info:"<b>名称</b>:上海医药工业研究院", offset:OFFSET_UP, icon_idx:"37"},
  	{type:"3",lng:121.494985,lat:31.296074, title:"柏树大厦", alias:"柏树大厦", tel:"(021)65445598", addr:"上海虹口区中山北一路1230号", info:"<b>名称</b>:柏树大厦", offset:OFFSET_DOWN, icon_idx:"33"},
 	{type:"3",lng:121.494652,lat:31.294774, title:"岳阳医院", alias:"岳阳医院", tel:"(021)65161782", addr:"上海市虹口区甘河路110号", info:"<b>名称</b>:上海中医药大学附属岳阳中西医结合医院", offset:OFFSET_DOWN, icon_idx:"34"},
 	{type:"3",lng:121.49023,lat:31.292615, title:"上海市公安局刑侦/经侦总队", alias:"市刑侦经侦总队", tel:"110", addr:"中山北一路805号", info:"<b>名称</b>:上海市公安局刑侦/经侦总队", offset:OFFSET_DOWN,  icon_idx:"31"},
@@ -203,16 +203,16 @@ var data_list = [
 {type:"3",lng:121.503067,lat:31.293966, title:"上海市公安局虹口分局曲阳路派出所", alias:"曲阳派出所",tel:"(021)65552848", addr:"巴林路56号", info:"<b>名称</b>:上海市公安局虹口分局曲阳路派出所",  icon_idx:"31"},
 {type:"3",lng:121.504454,lat:31.295384, title:"上海市虹口实验学校", alias:"实验学校",tel:"(021)55880345", addr:"运光路（近辉河路）", info:"<b>名称</b>:上海市虹口实验学校", offset:OFFSET_UP, icon_idx:"32"},
 {type:"3",lng:121.501463,lat:31.294678, title:"曲阳路街道敬老院", alias:"敬老院",tel:"(021)55880345", addr:"上海市虹口区巴林路60弄28号", info:"<b>名称</b>:曲阳路街道敬老院"},
-{type:"3",lng:121.504593,lat:31.29474, title:"曲阳社区市民服务驿站", alias:"服务驿站",tel:"(021)65543061", addr:"辉河路51", info:"<b>名称</b>:曲阳社区市民服务驿站", icon_idx:"36"},
+{type:"3",lng:121.504593,lat:31.29474, title:"第二片区市民驿站", alias:"二片区市民驿站",tel:"", addr:"辉河路51", info:"<b>名称</b>:第二片区市民驿站", icon_idx:"38"},
 {type:"3",lng:121.507823,lat:31.294506, title:"上海市虹口区社会福利院", alias:"福利院",tel:"021-65546977", addr:"密云路623号", info:"<b>名称</b>:上海市虹口区社会福利院", offset:OFFSET_DOWN},
 {type:"3",lng:121.506891,lat:31.29651, title:"复旦大学学生生活园区", alias:"复旦学生宿舍",tel:"", addr:"松花江路2500弄", info:"<b>名称</b>:复旦大学学生生活园区", icon_idx:"32"},
-{type:"3",lng:121.490503,lat:31.290131, title:"上海建工医院", alias:"建工医院",tel:"65366688", addr:"松花江路2500弄", info:"<b>名称</b>:上海建工医院", icon_idx:"34"},
+{type:"3",lng:121.490503,lat:31.290131, title:"上海建工医院", alias:"建工医院",tel:"65366688", addr:"松花江路2500弄", info:"<b>名称</b>:上海建工医院",offset:OFFSET_DOWN, icon_idx:"34"},
 {type:"3",lng:121.495814,lat:31.289657, title:"虹口区第四中心小学", alias:"虹口第四中心小",tel:"65547734", addr:"东体育会路667号", info:"<b>名称</b>:虹口区第四中心小学", offset:OFFSET_LEFT, icon_idx:"32"},
 {type:"3",lng:121.4954,lat:31.290691, title:"虹口体育馆", alias:"虹口体育馆",tel:"65532388", addr:"东体育会路715号", info:"<b>名称</b>:虹口体育馆", icon_idx:"36", icon_idx:"32"},
 {type:"3",lng:121.503197,lat:31.29056, title:"上海市南湖职校二分校新泸校区", alias:"南湖职校二(分部)",tel:"", addr:"上海市虹口区密云路479号-甲-1", info:"<b>名称</b>:上海市南湖职校二分校新泸校区", icon_idx:"32"	},
 {type:"3",lng:121.502203,lat:31.28866, title:"曲阳第四小学", alias:"曲阳四小",tel:"55540123", addr:"密云路471弄1号", info:"<b>名称</b>:曲阳第四小学", offset:OFFSET_DOWN, icon_idx:"32"	},
 {type:"3",lng:121.496583,lat:31.287869, title:"民办宏星小学", alias:"宏星小学",tel:"65522046", addr:"虹口区赤峰路375号(近曲阳路)", info:"<b>名称</b>:民办宏星小学", offset:OFFSET_LEFT, icon_idx:"32"	},
-{type:"3",lng:121.48978,lat:31.285774, title:"曲阳污水处理厂", alias:"污水处理厂",tel:"", addr:"上海虹口区", info:"<b>名称</b>:曲阳污水处理厂", offset:OFFSET_DOWN, icon_idx:"33"	},
+{type:"3",lng:121.48978,lat:31.285774, title:"曲阳污水处理厂", alias:"污水处理厂",tel:"", addr:"上海虹口区", info:"<b>名称</b>:曲阳污水处理厂", offset:OFFSET_LEFT, icon_idx:"33"	},
 {type:"3",lng:121.493095,lat:31.284449, title:"民办新北郊初级中学", alias:"新北郊初中",tel:"65542623", addr:"大连西路270弄25号", info:"<b>名称</b>:民办新北郊初级中学", icon_idx:"32"},
 {type:"3",lng:121.489321,lat:31.280863, title:"上海外国语大学", alias:"上外",tel:"35372000", addr:"广中路区域大连西路550号", info:"<b>名称</b>:上海外国语大学", icon_idx:"33"},
 {type:"3",lng:121.490789,lat:31.28281, title:"虹口区房地产交易中心/房管局", alias:"虹口房产交易中心/房管局",tel:"65533550", addr:"东体育会路359号", info:"<b>名称</b>:虹口区房地产交易中心/虹口区房管局", offset:OFFSET_LEFT, icon_idx:"33"},
@@ -224,7 +224,7 @@ var data_list = [
 {type:"3",lng:121.497419,lat:31.285115, title:"家乐福(曲阳店)", alias:"家乐福",tel:"55896078", addr:"上海市虹口区曲阳路560号曲阳生活购物中心1-2层", info:"<b>名称</b>:家乐福(曲阳店)", icon_idx:"33"},
  {type:"3",lng:121.498411,lat:31.286258, title:"上海市虹口区曲阳图书馆", alias:"曲阳图书馆",tel:"65533134", addr:"曲阳路574号", info:"<b>名称</b>: 上海市虹口区曲阳图书馆", icon_idx:"33",offset:OFFSET_UP},
 {type:"3",lng:121.497491,lat:31.285999, title:"上海市虹口区曲阳文化馆", alias:"文化馆",tel:"65533134", addr:"曲阳路570号", info:"<b>名称</b>: 上海市虹口区曲阳文化馆",   icon_idx:"33",offset:OFFSET_LEFT},
- {type:"3",lng:121.501543,lat:31.286124, title:"虹口区曲阳第三小学", alias:"曲阳三小",tel:"13917074798", addr:"赤峰路317弄17号", info:"<b>名称</b>: 虹口区曲阳第三小学", icon_idx:"32"},
+ {type:"3",lng:121.501543,lat:31.286124, title:"虹口区曲阳第三小学", alias:"曲阳三小",tel:"13917074798", addr:"赤峰路317弄17号", info:"<b>名称</b>: 虹口区曲阳第三小学", icon_idx:"32",offset:OFFSET_UP},
 {type:"3",lng:121.500487,lat:31.284884, title:"曲阳市场监督管理所", alias:"曲阳市场监管所",tel:"51851401", addr:"上海市虹口区玉田路252号", info:"<b>名称</b>: 上海市虹口区市场监督管理局曲阳市场监督管理所", icon_idx:"33", offset:OFFSET_UP},
 {type:"3",lng:121.502075,lat:31.284881, title:"曲阳第二中学", alias:"曲阳二中",tel:"65526354", addr:"虹口区玉田路180号", info:"<b>名称</b>: 曲阳第二中学", icon_idx:"32", offset:OFFSET_DOWN},
 {type:"3",lng:121.500256,lat:31.283986, title:"上海市迅行中学", alias:"迅行中学",tel:"65558282", addr:"上海市虹口区玉田路248号", info:"<b>名称</b>: 上海市迅行中学(玉田路)", offset:OFFSET_DOWN, icon_idx:"32"},
@@ -239,9 +239,14 @@ var data_list = [
  {type:"3",lng:121.502128,lat:31.299522 , title:"上海材料研究所", alias:"材料研究所",tel:"65556775-202", addr:"邯郸路99号", info:"<b>联系人</b>: 王松",offset:OFFSET_DOWN, icon_idx:"37"},
  {type:"3",lng:121.490384,lat:31.287813, title:"上海上外国际教育交流信息中心", alias:"上外文化交流",tel:"62176831", addr:"赤峰路555号", info:"<b>联系人</b>: 何晓礴", icon_idx:"33", icon_idx:"32"},
  {type:"3",lng:121.498778,lat:31.292379, title:"上海商务中心股份有限公司", alias:"商务中心",tel:"65538682", addr:"曲阳路800号40楼10室", info:"<b>联系人</b>: 吴琳", offset:OFFSET_DOWN, icon_idx:"33"},
- {type:"3",lng:121.494731,lat:31.285266, title:"曲阳社区市民服务驿站(南)", alias:"服务驿站(南)",tel:"(021)65543061", addr:"玉田路430号4楼(近东体育会路)", info:"<b>名称</b>:曲阳社区市民服务驿站(南)",offset:OFFSET_UP, icon_idx:"36"},
+ {type:"3",lng:121.494731,lat:31.285266, title:"第五片区市民驿站", alias:"五片区市民驿站",tel:"", addr:"玉田路430号4楼(近东体育会路)", info:"<b>名称</b>:第五片区市民驿站",offset:OFFSET_LEFT, icon_idx:"38"},
    {type:"3",lng:121.502493,lat:31.29086, title:"上海大庆石油大厦", alias:"石油大厦",tel:"65559191", addr:"中山北二路1515号", info:"<b>联系人</b>: 尤斌", offset:OFFSET_UP, icon_idx:"37"},
    {type:"3",lng:121.496454,lat:31.289513, title:"曲阳社区老年日托站", alias:"老年日托站",tel:"", addr:"上海市虹口区曲阳路上房小区(精武体育馆旁)", info:"<b>名称</b>:曲阳社区老年日托站" },
+ 
+   {type:"3",lng:121.493671,lat:31.295993, title:"第一片区市民驿站", alias:"一片区市民驿站",tel:"", addr:"中山北一路1180号", info:"<b>名称</b>:第五片区市民驿站",offset:OFFSET_LEFT, icon_idx:"38"},
+   {type:"3",lng:121.494974,lat:31.290485, title:"第三片区市民驿站", alias:"三片区市民驿站",tel:"", addr:"东体育会路705号", info:"<b>名称</b>:第五片区市民驿站",offset:OFFSET_LEFT, icon_idx:"38"},
+   {type:"3",lng:121.499223,lat:31.286118, title:"第四片区市民驿站", alias:"四片区市民驿站",tel:"", addr:"玉田支路19号", info:"<b>名称</b>:第五片区市民驿站",offset:OFFSET_RIGHT, icon_idx:"38"},
+   
 ];
  
 var icon_list = [
@@ -258,6 +263,7 @@ var icon_list = [
 	{type:"34", icon:"./icon/icon_hospital.png", size:{w:22, h:22},  desc:"医院"},	
 	{type:"36", icon:"./icon/icon_yellow.png", size:{w:13, h:21}, desc:"社区公共服务"},	
 	{type:"37", icon:"./icon/icon_sci.png", size:{w:20, h:20}, desc:"科研单位"},	
+	{type:"38", icon:"./icon/icon_yizhan.png", size:{w:25, h:18}, desc:"市民驿站"},	
 ];
 
 var g_icon_label_font_size = 13;
