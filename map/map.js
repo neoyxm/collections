@@ -219,15 +219,32 @@
 		}
 	}
 	
-	function getOffset(offset_idx, label_text_len, icon_size)
+	function getOffset(offset_idx, label_text, icon_size)
 	{
 		var w = 0;
 		var h = 0;
 		var icon_w = icon_size.width;
 		var icon_h = icon_size.height;
-		console.log(icon_w + " " + icon_h);
-		if (label_text_len <= 0)
-				return;
+
+		var text_label_w = 0;
+		var text_label_h = 0;
+
+		var lable_array = label_text.split("<br>");
+		for (var i = 0; i < lable_array.length; i++)
+		{
+			var spilt_txt_length = lable_array[i].length;
+			if (lable_array[i].lastIndexOf("/") >= 0)
+			{
+				spilt_txt_length = (spilt_txt_length - 1) + 0.4;
+			}				
+			if(text_label_w < spilt_txt_length)
+				text_label_w = spilt_txt_length;
+		}
+
+		if (text_label_w <= 0)
+			return;
+
+		text_label_h = g_icon_label_font_size * lable_array.length;
 
 		if (typeof offset_idx === "undefined")
 				offset_idx = OFFSET_RIGHT;
@@ -236,19 +253,19 @@
 		{
 				case OFFSET_RIGHT:
 						w = icon_w + g_h_gap; 			 
-						h = Math.ceil(g_icon_label_font_size/2); 			 
+						h = Math.ceil(icon_h/2 - text_label_h/2); 			 
 						break;
 				case OFFSET_LEFT:
-						w = -(Math.ceil(g_icon_label_font_size*label_text_len + 2)); 			 
-						h = Math.ceil(g_icon_label_font_size/2); 			 
+						w = -(Math.ceil(g_icon_label_font_size*text_label_w + 2)); 			 
+						h = Math.ceil(icon_h/2 - text_label_h/2); 			 
 						break;
 				case OFFSET_DOWN:
-						w = Math.ceil(icon_w/2 - g_icon_label_font_size*label_text_len/2); 			 
-						h = Math.ceil(g_icon_label_font_size/2 + icon_h / 2  + 4); 			 
+						w = Math.ceil(icon_w/2 - g_icon_label_font_size*text_label_w/2); 			 
+						h = Math.ceil(text_label_h/2 + icon_h / 2  + 4); 			 
 						break;
 				case OFFSET_UP:
-						w = Math.ceil(icon_w/2 - g_icon_label_font_size*label_text_len/2); 			 
-						h = -(Math.ceil(g_icon_label_font_size/2 + icon_h/2  - 2)); 			 
+						w = Math.ceil(icon_w/2 - g_icon_label_font_size*text_label_w/2); 			 
+						h = -(Math.ceil(text_label_h/2 + icon_h/2  - 2)); 			 
 						break;
 		}
 
@@ -267,7 +284,7 @@
 		var marker = new BMap.Marker(point, {icon:icon});
 
 		marker.setTitle(data_item.title);
-		var offset = getOffset(data_item.offset, data_item.alias.length, marker.getIcon().size);
+		var offset = getOffset(data_item.offset, data_item.alias, marker.getIcon().size);
 		var alias_label =  new BMap.Label(data_item.alias, {offset:{width:offset.w, height:offset.h}});
 		var font_size   = g_icon_label_font_size + "px";
 		alias_label.setStyle({fontSize : font_size,  background:"#FFDEAD", border:"none", color:"#000099", lineHeight: font_size});
