@@ -142,7 +142,8 @@
 	{
 		for(var i = 0; i < marker_vec.length; i++)
 		{
-			map.removeOverlay(marker_vec[i][0]);
+			//map.removeOverlay(marker_vec[i][0]);
+			marker_vec[i][0].hide();
 		}
 		
 		var content = '';
@@ -156,8 +157,8 @@
 				content += info_line1 + (i+1) + info_line2;
 			}
 			//marker_vec[index][0].show();
-			marker_vec[index][0].setLabel(marker_vec[index][2]);
-			map.addOverlay(marker_vec[index][0]);
+			//marker_vec[index][0].setLabel(marker_vec[index][2]);
+			marker_vec[index][0].show();
 			result_list.currPageEndNo = i;
 		}
 		var total_pages = 1;
@@ -290,6 +291,8 @@
 		alias_label.setStyle({fontSize : font_size,  background:"#FFDEAD", border:"none", color:"#000099", lineHeight: font_size});
 		marker.setLabel(alias_label);
 		marker.addEventListener('click', callback); 
+		marker.hide();
+		map.addOverlay(marker);
 		//make the element to contain the marker & type
 		var markerElem = [];
 		markerElem.push(marker);  //save the marker
@@ -297,19 +300,6 @@
 		markerElem.push(alias_label); // save the label
 		//put the element to vector
 		out_vec.push(markerElem);
-	}
-
-	function showMarkersByType(out_vec, type)
-	{
-		for (var i = 0; i < out_vec.length; i++) {
-			var markerElem = out_vec[i];
-			if (markerElem[1] == type || type == "all")
-			{
-				markerElem[0].show();
-			}
-			else
-				markerElem[0].hide();
-		}
 	}
 
 	function findItemByTitle(title)
@@ -450,7 +440,6 @@
 			max_items = show_max_items;
 	
 		clearInfoWindow();
-		//showMarkersByType(marker_vec, e.id)
 		loadDetailedInfoByType({type:e.id});
 		disableBtnByID(e.id); 
 		currSelectedType = e.id;
@@ -461,7 +450,6 @@
     {
 		max_items = show_max_items;
 		clearInfoWindow();
-		//showMarkersByType(marker_vec, e.id)
 		loadDetailedInfoByType({type:currSelectedType});
 		enableSelBtns( ); 
 	}

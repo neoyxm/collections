@@ -203,7 +203,6 @@ var data_list = [
 {type:"3",lng:121.503067,lat:31.293966, title:"上海市公安局虹口分局曲阳路派出所", alias:"曲阳派出所",tel:"(021)65552848", addr:"巴林路56号", info:"<b>名称</b>:上海市公安局虹口分局曲阳路派出所" },
 {type:"3",lng:121.504454,lat:31.295384, title:"上海市虹口实验学校", alias:"实验学校",tel:"(021)55880345", addr:"运光路（近辉河路）", info:"<b>名称</b>:上海市虹口实验学校", offset:OFFSET_UP, icon_idx:"32"},
 {type:"3",lng:121.501463,lat:31.294678, title:"曲阳路街道敬老院", alias:"敬老院",tel:"(021)55880345", addr:"上海市虹口区巴林路60弄28号", info:"<b>名称</b>:曲阳路街道敬老院"},
-{type:"3",lng:121.504593,lat:31.29474, title:"第二片区市民驿站", alias:"第二片区/<br>市民驿站",tel:"", addr:"辉河路51", info:"<b>名称</b>:第二片区市民驿站", icon_idx:"38"},
 {type:"3",lng:121.507823,lat:31.294506, title:"上海市虹口区社会福利院", alias:"福利院",tel:"021-65546977", addr:"密云路623号", info:"<b>名称</b>:上海市虹口区社会福利院", offset:OFFSET_DOWN},
 {type:"3",lng:121.506891,lat:31.29651, title:"复旦大学学生生活园区", alias:"复旦学生宿舍",tel:"", addr:"松花江路2500弄", info:"<b>名称</b>:复旦大学学生生活园区", icon_idx:"32"},
 {type:"3",lng:121.490503,lat:31.290131, title:"上海建工医院", alias:"建工医院",tel:"65366688", addr:"松花江路2500弄", info:"<b>名称</b>:上海建工医院",offset:OFFSET_DOWN, icon_idx:"34"},
@@ -239,13 +238,13 @@ var data_list = [
  {type:"3",lng:121.502128,lat:31.299522 , title:"上海材料研究所", alias:"材料研究所",tel:"65556775-202", addr:"邯郸路99号", info:"<b>联系人</b>: 王松",offset:OFFSET_DOWN, icon_idx:"37"},
  {type:"3",lng:121.490384,lat:31.287813, title:"上海上外国际教育交流信息中心", alias:"上外国际交流",tel:"62176831", addr:"赤峰路555号", info:"<b>联系人</b>: 何晓礴", icon_idx:"32"},
  {type:"3",lng:121.498778,lat:31.292379, title:"上海商务中心股份有限公司", alias:"商务中心",tel:"65538682", addr:"曲阳路800号40楼10室", info:"<b>联系人</b>: 吴琳", offset:OFFSET_DOWN, },
- {type:"3",lng:121.494731,lat:31.285266, title:"第五片区市民驿站", alias:"第五片区/<br>市民驿站",tel:"", addr:"玉田路430号4楼(近东体育会路)", info:"<b>名称</b>:第五片区市民驿站",offset:OFFSET_LEFT, icon_idx:"38"},
    {type:"3",lng:121.502493,lat:31.29086, title:"上海大庆石油大厦", alias:"石油大厦",tel:"65559191", addr:"中山北二路1515号", info:"<b>联系人</b>: 尤斌", offset:OFFSET_UP, icon_idx:"39"},
    {type:"3",lng:121.496454,lat:31.289513, title:"曲阳社区老年日托站", alias:"老年日托站",tel:"", addr:"上海市虹口区曲阳路上房小区(精武体育馆旁)", info:"<b>名称</b>:曲阳社区老年日托站" },
- 
    {type:"3",lng:121.493671,lat:31.295993, title:"第一片区/市民驿站", alias:"第一片区/<br>市民驿站",tel:"", addr:"中山北一路1180号", info:"<b>名称</b>:第一片区/市民驿站",offset:OFFSET_LEFT, icon_idx:"38"},
+   {type:"3",lng:121.504593,lat:31.29474, title:"第二片区市民驿站", alias:"第二片区/<br>市民驿站",tel:"", addr:"辉河路51号", info:"<b>名称</b>:第二片区市民驿站", icon_idx:"38"},
    {type:"3",lng:121.494974,lat:31.290485, title:"第三片区/市民驿站", alias:"第三片区/<br>市民驿站",tel:"", addr:"东体育会路705号", info:"<b>名称</b>:第三片区/市民驿站",offset:OFFSET_LEFT, icon_idx:"38"},
    {type:"3",lng:121.499223,lat:31.286118, title:"第四片区/市民驿站", alias:"第四片区/<br>市民驿站",tel:"", addr:"玉田支路19号", info:"<b>名称</b>:第四片区/市民驿站",offset:OFFSET_RIGHT, icon_idx:"38"},
+   {type:"3",lng:121.494731,lat:31.285266, title:"第五片区/市民驿站", alias:"第五片区/<br>市民驿站",tel:"", addr:"玉田路430号4楼(近东体育会路)", info:"<b>名称</b>:第五片/区市民驿站",offset:OFFSET_LEFT, icon_idx:"38"},
    
 ];
  
