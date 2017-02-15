@@ -9,6 +9,7 @@
 	map.setMapStyle({styleJson:styleJson});
 
 	var marker_vec = [];
+	var curr_displayed_marker_vec = [];
 	var page_result_list = {index:[], currPageStartNo:0, currPageEndNo:0};
 	var max_items = show_max_items;
 	var g_missed_rd_lb_vec = [];
@@ -140,11 +141,11 @@
 
 	function showResultInPageMode(begin_no, result_list)
 	{
-		for(var i = 0; i < marker_vec.length; i++)
+		for (var i = 0; i < curr_displayed_marker_vec.length; i++)
 		{
-			//map.removeOverlay(marker_vec[i][0]);
-			marker_vec[i][0].hide();
+			curr_displayed_marker_vec[i].hide();
 		}
+		curr_displayed_marker_vec = [];
 		
 		var content = '';
 		page_result_list.currPageStartNo = begin_no;
@@ -159,6 +160,7 @@
 			//marker_vec[index][0].show();
 			//marker_vec[index][0].setLabel(marker_vec[index][2]);
 			marker_vec[index][0].show();
+			curr_displayed_marker_vec.push(marker_vec[index][0]);
 			result_list.currPageEndNo = i;
 		}
 		var total_pages = 1;
@@ -296,8 +298,8 @@
 		//make the element to contain the marker & type
 		var markerElem = [];
 		markerElem.push(marker);  //save the marker
-		markerElem.push(data_item.type); //save the type
-		markerElem.push(alias_label); // save the label
+		//markerElem.push(data_item.type); //save the type
+		//markerElem.push(alias_label); // save the label
 		//put the element to vector
 		out_vec.push(markerElem);
 	}
@@ -411,7 +413,6 @@
 		}
 	}
 	
-	 
 	function enableSelBtns()
 	{
 		var btnList = document.getElementsByName("selBtn");
