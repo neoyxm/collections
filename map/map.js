@@ -464,6 +464,8 @@
 	
 	function doSearch(keyword)
 	{
+		if(keyword === "")
+			return;
 		var res = getSearchResult(keyword);
 		if(res)
 		{
