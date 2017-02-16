@@ -241,7 +241,7 @@ var data_list = [
    {type:"3",lng:121.502493,lat:31.29086, title:"上海大庆石油大厦", alias:"石油大厦",tel:"65559191", addr:"中山北二路1515号", info:"<b>联系人</b>: 尤斌", offset:OFFSET_UP, icon_idx:"39"},
    {type:"3",lng:121.496454,lat:31.289513, title:"曲阳社区老年日托站", alias:"老年日托站",tel:"", addr:"上海市虹口区曲阳路上房小区(精武体育馆旁)", info:"<b>名称</b>:曲阳社区老年日托站" },
    {type:"3",lng:121.493671,lat:31.295993, title:"第一片区/市民驿站", alias:"第一片区/<br>市民驿站",tel:"", addr:"中山北一路1180号", info:"<b>名称</b>:第一片区/市民驿站",offset:OFFSET_LEFT, icon_idx:"38"},
-   {type:"3",lng:121.504593,lat:31.29474, title:"第二片区市民驿站", alias:"第二片区/<br>市民驿站",tel:"", addr:"辉河路51号", info:"<b>名称</b>:第二片区市民驿站", icon_idx:"38"},
+   {type:"3",lng:121.504593,lat:31.29474, title:"第二片区/市民驿站", alias:"第二片区/<br>市民驿站",tel:"", addr:"辉河路51号", info:"<b>名称</b>:第二片区/市民驿站", icon_idx:"38"},
    {type:"3",lng:121.494974,lat:31.290485, title:"第三片区/市民驿站", alias:"第三片区/<br>市民驿站",tel:"", addr:"东体育会路705号", info:"<b>名称</b>:第三片区/市民驿站",offset:OFFSET_LEFT, icon_idx:"38"},
    {type:"3",lng:121.499223,lat:31.286118, title:"第四片区/市民驿站", alias:"第四片区/<br>市民驿站",tel:"", addr:"玉田支路19号", info:"<b>名称</b>:第四片区/市民驿站",offset:OFFSET_RIGHT, icon_idx:"38"},
    {type:"3",lng:121.494731,lat:31.285266, title:"第五片区/市民驿站", alias:"第五片区/<br>市民驿站",tel:"", addr:"玉田路430号4楼(近东体育会路)", info:"<b>名称</b>:第五片/区市民驿站",offset:OFFSET_LEFT, icon_idx:"38"},
