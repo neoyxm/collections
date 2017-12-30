@@ -48,7 +48,7 @@ int binary_search_non_recursive(int start_pos, int end_pos, int target)
 
     while ( s <= e)
     {
-        int half_pos  =  (s + e) >> 1;
+        int half_pos  =  (s + e) / 2;
 
         if (data[half_pos] == target)
         {
