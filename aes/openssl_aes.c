@@ -100,7 +100,8 @@ int main(int argc, char **argv)
     int bDec = 0, bEnc = 0;
     /* "opaque" encryption, decryption ctx structures that libcrypto uses to record
        status of enc/dec operations */
-    EVP_CIPHER_CTX en, de;
+    EVP_CIPHER_CTX en={0};
+    EVP_CIPHER_CTX  de={0};
 
     unsigned char aes_key[AES128_KEY_LEN];
     unsigned char aes_iv[AES128_IV_LEN];
