@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stack>
 
 using namespace std;
 
@@ -37,6 +38,13 @@ void afterOrderBrowse(PTNode pNode)
     afterOrderBrowse(pNode->r);
     cout << pNode->data << " ";
 }
+
+void preOrderBrowse_non_recur(PTNode pNode)
+{
+    stack<PTNode> node_stack;
+   
+}
+
 int main()
 {
     TNode g = { 'g', NULL, NULL };
