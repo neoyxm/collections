@@ -41,8 +41,29 @@ void afterOrderBrowse(PTNode pNode)
 
 void preOrderBrowse_non_recur(PTNode pNode)
 {
+    if(!pNode)
+        return;
+
     stack<PTNode> node_stack;
+
+    PTNode curr_node = pNode;
    
+    while(curr_node || !node_stack.empty())
+    {
+        while(curr_node)
+        {
+            node_stack.push(curr_node);
+            cout << curr_node->data << " ";
+            curr_node = curr_node->l;
+        }
+
+        if(!node_stack.empty())
+        {
+           curr_node =  node_stack.top();
+           curr_node =  curr_node->r;
+           node_stack.pop();
+        }
+    }
 }
 
 int main()
@@ -60,6 +81,10 @@ int main()
     cout << "PreOrder:"<< endl;
     preOrderBrowse(p);
     cout << endl;
+    cout << "PreOrder-non_recur:"<< endl;
+    preOrderBrowse_non_recur(p);
+    cout << endl;
+
     cout << "CenterOrder:"<< endl;
     centerOrderBrowse(p);
     cout << endl;
