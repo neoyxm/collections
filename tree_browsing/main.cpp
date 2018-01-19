@@ -39,7 +39,13 @@ void afterOrderBrowse(PTNode pNode)
     cout << pNode->data << " ";
 }
 
-void preOrderBrowse_non_recur(PTNode pNode)
+enum TreeBrowseType{
+   PreTreeBrowseType,  
+   CenterTreeBrowseType,  
+   AfterTreeBrowseType,  
+}; 
+
+void TreeBrowse_non_recur(PTNode pNode, TreeBrowseType eBrowseType)
 {
     if(!pNode)
         return;
@@ -53,13 +59,16 @@ void preOrderBrowse_non_recur(PTNode pNode)
         while(curr_node)
         {
             node_stack.push(curr_node);
-            cout << curr_node->data << " ";
+            if(PreTreeBrowseType == eBrowseType)
+               cout << curr_node->data << " ";
             curr_node = curr_node->l;
         }
 
         if(!node_stack.empty())
         {
            curr_node =  node_stack.top();
+           if(CenterTreeBrowseType == eBrowseType)
+               cout << curr_node->data << " ";
            curr_node =  curr_node->r;
            node_stack.pop();
         }
@@ -82,12 +91,16 @@ int main()
     preOrderBrowse(p);
     cout << endl;
     cout << "PreOrder-non_recur:"<< endl;
-    preOrderBrowse_non_recur(p);
-    cout << endl;
+    TreeBrowse_non_recur(p, PreTreeBrowseType);
+    cout << endl << endl;
 
     cout << "CenterOrder:"<< endl;
     centerOrderBrowse(p);
     cout << endl;
+    cout << "CenterOrder-non_recur:"<< endl;
+    TreeBrowse_non_recur(p, CenterTreeBrowseType);
+    cout << endl << endl;
+
     cout << "AfterOrder:"<< endl;
     afterOrderBrowse(p);
     cout << endl;
