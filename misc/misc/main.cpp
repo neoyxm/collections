@@ -51,8 +51,12 @@ int main()
 
     s2.print();
 
+#ifdef __WIN32__
     int i;
     cin >> i;
+#endif
+    
+    return 0;
 }
 
 
