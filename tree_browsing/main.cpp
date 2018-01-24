@@ -75,6 +75,48 @@ void TreeBrowse_non_recur(PTNode pNode, TreeBrowseType eBrowseType)
     }
 }
 
+void TreeBrowse_non_recur_after(PTNode pNode)
+{
+    if(!pNode)
+        return;
+
+    stack<PTNode> node_stack;
+
+    PTNode curr_node = pNode;
+    PTNode lastVisit = NULL;
+   
+    while(curr_node || !node_stack.empty())
+    {
+        while(curr_node)
+        {
+            node_stack.push(curr_node);
+            curr_node = curr_node->l;
+        }
+
+        
+        curr_node =  node_stack.top();
+        if(curr_node->r == NULL || curr_node->r == lastVisit)
+        {
+           cout << curr_node->data << " ";
+           node_stack.pop();
+           lastVisit = curr_node;
+           curr_node = NULL;
+        }
+        else
+            curr_node = curr_node->r;
+    }      
+}
+
+
+/*
+         a
+        / \
+       b   c
+      / \
+     d   f
+      \ / 
+      e g
+*/
 int main()
 {
     TNode g = { 'g', NULL, NULL };
@@ -103,6 +145,9 @@ int main()
 
     cout << "AfterOrder:"<< endl;
     afterOrderBrowse(p);
+    cout << endl;
+    cout << "AfterOrder-non_recur:"<< endl;
+    TreeBrowse_non_recur_after(p);
     cout << endl;
     
     int i;
