@@ -1,19 +1,22 @@
 #include <iostream>
 #include <cstring>
+#include <string>
+#include <vector>
+#include <stack>
+#include <list>
 #include <cstdio>
-
 using namespace std;
 
 class CMyString{
 public:
-    CMyString() : m_str(NULL) {}
+    CMyString() = default;
     CMyString(const char *s);
     //CMyString(const string &s);
     void print() { cout << m_str << endl; }
 
     CMyString &operator= (const  CMyString &s);
 private:
-    char *m_str;
+    char *m_str = "haha";
 };
 
 CMyString::CMyString(const char *s)
@@ -42,14 +45,123 @@ CMyString& CMyString::operator=(const  CMyString &s)
     return *this;
 }
 
+int fab(int n)
+{
+    if (0 == n)
+       return 0;
+    if (1 == n)
+       return 1;
+
+    return fab(n - 2) + fab(n-1);
+}
+
+class CBase{
+public:
+    virtual void f() { cout << "Base f()" << endl; }
+};
+
+class CDiver :public CBase{
+public:
+    void f() { cout << "CDiver f()" << endl; }
+};
+
+class CDiver2 :public CDiver{
+public:
+    void f() { cout << "CDiver2 f()" << endl; }
+};
+
+void print_class(CBase &obj)
+{
+    obj.f();
+}
+
+const vector<string>::iterator find_it_by_name(vector<string> &a, const string &name)
+{
+    vector<string>::iterator it = a.begin();
+    for (; it != a.end(); it++)
+    {
+        if (*it == name)
+            break;
+    }
+    
+    return it;
+}
+
+void travel_list()
+{
+	list<int> a = {0, 1, 2, 3, 4};
+	//list<int>::iterator begin = a.begin(), end = a.end();
+
+	for (list<int>::iterator begin = a.begin(); begin != a.end(); begin++)
+	{
+		cout << *begin << " ";
+	}
+
+	cout << endl;
+}
+
 int main()
 {
-    CMyString  s1("Hello");
-    CMyString  s2;
-
-    s2 = s1;
+    CMyString  s1(NULL);
+    auto & s2 = s1;
 
     s2.print();
+
+    cout << "fab(16) = " << fab(16) << endl;
+
+    CBase objBase;
+    CDiver objDiver;
+    CDiver2 objDiver2;
+
+    print_class(objBase);
+    print_class(objDiver);
+    print_class(objDiver2);
+
+    vector<string> a = {"Neo", "Meggie", "Lily"};
+
+    vector<string>::iterator it = find_it_by_name(a, "Lily");
+
+    vector<string> b(a.begin(), it);
+
+    for (vector<string>::iterator it = b.begin(); it != b.end(); it++ )
+    {
+        cout << "Name:" << *it << endl;
+    }
+
+    cout   << endl;
+
+    a.swap(b);
+
+    for (vector<string>::iterator it = b.begin(); it != b.end(); it++)
+    {
+        cout << "Name:" << *it << endl;
+    }
+
+	travel_list();
+
+
+	string s("hello");
+	s.replace(2, 5, "ooooo");
+	cout << s << endl;
+
+	string number("0123456789");
+	string name("2z3j5");
+	string::size_type pos = 0;
+	while ((pos = name.find_first_of(number, pos)) != string::npos)
+	{
+		cout << "found number at index:" << pos << "element is:" << name[pos] << endl;
+		pos++;
+	}
+
+	vector<int> avec { 1,2,3 };
+
+	for (auto cit = avec.cbegin(); cit != avec.cend(); cit++)
+	{
+		cout << *cit << endl;
+	}
+
+	stack<int, vector<int> > stack_vec(avec);
+	stack_vec.push(4);
 
 #ifdef __WIN32__
     int i;
