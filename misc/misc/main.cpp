@@ -5,6 +5,7 @@
 #include <stack>
 #include <list>
 #include <cstdio>
+#include <algorithm>
 using namespace std;
 
 class CMyString{
@@ -95,9 +96,23 @@ void travel_list()
 	for (list<int>::iterator begin = a.begin(); begin != a.end(); begin++)
 	{
 		cout << *begin << " ";
-	}
+	}   
 
 	cout << endl;
+}
+
+bool myCompare(string& s1,  string& s2)
+{
+    if(s1.size() > s2.size())    
+        return true;
+    return false;
+}
+
+bool mySplit(string& s)
+{
+    if(s.size() > 5)
+        return true;
+    return false;
 }
 
 int main()
@@ -162,6 +177,23 @@ int main()
 
 	stack<int, vector<int> > stack_vec(avec);
 	stack_vec.push(4);
+
+
+    vector<string> strvec = {"AAAA", "BBBBB", "CCCCCC", "DD", "EEEEEEEEEEEE", "F"};
+   // sort(strvec.begin(), strvec.end(), myCompare);
+    for(const auto &s : strvec)
+        cout << s << " ";
+    cout << endl;
+
+    auto point = partition(strvec.begin(), strvec.end(), [](const string& s1){ return s1.size() > 5;});
+    for(auto iter = strvec.begin();iter != point; iter++)
+        cout << *iter << " ";
+    cout << endl;
+
+    //lambda
+    int (*f)(int) = [](int a) { return a;};
+    cout << "f:" << f(10) <<endl;  
+
 
 #ifdef __WIN32__
     int i;
