@@ -115,6 +115,17 @@ bool mySplit(string& s)
     return false;
 }
 
+void lamdba_test(int sz)
+{
+
+    //lambda
+    auto f = [sz](int a) { return (a+sz); };
+ 
+    cout << "f:" << f(10) <<endl;
+}
+
+
+
 int main()
 {
     CMyString  s1(NULL);
@@ -186,13 +197,11 @@ int main()
     cout << endl;
 
     auto point = partition(strvec.begin(), strvec.end(), [](const string& s1){ return s1.size() > 5;});
-    for(auto iter = strvec.begin();iter != point; iter++)
+    for(auto iter = strvec.begin();iter != point; iter  ++)
         cout << *iter << " ";
     cout << endl;
 
-    //lambda
-    int (*f)(int) = [](int a) { return a;};
-    cout << "f:" << f(10) <<endl;  
+    lamdba_test(5);
 
 
 #ifdef __WIN32__
