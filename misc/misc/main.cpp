@@ -11,7 +11,8 @@ using namespace std;
 class CMyString{
 public:
     CMyString() = default;
-    CMyString(const char *s);
+    explicit  CMyString(const char *s);
+    CMyString::CMyString(const CMyString &);
     //CMyString(const string &s);
     void print() { cout << m_str << endl; }
 
@@ -29,6 +30,11 @@ CMyString::CMyString(const char *s)
     m_str = new char[nLen + 1];
 
     sprintf(m_str, "%s", s);
+}
+
+CMyString::CMyString(const CMyString &a)
+{
+    m_str = a.m_str;
 }
 
 CMyString& CMyString::operator=(const  CMyString &s)
@@ -124,10 +130,15 @@ void lamdba_test(int sz)
     cout << "f:" << f(10) << endl;
 }
 
+void foo1(const CMyString &s)
+{}
+
 int main()
 {
     CMyString  s1(NULL);
     auto & s2 = s1;
+
+    //foo1("Hello");
 
     s2.print();
 
