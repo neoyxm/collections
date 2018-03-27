@@ -79,7 +79,7 @@ void print_class(CBase &obj)
 const vector<string>::iterator find_it_by_name(vector<string> &a, const string &name)
 {
     vector<string>::iterator it = a.begin();
-    for (; it != a.end(); it++)
+    for (; it != a.end(); ++it)
     {
         if (*it == name)
             break;
@@ -93,7 +93,7 @@ void travel_list()
 	list<int> a = {0, 1, 2, 3, 4};
 	//list<int>::iterator begin = a.begin(), end = a.end();
 
-	for (list<int>::iterator begin = a.begin(); begin != a.end(); begin++)
+	for (list<int>::iterator begin = a.begin(); begin != a.end(); ++begin)
 	{
 		cout << *begin << " ";
 	}   
@@ -121,10 +121,8 @@ void lamdba_test(int sz)
     //lambda
     auto f = [sz](int a) { return (a+sz); };
  
-    cout << "f:" << f(10) <<endl;
+    cout << "f:" << f(10) << endl;
 }
-
-
 
 int main()
 {
@@ -143,13 +141,13 @@ int main()
     print_class(objDiver);
     print_class(objDiver2);
 
-    vector<string> a = {"Neo", "Meggie", "Lily"};
+    vector<string> a = {"Neo", "Meggie", "KK"};
 
-    vector<string>::iterator it = find_it_by_name(a, "Lily");
+    vector<string>::iterator it = find_it_by_name(a, "KK");
 
     vector<string> b(a.begin(), it);
 
-    for (vector<string>::iterator it = b.begin(); it != b.end(); it++ )
+    for (vector<string>::iterator it = b.begin(); it != b.end(); ++it )
     {
         cout << "Name:" << *it << endl;
     }
@@ -158,7 +156,7 @@ int main()
 
     a.swap(b);
 
-    for (vector<string>::iterator it = b.begin(); it != b.end(); it++)
+    for (vector<string>::iterator it = b.begin(); it != b.end(); ++it)
     {
         cout << "Name:" << *it << endl;
     }
