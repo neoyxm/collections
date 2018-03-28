@@ -13,9 +13,7 @@ public:
     CMyString() = default;
     explicit  CMyString(const char *s);
     CMyString::CMyString(const CMyString &);
-    //CMyString(const string &s);
     void print() { cout << m_str << endl; }
-
     CMyString &operator= (const  CMyString &s);
 private:
     char *m_str = "haha";
@@ -198,7 +196,6 @@ int main()
 	stack<int, vector<int> > stack_vec(avec);
 	stack_vec.push(4);
 
-
     vector<string> strvec = {"AAAA", "BBBBB", "CCCCCC", "DD", "EEEEEEEEEEEE", "F"};
    // sort(strvec.begin(), strvec.end(), myCompare);
     for(const auto &s : strvec)
@@ -212,7 +209,6 @@ int main()
 
     lamdba_test(5);
 
-
 #ifdef __WIN32__
     int i;
     cin >> i;
@@ -220,7 +216,3 @@ int main()
     
     return 0;
 }
-
-
-
-
