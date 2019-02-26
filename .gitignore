@@ -220,7 +220,7 @@ pip-log.txt
 ## VS
 #############
 
-
+misc/.vs/
 misc/.vs/misc/v15/Browse.VC.db
 misc/misc/.vscode/settings.json
 misc/.vs/misc/v15/Browse.VC.opendb
